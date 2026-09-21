@@ -1,0 +1,57 @@
+{% layout none %}
+{% assign handle = request.params.c | default: 'all' %}
+{% assign coll = collections[handle] %}
+{% if coll == nil %}{% assign coll = collections['all'] %}{% endif %}
+
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom"
+     xmlns:g="http://base.google.com/ns/1.0"
+     xmlns:sr="https://www.webmarked.net"
+     xmlns:media="http://search.yahoo.com/mrss/"
+     xmlns:content="http://purl.org/rss/1.0/modules/content/"
+     version="2.0">
+<channel>
+  <atom:link href="{{ shop.url }}{{ page.url }}?c={{ handle }}" rel="self" type="application/rss+xml"/>
+  <title><![CDATA[ {{ shop.name }} RSS Feed ]]></title>
+  <link><![CDATA[ {{ shop.url }}{{ page.url }}?c={{ handle }} ]]></link>
+  <description><![CDATA[ The RSS Feed of {{ shop.name }} ]]></description>
+  <language>en-us</language>
+  <category><![CDATA[]]></category>
+  <copyright><![CDATA[ {{ shop.name }} ]]></copyright>
+  <ttl>8000</ttl>
+  <generator>Custom RSS Feed for Shopify</generator>
+
+  {%- comment -%}
+    LẤY TỐI ĐA 1000 SP theo thứ tự của collection.
+    => Đặt collection 'all' (hoặc collection bạn truyền bằng ?c=...) thành "Best selling".
+  {%- endcomment -%}
+  {%- paginate coll.products by 1000 -%}
+    {%- for product in coll.products -%}
+      {%- assign img = product.featured_image -%}
+      {%- assign img_url = '' -%}
+      {%- assign img_mime = 'image/jpeg' -%}
+      {%- if img -%}
+        {%- assign img_url = img | image_url: width: 2000 | prepend: 'https:' -%}
+        {%- if img_url contains '.png' %}{% assign img_mime = 'image/png' %}{% endif -%}
+      {%- endif -%}
+
+      <item>
+        <title><![CDATA[ {{ product.title }} ]]></title>
+        <description><![CDATA[ {{ product.description_html }} ]]></description>
+
+        {%- if img_url != '' -%}
+          <!-- Giữ kiểu của app + thêm 3 thẻ Pinterest chấp nhận -->
+          <sr:image><![CDATA[ {{ img_url }} ]]></sr:image>
+          <image>{{ img_url }}</image>
+          <enclosure url="{{ img_url }}" type="{{ img_mime }}" length="0"/>
+          <media:content url="{{ img_url }}" medium="image"/>
+        {%- endif -%}
+
+        <pubDate>{{ product.published_at | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
+        <link>{{ shop.url }}{{ product.url }}</link>
+        <guid isPermaLink="false">{{ product.id }}</guid>
+      </item>
+    {%- endfor -%}
+  {%- endpaginate -%}
+</channel>
+</rss>

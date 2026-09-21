@@ -1,0 +1,442 @@
+{%- comment -%}
+  Snippet: custom-request-form.liquid
+  Purpose: In-product-info custom order request form (timberustic-style)
+  Theme: Pillar by Foxecom
+  Place: snippets/product-information-blocks.liquid — after {%- endfor -%}, before closing </div>
+  Submission: Shopify native contact form → store notification email
+{%- endcomment -%}
+
+{%- assign product_url = shop.url | append: product.url -%}
+
+<div class="custom-request-wrapper">
+
+  <button
+    type="button"
+    class="custom-request-toggle"
+    aria-expanded="false"
+    aria-controls="custom-request-panel"
+    id="custom-request-toggle"
+  >
+    <span class="custom-request-toggle__label">SEND CUSTOM REQUEST</span>
+    <span class="custom-request-toggle__icon" aria-hidden="true">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 6L8 11L13 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </span>
+  </button>
+
+  <div
+    class="custom-request-panel"
+    id="custom-request-panel"
+    role="region"
+    aria-labelledby="custom-request-toggle"
+    hidden
+  >
+    {%- form 'contact', id: 'CustomRequestForm' -%}
+
+      <input type="hidden" name="contact[tags]"          value="custom-request">
+      <input type="hidden" name="contact[subject]"       value="Custom Request — {{ product.title | escape }}">
+      <input type="hidden" name="contact[product_title]" value="{{ product.title | escape }}">
+      <input type="hidden" name="contact[product_url]"   value="{{ product_url | escape }}">
+
+      {%- if form.posted_successfully? -%}
+        <p class="custom-request-success" role="alert">
+          ✓ Request sent! We'll get back to you within 1–2 business days.
+        </p>
+      {%- endif -%}
+
+      {%- if form.errors -%}
+        <p class="custom-request-error" role="alert">
+          {{ form.errors | default_errors }}
+        </p>
+      {%- endif -%}
+
+      <div class="custom-request-product-ref">
+        <div class="custom-request-product-ref__row">
+          <span class="custom-request-product-ref__label">Product:</span>
+          <span class="custom-request-product-ref__value">{{ product.title }}</span>
+        </div>
+        <div class="custom-request-product-ref__row">
+          <span class="custom-request-product-ref__label">URL:</span>
+          <a
+            class="custom-request-product-ref__url"
+            href="{{ product_url }}"
+            target="_blank"
+            rel="noopener"
+          >{{ product_url }}</a>
+        </div>
+      </div>
+
+      <div class="custom-request-fields">
+
+        <div class="custom-request-field">
+          <label class="custom-request-label" for="CustomRequestEmail">
+            Email <span class="custom-request-required" aria-hidden="true">*</span>
+          </label>
+          <input
+            class="custom-request-input"
+            type="email"
+            id="CustomRequestEmail"
+            name="contact[email]"
+            placeholder="you@example.com"
+            autocomplete="email"
+            required
+          >
+        </div>
+
+        <div class="custom-request-field">
+          <label class="custom-request-label" for="CustomRequestPhone">
+            Phone
+            <span class="custom-request-optional">(optional)</span>
+          </label>
+          <input
+            class="custom-request-input"
+            type="tel"
+            id="CustomRequestPhone"
+            name="contact[phone]"
+            placeholder="+1 555 000 0000"
+            autocomplete="tel"
+          >
+        </div>
+
+        <div class="custom-request-field">
+          <label class="custom-request-label" for="CustomRequestMessage">
+            Describe your customization request
+          </label>
+          <textarea
+            class="custom-request-input custom-request-textarea"
+            id="CustomRequestMessage"
+            name="contact[body]"
+            placeholder="Tell us size, wood tone, finish, deadline…"
+            rows="5"
+            required
+          ></textarea>
+        </div>
+
+      </div>
+
+      <button type="submit" class="custom-request-submit">
+        Send request
+      </button>
+
+    {%- endform -%}
+  </div>
+
+</div>
+
+
+{%- comment -%} ===================== STYLES ===================== {%- endcomment -%}
+<style>
+  /*
+   * Layout strategy:
+   * - .custom-request-wrapper holds the card border + border-radius + overflow:hidden
+   * - overflow:hidden makes the white panel background clip to the rounded corners
+   *   (fixes the "disconnected bottom corners" bug)
+   * - border-radius is a fixed 12px in px, NOT var(--buttons-radius), because
+   *   Pillar sets --buttons-radius to a large pill value (~40-50px) that would
+   *   clip the toggle text even with generous padding
+   * - Toggle and panel have no borders of their own; wrapper provides the outline
+   */
+
+  /* ---- Wrapper ---- */
+  .custom-request-wrapper {
+    display: block;
+    width: 100%;
+    border: 1.5px solid rgb(var(--color-button, 26 58 52));
+    border-radius: 12px;
+    overflow: hidden; /* clips all children backgrounds to 12px corners */
+  }
+
+  /* ---- Toggle button ---- */
+  .custom-request-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    /*
+     * Horizontal padding of 2rem (32px) comfortably exceeds the 12px corner
+     * radius so overflow:hidden never clips the label text.
+     */
+    padding: 1.5rem 2rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: rgb(var(--color-button, 26 58 52));
+    transition: background 0.18s ease;
+    font-family: inherit;
+    line-height: 1.2;
+  }
+
+  .custom-request-toggle:hover {
+    background: rgba(var(--color-button, 26 58 52) / 0.05);
+  }
+
+  /* Hairline divider that appears only when panel is open */
+  .custom-request-toggle[aria-expanded="true"] {
+    border-bottom: 1px solid rgba(var(--color-button, 26 58 52) / 0.18);
+  }
+
+  .custom-request-toggle__label {
+    flex: 1;
+    text-align: left;
+  }
+
+  .custom-request-toggle__icon {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    margin-left: 1rem;
+    transition: transform 0.22s ease;
+  }
+
+  .custom-request-toggle[aria-expanded="true"] .custom-request-toggle__icon {
+    transform: rotate(180deg);
+  }
+
+  /* ---- Panel ---- */
+  .custom-request-panel {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    /* Extra bottom padding so submit button doesn't crowd the wrapper border */
+    padding: 2rem 2rem 2.4rem;
+    background-color: rgb(var(--color-background, 255 255 255));
+    animation: crSlideDown 0.22s ease;
+  }
+
+  .custom-request-panel[hidden] {
+    display: none !important;
+  }
+
+  @keyframes crSlideDown {
+    from { opacity: 0; transform: translateY(-5px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ---- Product reference ---- */
+  .custom-request-product-ref {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.6rem;
+    border-bottom: 1px solid rgba(var(--color-button, 26 58 52) / 0.15);
+  }
+
+  .custom-request-product-ref__row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem;
+    line-height: 1.5;
+  }
+
+  .custom-request-product-ref__label {
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: rgb(var(--color-foreground, 0 0 0));
+    flex-shrink: 0;
+  }
+
+  .custom-request-product-ref__value {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: rgb(var(--color-foreground, 0 0 0));
+  }
+
+  .custom-request-product-ref__url {
+    font-size: 1.15rem;
+    color: rgb(var(--color-button, 26 58 52));
+    word-break: break-all;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  /* ---- Field rows ---- */
+  .custom-request-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+    margin-bottom: 2rem;
+  }
+
+  .custom-request-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .custom-request-label {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: rgb(var(--color-foreground, 0 0 0));
+    line-height: 1;
+  }
+
+  .custom-request-required {
+    color: rgb(var(--color-button, 26 58 52));
+    font-size: 1.6rem;
+    line-height: 0.8;
+  }
+
+  .custom-request-optional {
+    font-weight: 400;
+    font-size: 1.2rem;
+    color: rgba(var(--color-foreground, 0 0 0) / 0.45);
+  }
+
+  /* ---- Inputs ---- */
+  .custom-request-input {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    /* Solid visible border — uses explicit rgba so it's never washed out */
+    border: 1px solid rgba(0, 0, 0, 0.22);
+    border-radius: 6px;
+    /* Padding set here for text inputs; textarea overridden via JS */
+    padding: 1rem 1.2rem;
+    font-size: 1.4rem;
+    font-family: inherit;
+    color: rgb(var(--color-foreground, 0 0 0));
+    background-color: #ffffff;
+    transition: border-color 0.18s, box-shadow 0.18s;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    text-indent: 0;
+    text-align: left;
+  }
+
+  .custom-request-input::placeholder {
+    color: rgba(0, 0, 0, 0.35);
+    text-indent: 0;
+  }
+
+  .custom-request-input:focus {
+    border-color: rgb(var(--color-button, 26 58 52));
+    box-shadow: 0 0 0 3px rgba(var(--color-button, 26 58 52) / 0.1);
+  }
+
+  /* Textarea base — padding injected via JS to beat theme stylesheet */
+  .custom-request-textarea {
+    resize: vertical;
+    min-height: 12rem;
+    line-height: 1.6;
+    vertical-align: top;
+  }
+
+  /* ---- Submit ---- */
+  .custom-request-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    /* Use var(--buttons-radius) here because overflow:hidden on the wrapper
+       will clip the bottom corners of this button perfectly regardless */
+    border-radius: var(--buttons-radius, 6px);
+    padding: 1.4rem 2rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    border: none;
+    background-color: rgb(var(--color-button, 26 58 52));
+    color: rgb(var(--color-button-text, 255 255 255));
+    cursor: pointer;
+    font-family: inherit;
+    transition: opacity 0.18s;
+  }
+
+  .custom-request-submit:hover {
+    opacity: 0.86;
+  }
+
+  /* ---- Feedback states ---- */
+  .custom-request-success {
+    font-size: 1.3rem;
+    color: #1e5c3a;
+    background-color: #d6f0e0;
+    border: 1px solid #a8d9bc;
+    border-radius: 6px;
+    padding: 1rem 1.4rem;
+    margin-bottom: 1.6rem;
+    line-height: 1.5;
+  }
+
+  .custom-request-error {
+    font-size: 1.3rem;
+    color: #8b1a1a;
+    background-color: #fde8e8;
+    border: 1px solid #f5b0b0;
+    border-radius: 6px;
+    padding: 1rem 1.4rem;
+    margin-bottom: 1.6rem;
+    line-height: 1.5;
+  }
+</style>
+
+
+{%- comment -%} ===================== SCRIPT ===================== {%- endcomment -%}
+<script>
+(function () {
+  'use strict';
+
+  var toggle  = document.getElementById('custom-request-toggle');
+  var panel   = document.getElementById('custom-request-panel');
+  var textarea = document.getElementById('CustomRequestMessage');
+
+  if (!toggle || !panel) return;
+
+  /*
+   * Textarea padding fix.
+   * Pillar's base stylesheet sets padding-left:0 on textarea elements.
+   * Inline styles have higher specificity than any stylesheet rule (including
+   * !important in author stylesheets), so this is the only reliable override.
+   */
+  if (textarea) {
+    textarea.style.paddingTop    = '1rem';
+    textarea.style.paddingBottom = '1rem';
+    textarea.style.paddingLeft   = '1.2rem';
+    textarea.style.paddingRight  = '1.2rem';
+    textarea.style.textIndent    = '0';
+    textarea.style.textAlign     = 'left';
+  }
+
+  /* Toggle accordion */
+  toggle.addEventListener('click', function () {
+    var expanded = this.getAttribute('aria-expanded') === 'true';
+    if (expanded) {
+      this.setAttribute('aria-expanded', 'false');
+      panel.setAttribute('hidden', '');
+    } else {
+      this.setAttribute('aria-expanded', 'true');
+      panel.removeAttribute('hidden');
+      // Re-apply textarea fix after panel becomes visible (some browsers reset)
+      if (textarea) {
+        textarea.style.paddingLeft = '1.2rem';
+        textarea.style.textIndent  = '0';
+      }
+      panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  });
+
+  /* Keep panel open after successful submit so customer sees confirmation */
+  var successMsg = panel.querySelector('.custom-request-success');
+  if (successMsg) {
+    toggle.setAttribute('aria-expanded', 'true');
+    panel.removeAttribute('hidden');
+    successMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+})();
+</script>

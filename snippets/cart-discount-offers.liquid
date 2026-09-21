@@ -1,0 +1,367 @@
+{% comment %}
+  Snippet: cart-discount-vouchers.liquid (fixed, simple UX)
+  - Groups: Eligible / Not yet eligible (eligibility based on original_total_price)
+  - Apply WITHOUT page reload; refresh cart-drawer footer only
+  - Show temporary "Applying…/Removing…" chip + lock checkout while waiting
+  - Paint “Applied” state for the applied code button
+  - Works inside Cart Drawer modal (CartCoupon-*)
+  - Accepts param: offers_blocks (fallback to section.blocks)
+
+
+{%- assign cart_subtotal = cart.original_total_price -%}
+{%- assign _blocks = offers_blocks | default: section.blocks -%}
+{%- assign offers = _blocks | where: 'type', 'discount_offer' -%}
+
+{% if offers.size > 0 %}
+<style>
+  /* ====== Applying chip in discounts list ====== */
+.cart__discounts .cdw-temp-li{ list-style:none; }
+
+.cart__discounts .cdw-chip-temp{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:6px 10px; border-radius:9999px;
+  background:#0f766e1a; color:#0f766e; font-weight:700; font-size:12px;
+  border:1px solid #0f766e40; white-space:nowrap;
+  /* desktop feel */
+  box-shadow: 0 2px 10px rgba(15,118,110,.10);
+  animation: cdw-pulse 1.2s ease-in-out infinite;
+}
+
+.cart__discounts .cdw-chip-temp::after{
+  content:""; width:14px; height:14px; border-radius:50%;
+  border:2px solid currentColor; border-top-color:transparent;
+  display:inline-block; animation: cdw-spin .8s linear infinite;
+}
+
+/* Pulse only when user doesn't prefer reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .cart__discounts .cdw-chip-temp{ animation: none; }
+}
+
+/* subtle pulse for desktop */
+@keyframes cdw-pulse{
+  0% { transform: translateY(0) scale(1); opacity: .95; }
+  50%{ transform: translateY(-1px) scale(1.02); opacity: 1; }
+  100%{ transform: translateY(0) scale(1); opacity: .95; }
+}
+
+  .cdw-wrap{margin-top:8px}
+  .cdw-panel{max-height:300px;overflow:auto;padding:12px;border:1px solid rgba(0,0,0,.08);border-radius:12px;background:#fff}
+  .cdw-group{margin-top:8px}
+  .cdw-group:first-child{margin-top:0}
+  .cdw-group h6{margin:0 0 6px 0;font-size:13px;font-weight:700;opacity:.85}
+  .cdw-list{display:grid;gap:8px}
+  .cdw-item{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px;border:1px dashed rgba(0,0,0,.15);border-radius:10px;background:#fff}
+  .cdw-left{min-width:0}
+  .cdw-title{font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .cdw-note{font-size:12px;opacity:.8}
+  .cdw-actions{display:flex;gap:6px;flex-wrap:wrap}
+
+  /* Button: pill + smooth UX */
+  .cdw-btn{
+    padding:10px 14px;border-radius:9999px;border:1px solid rgba(0,0,0,.15);
+    background:#fff;font-size:13px;font-weight:600;cursor:pointer;
+    transition:transform .12s ease,box-shadow .15s ease,background-color .15s ease,opacity .15s ease;
+    box-shadow:0 1px 0 rgba(0,0,0,.03);
+  }
+  .cdw-btn:hover:not([disabled]){transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.06);background:#fafafa}
+  .cdw-btn:active:not([disabled]){transform:translateY(0);box-shadow:0 2px 8px rgba(0,0,0,.05)}
+  .cdw-btn:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(59,130,246,.35)}
+  .cdw-btn[disabled]{opacity:.5;cursor:not-allowed}
+
+  /* Loading spinner inside button */
+  .cdw-btn.is-loading{position:relative;color:transparent}
+  .cdw-btn.is-loading::after{
+    content:"";position:absolute;inset-inline-start:50%;top:50%;
+    width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;
+    border:2px solid currentColor;border-top-color:transparent;animation:cdw-spin .8s linear infinite;opacity:.9;
+  }
+  @keyframes cdw-spin{to{transform:rotate(360deg)}}
+
+  /* Temp chip (applying/removing) – inline-safe */
+  .cdw-chip-temp{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:9999px;background:#0f766e1a;color:#0f766e;font-weight:700;font-size:12px;border:1px solid #0f766e40}
+  .cdw-chip-temp i{width:14px;height:14px;border-radius:50%;border:2px solid currentColor;border-top-color:transparent;display:inline-block;animation:cdw-spin .8s linear infinite}
+
+  /* Skeleton for totals */
+  .cdw-skel{position:relative;border-radius:6px;background:#e9eef3;overflow:hidden}
+  .cdw-skel::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),transparent);transform:translateX(-100%);animation:cdw-shimmer 1.2s infinite}
+  @keyframes cdw-shimmer{to{transform:translateX(100%)}}
+
+  .cdw-empty{font-size:12px;opacity:.7;padding:8px 0}
+  .cdw-hint{font-size:12px;margin-bottom:8px;opacity:.85}
+  .cdw-item.is-applied{border-color:#0ea5a5}
+</style>
+
+<div class="cdw-wrap" data-cdw>
+  <div class="cdw-panel">
+    {% assign next_threshold = 0 %}
+    {% for b in offers %}
+      {% assign th = b.settings.threshold | times: 100 %}
+      {% if th > cart_subtotal %}
+        {% if next_threshold == 0 or th < next_threshold %}
+          {% assign next_threshold = th %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+    {% if next_threshold > 0 %}
+      {% assign remain = next_threshold | minus: cart_subtotal %}
+      <div class="cdw-hint">Spend {{ remain | money_with_currency }} more to unlock the best offer.</div>
+    {% endif %}
+
+    <!-- Eligible -->
+    <div class="cdw-group">
+      <h6>Eligible</h6>
+      <div class="cdw-list">
+        {% assign any_eligible = false %}
+        {% for b in offers %}
+          {% assign th = b.settings.threshold | times: 100 %}
+          {% if cart_subtotal >= th %}
+            {% assign any_eligible = true %}
+            <div class="cdw-item" data-code="{{ b.settings.code | escape }}" data-ok="true">
+              <div class="cdw-left">
+                <div class="cdw-title">{{ b.settings.title | default: b.settings.code }}</div>
+                <div class="cdw-note">
+                  Code: <strong>{{ b.settings.code }}</strong> · Eligible 🎉
+                  {% if b.settings.note != blank %} · {{ b.settings.note }}{% endif %}
+                </div>
+              </div>
+              <div class="cdw-actions">
+                <button class="cdw-btn" data-cdw-apply type="button">Apply</button>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <div class="cdw-empty" {% if any_eligible %}style="display:none"{% endif %}>No eligible vouchers.</div>
+    </div>
+
+    <!-- Not yet eligible -->
+    <div class="cdw-group">
+      <h6>Not yet eligible</h6>
+      <div class="cdw-list">
+        {% assign any_not = false %}
+        {% for b in offers %}
+          {% assign th = b.settings.threshold | times: 100 %}
+          {% if cart_subtotal < th %}
+            {% assign any_not = true %}
+            {% assign missing = th | minus: cart_subtotal %}
+            <div class="cdw-item" data-code="{{ b.settings.code | escape }}" data-ok="false">
+              <div class="cdw-left">
+                <div class="cdw-title">{{ b.settings.title | default: b.settings.code }}</div>
+                <div class="cdw-note">
+                  Code: <strong>{{ b.settings.code }}</strong> · Spend {{ missing | money_with_currency }} more.
+                  {% if b.settings.note != blank %} · {{ b.settings.note }}{% endif %}
+                </div>
+              </div>
+              <div class="cdw-actions">
+                <button class="cdw-btn" data-cdw-apply disabled type="button">Apply</button>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <div class="cdw-empty" {% if any_not %}style="display:none"{% endif %}>All vouchers are eligible.</div>
+    </div>
+  </div>
+
+<script>
+(function () {
+  // Guard 1 lần
+  if (window.__CDW_V_FIX__) return; window.__CDW_V_FIX__ = true;
+
+  // === HARD SID & ROOT để fetch luôn ổn định (không lệ thuộc DOM) ===
+  const SID  = {{ section.id | json }};
+  const ROOT = {{ routes.root_url | json }};
+
+  // Chặn double-action
+  let BUSY = false;
+
+  // ===== Helpers =====
+  function ensureDrawerVisible(){
+    const d = document.getElementById('CartDrawer');
+    if (d) d.removeAttribute('hidden');
+  }
+  function sleep(ms){ return new Promise(r=>setTimeout(r,ms)); }
+
+  // Đóng modal coupon (không đóng drawer)
+  function closeCouponModal(){
+    const modal = document.querySelector('.cart-addons-drawer[id^="CartCoupon-"]');
+    if (modal) modal.setAttribute('hidden','');
+    const btn = document.querySelector('button[aria-controls^="CartCoupon-"]');
+    if (btn) btn.setAttribute('aria-expanded','false');
+    document.querySelectorAll('.fixed-overlay[aria-controls^="CartCoupon-"]').forEach(ov=>{
+      if (!ov.closest('.cart-addons-drawer')) ov.remove();
+    });
+  }
+
+  /* === Temp chip: gắn đúng vào list chip; fallback đặt trước totals === */
+  function chipHolder(){
+    const footer = document.getElementById('CartDrawerFooter-'+SID);
+    if (!footer) return null;
+
+    // Ưu tiên gắn vào ngay danh sách chip hiện có
+    let container = footer.querySelector('.cart__discounts');
+    if (!container) {
+      // fallback: chèn ngay TRƯỚC dòng totals để không đẩy layout xuống cuối
+      const totalsRow = footer.querySelector('.totals') || footer.querySelector('.totals__subtotal-value');
+      container = document.createElement('div');
+      if (totalsRow && totalsRow.parentElement) {
+        totalsRow.parentElement.insertBefore(container, totalsRow);
+      } else {
+        footer.appendChild(container);
+      }
+    }
+
+    let h = container.querySelector('[data-cdw-chip-holder]');
+    if (!h){
+      h = document.createElement('span');
+      h.setAttribute('data-cdw-chip-holder','');
+      container.appendChild(h);
+    }
+    return h;
+  }
+  function addTempChip(code, removing){
+    const h = chipHolder(); if(!h) return;
+    const txt = (code||'').toString().toUpperCase()+' • '+(removing?'Removing…':'Applying…');
+    h.innerHTML = '<span class="cdw-chip-temp">'+txt+'</span>';
+  }
+  function removeTempChip(){
+    const h = chipHolder(); if(h) h.innerHTML = '';
+  }
+
+  // Khóa totals/checkout khi chờ render
+  function lockFooter(lock){
+    const footer = document.getElementById('CartDrawerFooter-'+SID);
+    if(!footer) return;
+    const total = footer.querySelector('.totals__subtotal-value');
+    const ck    = footer.querySelector('button[name="checkout"]');
+    if(!total) return;
+    if(lock){
+      total.dataset.old = total.textContent;
+      total.classList.add('cdw-skel'); total.textContent = ' ';
+      if(ck){ ck.disabled = true; ck.style.opacity = .7; }
+    }else{
+      total.classList.remove('cdw-skel');
+      if(total.dataset.old) total.textContent = total.dataset.old;
+      if(ck){ ck.disabled = false; ck.style.opacity = ''; }
+    }
+  }
+
+  // Chỉ refresh phần footer (chip + totals) – dùng sections API chuẩn
+  function refreshFooter(){
+    const url = ROOT + '?sections=' + encodeURIComponent(SID) + '&t=' + Date.now();
+    return fetch(url, {credentials:'include', cache:'no-store'})
+      .then(r=>r.json())
+      .then(obj=>{
+        const html = obj && obj[SID]; if(!html) return;
+        const tmp  = document.createElement('div'); tmp.innerHTML = html;
+        const fresh= tmp.querySelector('#CartDrawerFooter-'+SID);
+        const curr = document.getElementById('CartDrawerFooter-'+SID);
+        if(fresh && curr) curr.innerHTML = fresh.innerHTML;
+        ensureDrawerVisible();
+      });
+  }
+
+  // Cập nhật nhanh subtotal trong lúc chờ server (không thay dùng cuối)
+  function quickTotal(){
+    return fetch('/cart.js', {credentials:'include', cache:'no-store'})
+      .then(r=>r.json()).then(()=>{/* giữ như cũ, bạn đã có money format nếu cần */})
+      .catch(()=>{});
+  }
+
+  // Tô trạng thái Applied cho danh sách voucher
+  function appliedCode(){
+    const chip = document.querySelector('.cart__discounts [data-discount-code]');
+    return chip ? chip.getAttribute('data-discount-code') : '';
+  }
+  function paintApplied(){
+    const code = (appliedCode()||'').toLowerCase();
+    document.querySelectorAll('.cdw-item').forEach(row=>{
+      const btn = row.querySelector('[data-cdw-apply]');
+      const c   = (row.getAttribute('data-code')||'').toLowerCase();
+      if(!btn) return;
+      if(code && c===code){
+        btn.textContent = 'Applied';
+        btn.disabled = true;
+        row.classList.add('is-applied');
+      }else{
+        btn.textContent = 'Apply';
+        btn.disabled = (row.getAttribute('data-ok')!=='true');
+        row.classList.remove('is-applied');
+      }
+    });
+  }
+
+  // ===== APPLY (delegate) =====
+  document.addEventListener('click', async (e)=>{
+    const btn = e.target.closest('[data-cdw-apply]');
+    if(!btn) return;
+    if(BUSY) return;
+
+    const row  = btn.closest('.cdw-item');
+    const code = row && row.getAttribute('data-code');
+    const ok   = row && row.getAttribute('data-ok')==='true';
+    if(!ok || !code || btn.classList.contains('is-loading')) return;
+
+    BUSY = true;
+    btn.classList.add('is-loading'); btn.disabled = true;
+    closeCouponModal();
+    addTempChip(code,false);
+    lockFooter(true);
+
+    try{
+      await fetch('/discount/'+encodeURIComponent(code)+'?redirect=/cart',{credentials:'include',redirect:'follow',cache:'no-store'});
+      await quickTotal();
+      await sleep(120);
+      await refreshFooter();
+      requestAnimationFrame(paintApplied);   // <— đảm bảo paint sau khi DOM footer đã đổi
+    }catch(err){
+      console.warn(err); alert('Apply failed. Please try again.');
+    }finally{
+      removeTempChip();
+      lockFooter(false);
+      btn.classList.remove('is-loading');
+      BUSY = false;
+      ensureDrawerVisible();
+    }
+  });
+
+  // ===== REMOVE từ chip footer – CHẶN hành vi mặc định để khỏi double =====
+  document.addEventListener('click', async (e)=>{
+    const rm = e.target.closest('[is="cart-discount-remove"], .cart__discounts .btn-remove]');
+    if(!rm) return;
+
+    e.preventDefault();                // chặn form/xhr mặc định của theme
+    e.stopImmediatePropagation();      // chặn handler khác => tránh “nhấn 2 lần mới mất”
+    if(BUSY) return;
+
+    const li   = rm.closest('[data-discount-code]');
+    const code = li && li.getAttribute('data-discount-code');
+    if(!code) return;
+
+    BUSY = true;
+    addTempChip(code,true);
+    lockFooter(true);
+
+    try{
+      await fetch('/discount/'+encodeURIComponent(code)+'?remove=1&redirect=/cart',{credentials:'include',redirect:'follow',cache:'no-store'});
+      await sleep(120);
+      await refreshFooter();
+      requestAnimationFrame(paintApplied);
+    }catch(err){
+      console.warn(err);
+    }finally{
+      removeTempChip();
+      lockFooter(false);
+      BUSY = false;
+      ensureDrawerVisible();
+    }
+  });
+
+  // Init: paint ngay theo chip hiện có (nếu đã áp)
+  document.addEventListener('DOMContentLoaded', paintApplied);
+})();
+</script>
+</div>
+{% endif %}
+{% endcomment %}

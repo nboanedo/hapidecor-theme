@@ -1,0 +1,5 @@
+/*
+Generated time: November 27, 2025 07:54
+This file was created by the app developer. Feel free to contact the original developer with any questions. It was minified (compressed) by AVADA. AVADA do NOT own this script.
+*/
+volume-pricing{padding-inline:2rem;padding-block:1.6rem;background:rgba(var(--color-foreground),.04)}volume-pricing:empty{display:none}volume-pricing li:nth-child(odd){background:rgb(var(--color-background))}volume-pricing ul{margin-top:1.2rem}volume-pricing li{font-size:1.4rem;letter-spacing:.06rem;padding:1rem 1.2rem;display:flex;justify-content:space-between}volume-pricing .caption{margin-block-end:1.2rem}volume-pricing show-more-button{display:inline-block;margin-block-start:1.2rem}

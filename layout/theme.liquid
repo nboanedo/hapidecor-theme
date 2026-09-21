@@ -1,0 +1,265 @@
+{% liquid
+  assign enable_rtl = settings.enable_rtl
+  assign language_support_rtl = settings.language_support_rtl
+  if enable_rtl and language_support_rtl != blank
+    assign shop_locale = localization.language.iso_code
+    assign language_support_rtl_list = language_support_rtl | split: ','
+    assign is_rtl = language_support_rtl_list | where: shop_locale
+    if is_rtl.size > 0
+      assign enable_rtl = true
+    else
+      assign enable_rtl = false
+    endif
+  endif
+%}
+<!doctype html>
+<html
+  class="no-js{% if cart != empty %} cart-has-items{% endif %}"
+  lang="{{ request.locale.iso_code }}"
+  {% if enable_rtl %}
+    dir="rtl"
+  {% endif %}
+>
+  <head>
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WD8GLGTP');</script>
+<!-- End Google Tag Manager -->
+	<!-- Added by AVADA SEO Suite -->
+	{% include 'avada-seo' %}
+	<!-- /Added by AVADA SEO Suite -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="">
+    <meta name="p:domain_verify" content="9df977a202744cf7098b0a706020bd1d">
+    <link rel="canonical" href="{{ canonical_url }}">
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+        <meta name="facebook-domain-verification" content="4ztoik4f61iizq3xdukgpli433udqj">
+    <meta name="google-site-verification" content="lL8GBdjVz1wn1XMVs5Gpj5ZweCWn_D9j3TwZQdaUMko" />
+    
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+    {%- endif -%}
+
+    {%- unless settings.type_header_font.system? and settings.type_body_font.system? -%}
+      <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+    {%- endunless -%}
+
+    <title>
+      {{- page_title -}}
+      {%- if current_tags -%}
+        {%- assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags -}}
+      {%- endif -%}
+      {%- if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif -%}
+      {%- if template == 'password' -%}
+        {{- shop.name -}}
+      {%- else -%}
+        {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+      {%- endif -%}
+    </title>
+
+    {% if page_description %}
+      <meta name="description" content="{{ page_description | escape }}">
+    {% endif %}
+
+    {%- liquid
+      render 'meta-tags'
+      render 'css-variables'
+
+      echo 'vendor.aio.min.css' | asset_url | stylesheet_tag: preload: true
+      echo 'theme.aio.min.css' | asset_url | stylesheet_tag: preload: true
+
+      if settings.enable_product_compare
+        echo 'compare.aio.min.css' | asset_url | stylesheet_tag: preload: true
+      endif
+
+      if enable_rtl
+        echo 'rtl.aio.min.css' | asset_url | stylesheet_tag: preload: true
+      endif
+    -%}
+
+    {{ content_for_header }}
+    <script src="{{ 'vendor.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
+
+    {%- if request.page_type contains 'customers/' -%}
+      <script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer="defer"></script>
+    {%- endif -%}
+
+    <script>
+      if (Shopify.designMode) {
+        document.documentElement.classList.add('shopify-design-mode');
+      }
+    </script>
+
+    {%- if request.design_mode -%}
+      <script src="{{ 'theme-editor.js' | asset_url }}" defer="defer"></script>
+    {%- endif -%}
+
+    {%- render 'js-variables' -%}
+
+    {% comment %} Custom metafield for head tag like GTag tracking {% endcomment %}
+    {{ shop.metafields.foxtheme.code_head.value }}
+    {% comment %} End custom metafield for head tag like GTag tracking {% endcomment %}
+
+    <style>
+      /* Transparent — only when the badge sits on top of a product photo */
+      .product-card__badge .f-badge--hot { background: rgba(0, 0, 0, 0.72) !important; }
+      .product-card__badge .f-badge--new { background: rgba(247, 243, 236, 0.8) !important; }
+
+      /* Solid — product page info column, no photo behind it */
+      .product__badges .f-badge--hot { background: #000000 !important; }
+      .product__badges .f-badge--new { background: #F7F3EC !important; }
+
+      .menu__item .icon-caret-down { display: none; }
+
+      .menu__item {
+        padding-left: 2.4rem;
+        padding-right: 2.4rem;
+      }
+      
+      .page-width--full {
+      --page-padding: 0 !important;
+      }
+      .collection-hero__inner {
+        border-radius: 0 !important;
+      }
+
+    </style>
+
+  </head>
+
+  <body
+    class="{{ request.page_type }}-template {{ template.suffix }} blocks-corner--{{ settings.blocks_corner_radius }}{% if request.design_mode %} shopify-design-mode{% endif %}"
+    data-initializing
+  >
+        <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WD8GLGTP"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+    {% comment %} Custom metafield for body tag like GTag tracking {% endcomment %}
+    {{ shop.metafields.foxtheme.code_body.value }}
+    {% comment %} End custom metafield for body tab like GTag tracking {% endcomment %}
+
+    <a class="skip-to-content-link button visually-hidden" href="#MainContent">
+      {{ 'accessibility.skip_to_text' | t }}
+    </a>
+
+    {%- liquid
+      if settings.enable_page_transition
+        render 'page-transition'
+      endif
+    -%}
+
+    <div class="site-wrapper min-height-screen">
+      {% sections 'header-group' %}
+
+      <main id="MainContent" class="main-content content-for-layout focus-none" role="main" tabindex="-1">
+        {% capture ICART_FULL_PAGE_LAYOUT %}{{ content_for_layout }}{% endcapture -%}
+        {%- include 'icart-variables', ICART_FULL_PAGE_LAYOUT: ICART_FULL_PAGE_LAYOUT %}
+      </main>
+
+      {% sections 'footer-group' %}
+    </div>
+
+    {% sections 'overlay-group' %}
+    {%- liquid
+      if settings.enable_back_to_top
+        render 'back-to-top'
+      endif
+    -%}
+
+    <ul hidden>
+      <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
+      <li id="a11y-new-window-message">{{ 'accessibility.link_messages.new_window' | t }}</li>
+    </ul>
+
+    {% if settings.pcard_show_quickview_button or settings.pcard_choose_options_actions == 'open_popup' %}
+      <script src="{{ 'quick-view.js' | asset_url }}" defer="defer"></script>
+    {% endif %}
+
+    {%- if settings.enable_product_compare -%}
+      <script src="{{ 'compare.js' | asset_url }}" defer="defer"></script>
+    {%- endif -%}
+
+    <script>
+      (function patchShopifyChat() {
+        function apply() {
+          const host = document.querySelector('#shopify-chat inbox-online-store-chat');
+          if (!host || !host.shadowRoot) return;
+
+          // chèn CSS ngay trong shadow root để ghi đè
+          if (!host.shadowRoot.getElementById('chat-patch-style')) {
+            const st = document.createElement('style');
+            st.id = 'chat-patch-style';
+            st.textContent = `
+            .info-modal{display:block!important;flex-direction:unset!important}
+            .info-modal__wrapper{display:block!important}
+            .chat-app chat-app--is-open chat-app--is-mobile{max-height:840px !important; }
+          `;
+            host.shadowRoot.appendChild(st);
+          }
+        }
+        const iv = setInterval(apply, 300);
+        setTimeout(() => clearInterval(iv), 6000);
+        document.addEventListener('shopify:section:load', apply);
+      })();
+    </script>
+
+    {% comment %} easify-dev {% endcomment %}
+    <style>
+      body .tpo_custom_livePreviewHidden {
+        display: none !important;
+      }
+    </style>
+
+    <script>
+      document.addEventListener('tpo_loaded', () => {
+        const domHandleClickLivePreview = document.querySelectorAll(
+          '.product__media-gallery-thumbails .swiper-slide, .product__media-gallery-viewer-wrap .swiper-button-next , .product__media-gallery-viewer-wrap .swiper-controls .swiper-button-prev'
+        );
+
+        function HandleLivePreview() {
+          const product__thumbs_index = document
+            .querySelector('.product__media-gallery-thumbails .swiper-slide.swiper-slide-thumb-active')
+            .getAttribute('aria-label')
+            .split('/');
+          const tpoCanvas = document.querySelector('.tpo_canvas_builder');
+          const propOfLivePreview = Konva.stages[0].findOne('#tpo_custom_background_image').attrs;
+          if (
+            (propOfLivePreview.preview_options === 'FIRST_IMAGE' && product__thumbs_index[0].trim() !== '1') ||
+            (propOfLivePreview.preview_options === 'LAST_IMAGE' &&
+              product__thumbs_index[0].trim() !== product__thumbs_index[1])
+          ) {
+            tpoCanvas.classList.add('tpo_custom_livePreviewHidden');
+          } else {
+            tpoCanvas.classList.remove('tpo_custom_livePreviewHidden');
+          }
+        }
+
+        domHandleClickLivePreview.forEach((element) => {
+          element.addEventListener('click', HandleLivePreview);
+        });
+      });
+    </script>
+
+    {% render 'quick-view-color-swatches' %}
+
+  </body>
+</html>
+
+  <style>
+    @media screen and (max-width: 650px){
+.jdgm-testimonials-carousel, .jdgm-videos-carousel, .jdgm-cards-carousel {
+    .jdgm-title {
+        -webkit-line-clamp: 3 !important;
+        font-size:25px !important;
+    }
+}
+}
+  </style>

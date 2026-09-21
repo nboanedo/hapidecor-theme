@@ -1,0 +1,498 @@
+<style>
+/* ===== Shell ===== */
+.jdbm {font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif}
+.jdbm { --ink:#111827; --muted:#6b7280; --line:#e5e7eb; --bg:#fff; --chip:#f3f4f6; }
+.jdbm .container{max-width:980px;margin:0 auto;padding:16px}
+.jdbm__title{font-size:clamp(28px,3.2vw,40px);text-align:center;margin:6px 0 4px}
+.jdbm__meta{display:flex;gap:8px;justify-content:center;align-items:center;color:var(--muted);margin-bottom:16px}
+.jdbm .stars{display:inline-flex;gap:2px;transform:translateY(1px)}
+.jdbm .star{
+  width:16px;height:16px;display:inline-block;
+  mask:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 17.27 6.18 3.73-1.64-7.03 5.46-4.73-7.19-.61L12 2 9.19 8.63l-7.19.61 5.46 4.73-1.64 7.03L12 17.27Z"/></svg>') center/contain no-repeat;
+  background:#d1d5db;
+}
+.jdbm .star.on{ background:#f59e0b; }
+
+/* ===== Snapshot ===== */
+.jdbm__snapshot{border:1px solid var(--line);border-radius:14px;background:#fff;padding:14px 16px;margin-bottom:14px}
+.jdbm__snapshot-title{font-weight:600;margin-bottom:8px}
+.jdbm__rows{display:grid;gap:6px}
+.jdbm__row{display:grid;grid-template-columns:74px 1fr 44px;gap:8px;align-items:center}
+.jdbm__row .label{color:#111}
+.jdbm__bar{height:10px;background:#f3f4f6;border-radius:999px;overflow:hidden}
+.jdbm__bar span{display:block;height:100%;background:#111827}
+.jdbm__pct{color:var(--muted);text-align:right}
+
+/* ===== Toolbar ===== */
+.jdbm__toolbar{
+  display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;
+  margin:10px 0 14px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:#fff
+}
+.jdbm__left, .jdbm__right{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.jdbm__chip{display:inline-flex;gap:8px;align-items:center;padding:8px 10px;background:var(--chip);border-radius:10px;color:#374151}
+.jdbm__select,.jdbm__input{
+  padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;outline:none
+}
+.jdbm__input{min-width:240px}
+
+/* ===== List & Card ===== */
+.jdbm__list{display:grid;grid-template-columns:1fr;gap:12px}
+.jdbm__card{
+  display:grid;grid-template-columns:160px 1fr 220px;grid-template-rows:auto auto;gap:16px 20px;
+  padding:14px 12px;border:1px solid var(--line);border-radius:12px;background:#fff
+}
+.jdbm__left2{display:flex;flex-direction:column;gap:6px}
+.jdbm__name{font-weight:700}
+.jdbm__date{color:var(--muted);font-size:13px}
+.jdbm__stars{display:inline-flex;gap:2px}
+.jdbm__body{color:#111827;line-height:1.55}
+.jdbm__right2{display:flex;justify-content:flex-end}
+.jdbm__imgwrap{width:220px;aspect-ratio:1/1;border-radius:10px;border:1px solid var(--line);background:#f9fafb;overflow:hidden}
+.jdbm__img{width:100%;height:100%;object-fit:cover;display:block}
+.jdbm__prod{grid-column:1/-1;color:#374151;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.jdbm__prod a{color:inherit;text-decoration:none}
+.jdbm__prod a:hover{text-decoration:underline}
+
+/* ===== Pager & Progress ===== */
+.jdbm__pager{display:flex;gap:8px;align-items:center;justify-content:center;margin-top:8px}
+.jdbm__btn{padding:10px 14px;border-radius:10px;border:1px solid var(--ink);background:var(--ink);color:#fff;cursor:pointer;width:45px;height:37px;transition:.15s}
+.jdbm__btn--ghost{background:#fff;color:var(--ink)}
+.jdbm__btn[disabled]{opacity:.45;cursor:not-allowed}
+.jdbm__page-inp{width:60px;text-align:center}
+.jdbm__progress{margin:10px 0}
+.jdbm__pbar{height:8px;background:#f3f4f6;border-radius:999px;overflow:hidden}
+.jdbm__pfill{display:block;height:100%;background:#111827;transition:width .2s}
+.jdbm__ptxt{font-size:12px;color:var(--muted);margin-top:6px}
+
+/* Cleanup body media duplication */
+.jdbm .jdbm__body img,
+.jdbm .jdbm__body picture{display:none !important}
+
+/* Mobile */
+@media (max-width: 768px){
+  .jdbm__card{grid-template-columns:1fr 120px;grid-template-rows:auto auto auto}
+  .jdbm__imgwrap{width:120px}
+  .jdbm__left2{grid-column:1/2}
+  .jdbm__body{grid-column:1/2}
+  .jdbm__right2{grid-column:2/3}
+  .jdbm__prod{grid-column:1/-1}
+}
+</style>
+
+<section class="jdbm">
+  <div class="container">
+    <h1 class="jdbm__title">{{ section.settings.title }}</h1>
+
+    <!-- meta -->
+    <div class="jdbm__meta" id="jdbm-meta-line" aria-live="polite">
+      <span id="jdbm-avg">—</span>
+      <div class="stars" id="jdbm-stars"></div>
+      <span> | </span>
+      <span><span id="jdbm-total">—</span> Reviews</span>
+    </div>
+
+    <!-- snapshot -->
+    <div class="jdbm__snapshot" aria-labelledby="jdbm-snap-title">
+      <div class="jdbm__snapshot-title" id="jdbm-snap-title">Review Snapshot</div>
+      <div class="jdbm__rows" id="jdbm-snap-rows"></div>
+    </div>
+
+    <!-- toolbar -->
+    <div class="jdbm__toolbar">
+      <div class="jdbm__left">
+        <label class="jdbm__chip">
+          <input id="jdbm-has-photo" type="checkbox"> With Photos Only
+        </label>
+        <select id="jdbm-star-filter" class="jdbm__select" aria-label="Filter by stars">
+          <option value="">All stars</option>
+          <option value="5">5 stars</option>
+          <option value="4">4 stars</option>
+          <option value="3">3 stars</option>
+          <option value="2">2 stars</option>
+          <option value="1">1 star</option>
+        </select>
+        <input id="jdbm-search" class="jdbm__input" placeholder="Search reviews…">
+      </div>
+      <div class="jdbm__right">
+        <select id="jdbm-sort" class="jdbm__select" aria-label="Sort reviews">
+          <option value="new">Sort By: Newest</option>
+          <option value="old">Sort By: Oldest</option>
+          <option value="high">Sort By: Highest Rating</option>
+          <option value="low">Sort By: Lowest Rating</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- progress -->
+    <div class="jdbm__progress" id="jdbm-progress" hidden>
+      <div class="jdbm__pbar"><span class="jdbm__pfill" id="jdbm-pfill" style="width:0%"></span></div>
+      <div class="jdbm__ptxt" id="jdbm-ptxt">Loading…</div>
+    </div>
+
+    <!-- list -->
+    <div id="jdbm-list" class="jdbm__list" data-items-per-page="{{ section.settings.items_per_page | default: 50 }}"></div>
+
+    <!-- pager -->
+    <div class="jdbm__pager" aria-label="Pagination">
+      <button type="button" class="jdbm__btn jdbm__btn--ghost" data-page="first" aria-label="First">«</button>
+      <button type="button" class="jdbm__btn jdbm__btn--ghost" data-page="prev"  aria-label="Previous">‹</button>
+      <span class="jdbm__page-label">
+        <input id="jdbm-page" type="number" min="1" value="1" class="jdbm__select jdbm__page-inp" aria-label="Current page">
+        / <span id="jdbm-total-pages">—</span>
+      </span>
+      <button type="button" class="jdbm__btn jdbm__btn--ghost" data-page="next"  aria-label="Next">›</button>
+      <button type="button" class="jdbm__btn jdbm__btn--ghost" data-page="last"  aria-label="Last">»</button>
+    </div>
+  </div>
+</section>
+
+<!-- Firebase compat SDKs -->
+<script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore-compat.js"></script>
+
+<script>
+(function(){
+  /* ===== Firebase config ===== */
+  const firebaseConfig = {
+    apiKey: "AIzaSyD7TlFgkdLSI1fGajncx1d5xwWB6NPsGko",
+    authDomain: "allreviews-ac324.firebaseapp.com",
+    projectId: "allreviews-ac324",
+    storageBucket: "allreviews-ac324.firebasestorage.app",
+    messagingSenderId: "1091012478009",
+    appId: "1:1091012478009:web:27fb5c396efb5792bab9e8"
+  };
+
+  /* ===== State ===== */
+  const state = {
+    page: 1,
+    itemsPerPage: 50,
+    total: 0,
+    totalPages: 1,
+    perDoc: 200,          // sẽ override từ meta.perPage (thực tế có thể = 25)
+    loading: false,
+    hist: {1:0,2:0,3:0,4:0,5:0},
+    avg: null,
+    snapshotCount: 0
+  };
+
+  const $  = (s,el=document)=>el.querySelector(s);
+  const $$ = (s,el=document)=>Array.from(el.querySelectorAll(s));
+
+  /* ===== Firebase ===== */
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+
+  /* ===== UI helpers ===== */
+  function setProgress(pct, txt){
+    const box = $('#jdbm-progress'); const fill = $('#jdbm-pfill'); const t = $('#jdbm-ptxt');
+    if (!box || !fill || !t) return;
+    box.hidden = false;
+    if (pct == null) { fill.style.width='100%'; fill.style.opacity='.25'; }
+    else { fill.style.opacity='1'; fill.style.width = pct + '%'; }
+    t.textContent = txt || 'Loading…';
+  }
+  function hideProgress(){ const box=$('#jdbm-progress'); if (box) box.hidden=true; }
+
+  function pad2(n){ return String(n).padStart(2,'0'); }
+  function humanDate(s){
+    if (!s) return '';
+    const m = (''+s).match(/(\d{4})-(\d{2})-(\d{2})/);
+    if (m){ const [,y,mo,d] = m; return mo+'/'+d+'/'+y; }
+    const d = new Date(s);
+    if (isNaN(d.getTime())) return '';
+    return pad2(d.getMonth()+1)+'/'+pad2(d.getDate())+'/'+d.getFullYear();
+  }
+
+  function setMetaLine(){
+    const totalEl = $('#jdbm-total');
+    const avgEl   = $('#jdbm-avg');
+    const starBox = $('#jdbm-stars');
+    if (totalEl) totalEl.textContent = state.total || '0';
+    if (avgEl)   avgEl.textContent   = (typeof state.avg==='number') ? state.avg.toFixed(1) : '—';
+    if (starBox){
+      starBox.innerHTML='';
+      const avgRounded = Math.round((state.avg||0));
+      for(let i=1;i<=5;i++){
+        const s=document.createElement('span'); s.className='star'+(i<=avgRounded?' on':''); starBox.appendChild(s);
+      }
+    }
+  }
+
+  function renderSnapshot(){
+    const box = $('#jdbm-snap-rows'); if (!box) return;
+    const base = Math.max(1, state.total || 0); // mẫu số = tổng thực tế
+    box.innerHTML='';
+    for (let star=5; star>=1; star--){
+      const pct = Math.round(((state.hist[star]||0)/base)*100);
+      const row = document.createElement('div'); row.className='jdbm__row';
+      row.innerHTML = `
+        <div class="label">${star} stars</div>
+        <div class="jdbm__bar"><span style="width:${pct}%"></span></div>
+        <div class="jdbm__pct">${pct}%</div>
+      `;
+      box.appendChild(row);
+    }
+  }
+
+  function computeTotalPages(){
+    state.totalPages = Math.max(1, Math.ceil((state.total||0)/state.itemsPerPage));
+    const totalEl = $('#jdbm-total-pages'); if (totalEl) totalEl.textContent = String(state.totalPages);
+    const pageInp = $('#jdbm-page'); if (pageInp){ pageInp.max=String(state.totalPages); pageInp.value=String(state.page); }
+    updatePagerButtons();
+  }
+  function updatePagerButtons(){
+    const atFirst = state.page <= 1;
+    const atLast  = state.page >= state.totalPages;
+    $$('[data-page="first"]').forEach(b=>b.disabled = atFirst || state.loading);
+    $$('[data-page="prev"]').forEach(b=>b.disabled  = atFirst || state.loading);
+    $$('[data-page="next"]').forEach(b=>b.disabled  = atLast  || state.loading);
+    $$('[data-page="last"]').forEach(b=>b.disabled  = atLast  || state.loading);
+  }
+
+  /* ===== Normalizer ===== */
+  function firstPictureUrl(r){
+    const arr = r.pictures_urls || r.pictures || r.media || [];
+    if (Array.isArray(arr) && arr.length){
+      const x = arr[0];
+      return (x.original || x.compact || x.src || "").toString();
+    }
+    if (r.media && r.media.src) return r.media.src;
+    return "";
+  }
+  function normalizeReview(r){
+    if (r && r.author && (r.bodyHtml || r.bodyHtml1)) return {...r, bodyHtml: r.bodyHtml || r.bodyHtml1};
+    const author   = r.reviewer_name || r.author || r.name || "Anonymous";
+    const rating   = Number(r.rating || r.score || r.stars || 0);
+    const dateText = r.dateText || r.created_at || r.createdAt || "";
+    const bodyHtml = r.body_html1 || r.bodyHtml1 || r.body_html || r.bodyHtml || r.body || "";
+    const mediaSrc = firstPictureUrl(r);
+    const productText = (r.product && (r.product.text || r.product.title)) || r.product_title || r.product_name || "";
+    const productHref = (r.product && r.product.href) || r.product_url || r.product_link || "";
+    return { author, rating, dateText, bodyHtml, media:{src:mediaSrc}, product:{text:productText, href:productHref} };
+  }
+
+  /* ===== Firestore ===== */
+  async function getMeta(){
+    const snap = await db.collection('jdgm_meta').doc('meta').get();
+    if (snap.exists){
+      const m = snap.data()||{};
+      state.total   = m.total   || 0;
+      state.perDoc  = m.perPage || 200; // nếu bạn đã backfill theo server page thì perDoc = 25
+      state.hist    = Object.assign({1:0,2:0,3:0,4:0,5:0}, m.hist || {});
+      state.avg     = (typeof m.avg === 'number') ? m.avg : null;
+      state.snapshotCount = m.snapshotCount || (state.hist[1]+state.hist[2]+state.hist[3]+state.hist[4]+state.hist[5]||0);
+    } else {
+      state.total=0; state.perDoc=200; state.hist={1:0,2:0,3:0,4:0,5:0}; state.avg=null; state.snapshotCount=0;
+    }
+  }
+
+  // Kéo đủ dữ liệu để cắt ra đúng 50 bản ghi cho trang UI
+  async function getUiPage(page){
+    const startAbs = (page-1)*state.itemsPerPage;
+    const endAbs   = Math.min(startAbs + state.itemsPerPage, state.total);
+    if (startAbs >= endAbs) return [];
+
+    const chunkGuess = state.perDoc || 200;
+    let curDoc = Math.floor(startAbs / chunkGuess) + 1;
+
+    const merged = [];
+    const localStart = startAbs % chunkGuess;
+    const need = endAbs - startAbs;
+
+    let safety = 0;
+    while (merged.length < localStart + need && safety < 100){
+      const id = 'p_' + curDoc;
+      const snap = await db.collection('jdgm_pages').doc(id).get();
+      if (!snap.exists) break;
+      let arr = snap.data().reviews || snap.data().items || snap.data().data || [];
+      if (!Array.isArray(arr)) arr = [];
+      merged.push(...arr);
+      curDoc++;
+      safety++;
+      if (arr.length === 0) break;
+    }
+
+    const safeStart = merged.length > localStart ? localStart : 0; // vá case doc đầu nhỏ hơn dự đoán
+    return merged.slice(safeStart, safeStart + need);
+  }
+
+  /* ===== Render ===== */
+  function makeCard(item){
+    const score = Number(item.rating||0);
+    const imgSrc = item.media && item.media.src ? (''+item.media.src).replace(/^http:\/\//,'https://').replace(/^\/\//,'https://') : '';
+    const card = document.createElement('div'); card.className='jdbm__card';
+    card.setAttribute('data-rating', String(score||0));
+    card.setAttribute('data-has-img', imgSrc ? '1':'0');
+    card.setAttribute('data-time', new Date(item.dateText||item.created_at||item.createdAt||'').getTime() || 0);
+
+    const left = document.createElement('div'); left.className='jdbm__left2';
+    const name = document.createElement('div'); name.className='jdbm__name'; name.textContent = item.author || 'Anonymous';
+    left.appendChild(name);
+
+    const stars = document.createElement('div'); stars.className='jdbm__stars';
+    for(let i=1;i<=5;i++){ const s=document.createElement('span'); s.className='star'+(i<=score?' on':''); stars.appendChild(s); }
+    left.appendChild(stars);
+
+    const date = document.createElement('div'); date.className='jdbm__date'; date.textContent = humanDate(item.dateText||'');
+    left.appendChild(date);
+
+    const body = document.createElement('div'); body.className='jdbm__body';
+    const wrap = document.createElement('div'); wrap.innerHTML = item.bodyHtml || '';
+    wrap.querySelectorAll('img, picture, .jdgm-rev__pics, .jdgm-rev__vids').forEach(n=>n.remove());
+    body.appendChild(wrap);
+
+    const right = document.createElement('div'); right.className='jdbm__right2';
+    if (imgSrc){
+      const w = document.createElement('div'); w.className='jdbm__imgwrap';
+      const img = document.createElement('img'); img.className='jdbm__img'; img.loading='lazy'; img.decoding='async'; img.src = imgSrc;
+      w.appendChild(img);
+      if (item.product && item.product.href){ const a=document.createElement('a'); a.href=item.product.href; a.target='_blank'; a.rel='noopener'; a.appendChild(w); right.appendChild(a); }
+      else { right.appendChild(w); }
+    }
+
+    const prod = document.createElement('div'); prod.className='jdbm__prod';
+    const txt = item.product && item.product.text ? item.product.text : '';
+    const href= item.product && item.product.href ? item.product.href : '';
+    if (href){ const a=document.createElement('a'); a.href=href; a.target='_blank'; a.rel='noopener'; a.textContent=txt; prod.appendChild(a); }
+    else { prod.textContent = txt; }
+
+    card.appendChild(left); card.appendChild(body); card.appendChild(right); card.appendChild(prod);
+    return card;
+  }
+
+  function renderList(items){
+    const root = $('#jdbm-list'); if (!root) return;
+    root.innerHTML='';
+    const clean = (Array.isArray(items)?items:[]).filter(Boolean).map(normalizeReview);
+    if (!clean.length){
+      const empty=document.createElement('div'); empty.style.color='#6b7280'; empty.textContent='No reviews on this page.'; root.appendChild(empty); return;
+    }
+    const frag = document.createDocumentFragment();
+    clean.forEach(it=>frag.appendChild(makeCard(it)));
+    root.appendChild(frag);
+    applyFilters();
+  }
+
+  /* ===== Filters & Sort ===== */
+  function applyFilters(){
+    const q = ($('#jdbm-search')?.value||'').trim().toLowerCase();
+    const star = $('#jdbm-star-filter')?.value || '';
+    const withPhoto = $('#jdbm-has-photo')?.checked || false;
+    const sort = $('#jdbm-sort')?.value || 'new';
+
+    const list = Array.from($$('#jdbm-list .jdbm__card'));
+    list.sort((a,b)=>{
+      const ra = Number(a.getAttribute('data-rating')||0);
+      const rb = Number(b.getAttribute('data-rating')||0);
+      const ta = Number(a.getAttribute('data-time')||0);
+      const tb = Number(b.getAttribute('data-time')||0);
+      if (sort==='high') return rb-ra;
+      if (sort==='low')  return ra-rb;
+      if (sort==='old')  return ta-tb;
+      return tb-ta;
+    });
+    const root = $('#jdbm-list'); list.forEach(n=>root.appendChild(n));
+
+    list.forEach(card=>{
+      let ok = true;
+      if (q) ok = ok && card.innerText.toLowerCase().includes(q);
+      if (star) ok = ok && Number(card.getAttribute('data-rating')||0) === Number(star);
+      if (withPhoto) ok = ok && card.getAttribute('data-has-img')==='1';
+      card.style.display = ok ? '' : 'none';
+    });
+  }
+
+  /* ===== Paging ===== */
+  async function loadPage(page){
+    if (state.loading) return;
+    page = Math.max(1, Math.min(page, state.totalPages));
+    state.loading = true; updatePagerButtons();
+    setProgress(null, `Loading page ${page}/${state.totalPages}…`);
+    try{
+      const items = await getUiPage(page);
+      renderList(items);
+      state.page = page;
+      const inp = $('#jdbm-page'); if (inp) inp.value = String(page);
+      hideProgress();
+    }catch(e){
+      setProgress(null, 'Error: '+(e.message||e));
+    }finally{
+      state.loading = false; updatePagerButtons();
+    }
+  }
+  function onPager(e){
+    const act = e.currentTarget?.dataset?.page;
+    if (!act) return;
+    if (act==='first') return loadPage(1);
+    if (act==='prev')  return loadPage(state.page-1);
+    if (act==='next')  return loadPage(state.page+1);
+    if (act==='last')  return loadPage(state.totalPages);
+  }
+
+  /* ===== Init ===== */
+  async function init(){
+    const listRoot = $('#jdbm-list');
+    state.itemsPerPage = parseInt(listRoot?.dataset.itemsPerPage || '50',10) || 50;
+
+    $('#jdbm-search')?.addEventListener('input', applyFilters);
+    $('#jdbm-star-filter')?.addEventListener('change', applyFilters);
+    $('#jdbm-has-photo')?.addEventListener('change', applyFilters);
+    $('#jdbm-sort')?.addEventListener('change', applyFilters);
+    $$('.jdbm__pager [data-page]').forEach(b=>b.addEventListener('click', onPager));
+    const pageInp = $('#jdbm-page');
+    if (pageInp){
+      pageInp.addEventListener('change', ()=>{ const n=parseInt(pageInp.value,10); if(!isFinite(n)||n<1){ pageInp.value=String(state.page); return; } loadPage(Math.min(n, state.totalPages)); });
+      pageInp.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); const n=parseInt(pageInp.value,10); if(isFinite(n)) loadPage(Math.min(Math.max(1,n), state.totalPages)); }});
+    }
+
+    try{
+      setProgress(10,'Loading meta…');
+      await getMeta();            // lấy total, perDoc, avg, hist (đã aggregate exact)
+      computeTotalPages();
+      setMetaLine();
+      renderSnapshot();
+      await loadPage(1);
+      // fallback: nếu meta chưa có avg/hist thì mới quét client
+      if (!(typeof state.avg==='number' && state.snapshotCount>0)) {
+        await ensureSnapshot();
+        setMetaLine(); renderSnapshot();
+      }
+    }catch(e){
+      setProgress(null, 'Error: '+(e.message||e));
+    }
+  }
+
+  // client-side aggregate (fallback)
+  async function ensureSnapshot(){
+    if (!state.total) return;
+    const pages = Math.ceil(state.total / (state.perDoc||200));
+    const hist = {1:0,2:0,3:0,4:0,5:0};
+    let sum = 0, count = 0;
+    for (let p=1; p<=pages; p++){
+      setProgress(Math.round(p*100/pages), 'Building snapshot…');
+      const snap = await db.collection('jdgm_pages').doc('p_'+p).get();
+      let list = snap.exists ? (snap.data().reviews||snap.data().items||snap.data().data||[]) : [];
+      if (!Array.isArray(list)) list = [];
+      for (const r of list){
+        const s = Number((r.rating||r.score||r.stars)||0);
+        if (s>=1 && s<=5){ hist[s]++; sum+=s; count++; }
+      }
+    }
+    state.hist = hist; state.avg = count ? (sum/count) : null;
+    hideProgress();
+  }
+
+  document.addEventListener('DOMContentLoaded', init);
+})();
+</script>
+
+{% schema %}
+{
+  "name": "JDGM — All Reviews",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title", "default": "All Reviews" },
+    { "type": "number", "id": "items_per_page", "label": "Reviews per page", "default": 50 }
+  ],
+  "presets": [{ "name": "Customer Reviews (Firestore)" }]
+}
+{% endschema %}

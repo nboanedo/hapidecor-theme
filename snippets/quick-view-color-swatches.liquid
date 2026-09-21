@@ -1,0 +1,453 @@
+{% comment %}
+  ============================================================================
+  Quick View Color Swatches — Custom Snippet for Hyper Theme (Pillar preset)
+  ============================================================================
+  PURPOSE:
+    Renders wood color swatches inside the Quick View popup to replace the
+    Expo app block that doesn't initialize in dynamically-loaded Quick View.
+
+    ** UPDATED: Only renders for OLD listings that have a single variant type
+    (Size only). Skips products that already have Color as a native variant
+    option (new listings with Size + Color). **
+
+  HOW IT WORKS:
+    1. Listens for Hyper theme's `quick-view:open` / `quick-view:loaded` events
+    2. Checks if the product already has a native Color variant selector
+       → If YES: skips injection entirely (Color is handled by the theme)
+       → If NO:  renders custom swatches + hidden properties[Color] input
+    3. Finds the empty Expo placeholder `<div id="expo-section">` inside the modal
+    4. Renders clickable image swatches matching the product page's Expo styling
+    5. Injects a hidden `properties[Color]` input into the Quick View's cart form
+       → This ensures the selected color flows into Cart, Checkout, and Admin Orders
+
+  INSTALLATION:
+    1. In Shopify Admin → Online Store → Themes → Edit Code
+    2. Under "snippets/", click "Add a new snippet"
+    3. Name it: quick-view-color-swatches
+    4. Paste this entire file content
+    5. Open layout/theme.liquid
+    6. Add this line just BEFORE the closing </body> tag:
+         {% render 'quick-view-color-swatches' %}
+    7. Save both files
+
+  UPDATING COLORS:
+    Edit the COLOR_SWATCHES array below. Each entry needs a label and image URL.
+    Images are already uploaded to your Shopify Files (Settings → Files).
+  ============================================================================
+{% endcomment %}
+
+<style>
+  /* ── Quick View Color Swatches ─────────────────────────────────── */
+  .qv-color-swatches { margin-bottom: 16px; }
+
+  .qv-color-swatches__label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: inherit;
+  }
+  .qv-color-swatches__label span {
+    font-weight: 400;
+    opacity: 0.75;
+  }
+
+  .qv-color-swatches__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .qv-color-swatch {
+    position: relative;
+    width: 48px;
+    height: 48px;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .qv-color-swatch:hover {
+    border-color: rgba(0,0,0,0.3);
+  }
+  .qv-color-swatch.is-selected {
+    border-color: #1a1a1a;
+    box-shadow: 0 0 0 1px #1a1a1a;
+  }
+
+  .qv-color-swatch__tooltip {
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1a1a1a;
+    color: #fff;
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+  .qv-color-swatch:hover .qv-color-swatch__tooltip {
+    opacity: 1;
+  }
+</style>
+
+<script>
+(function() {
+  'use strict';
+
+  /* ──────────────────────────────────────────────────────────────────
+     COLOR SWATCH CONFIGURATION
+     Update this array when you add/remove/rename colors in Expo.
+     Each entry: { label: 'Display Name', image: 'Full CDN URL' }
+     ────────────────────────────────────────────────────────────────── */
+  var COLOR_SWATCHES = [
+    { label: 'Walnut', image: 'https://cdn.shopify.com/s/files/1/0975/8497/2088/files/walnut_f2a2a79d-f9da-4187-9e29-ca3af7b0ba27.jpg' },
+    { label: 'Rose',   image: 'https://cdn.shopify.com/s/files/1/0975/8497/2088/files/rose_ba5e3554-531b-41b0-b909-346c58d7cfb3.jpg' },
+    { label: 'Peach',  image: 'https://cdn.shopify.com/s/files/1/0975/8497/2088/files/peach_6b7fd33e-8fef-42af-94a1-c575fa4eeca6.png' },
+    { label: 'Red',    image: 'https://cdn.shopify.com/s/files/1/0975/8497/2088/files/red_0b46015f-7dd9-48d5-b85a-ebe30c8d4241.jpg' },
+    { label: 'Oak',    image: 'https://cdn.shopify.com/s/files/1/0975/8497/2088/files/oak_6ef06687-cc1f-4ee8-9ab4-c02a04845f53.jpg' },
+    { label: 'Ash',    image: 'https://cdn.shopify.com/s/files/1/0975/8497/2088/files/ash_0b456a5f-27fd-479a-81e0-e1cf2ab9e46c.jpg' }
+  ];
+
+  var DEFAULT_COLOR = 'Walnut';
+  var PROPERTY_NAME = 'Color';     // Matches Expo's properties[Color]
+
+  /* ── Detect if the product already has a native Color variant ──── */
+  /*    Returns true for NEW listings (Size + Color variants)         */
+  /*    Returns false for OLD listings (Size only → needs swatches)   */
+  function hasNativeColorVariant(modal) {
+
+    // ─── Strategy 0 (fastest, Hyper-specific): ───────────────────
+    //   The Hyper theme renders a <span data-selected-swatch-value="Color">
+    //   inside each option's legend. This attribute literally contains
+    //   the option name, so it's a dead-reliable signal.
+    var swatchValueSpans = modal.querySelectorAll('[data-selected-swatch-value]');
+    for (var sv = 0; sv < swatchValueSpans.length; sv++) {
+      var attrVal = swatchValueSpans[sv].getAttribute('data-selected-swatch-value');
+      if (attrVal && attrVal.trim().toLowerCase() === 'color') {
+        return true;
+      }
+    }
+
+    // ─── Strategy 1: Check variant picker labels/legends ─────────
+    //   Covers Hyper theme's actual markup:
+    //     <variant-selects>
+    //       <fieldset class="product-form__input product-form__input--color">
+    //         <legend> <div class="form__label"> <span class="font-body-bolder">Color:</span> ...
+    //   Also covers generic Shopify themes as fallback.
+    var candidates = modal.querySelectorAll([
+      'variant-selects legend',
+      'variant-selects label',
+      'variant-selects .form__label',
+      'variant-radios legend',
+      'variant-radios label',
+      'variant-radios .form__label',
+      '.product-form__input legend',
+      '.product-form__input label',
+      '.product-form__input .form__label',
+      'variant-picker fieldset legend',
+      'variant-picker label',
+      '.product-form fieldset legend',
+      '.variant-input-wrapper label',
+      '[data-option-index] label',
+      '.selector-wrapper label',
+      '.option-selector label',
+      '.product__option-label'
+    ].join(', '));
+
+    for (var i = 0; i < candidates.length; i++) {
+      var el = candidates[i];
+
+      // Skip anything inside our own custom swatches
+      if (el.closest('.qv-color-swatches')) continue;
+      // Skip anything inside the expo-section placeholder
+      if (el.closest('#expo-section')) continue;
+
+      // Check data attributes (custom elements)
+      var optionAttr = el.getAttribute('data-option')
+                    || el.getAttribute('data-option-name')
+                    || el.getAttribute('data-header');
+      if (optionAttr && optionAttr.trim().toLowerCase() === 'color') {
+        return true;
+      }
+
+      // Check text content — but only the DIRECT label text, not the
+      // entire subtree. For <legend> elements in Hyper, look at the
+      // inner .font-body-bolder span first for a cleaner match.
+      var boldSpan = el.querySelector('.font-body-bolder');
+      if (boldSpan) {
+        var spanText = (boldSpan.textContent || '').trim().toLowerCase();
+        if (spanText === 'color:' || spanText === 'color') {
+          return true;
+        }
+      }
+
+      // Fallback: full textContent check
+      var text = (el.textContent || '').trim().toLowerCase();
+      // Match "color", "color:", "color : value" but not "colorful"
+      if (text === 'color' || /^color\s*:/.test(text)) {
+        return true;
+      }
+    }
+
+    // ─── Strategy 2: Check fieldset class names ──────────────────
+    //   Hyper theme adds the picker_type to the fieldset class:
+    //     product-form__input--color  or  product-form__input--swatch
+    //   Either of these on a fieldset whose legend says "Color" means
+    //   a native color picker exists. But even the class alone is a
+    //   strong signal.
+    var colorFieldsets = modal.querySelectorAll(
+      '.product-form__input--color, .product-form__input--swatch'
+    );
+    for (var cf = 0; cf < colorFieldsets.length; cf++) {
+      if (colorFieldsets[cf].closest('.qv-color-swatches')) continue;
+      if (colorFieldsets[cf].closest('#expo-section')) continue;
+      return true;
+    }
+
+    // ─── Strategy 3: Check embedded product JSON ─────────────────
+    var jsonScripts = modal.querySelectorAll(
+      'script[type="application/json"][data-product-json], ' +
+      'script[type="application/json"][data-product], ' +
+      'script[type="application/json"][data-selected-variant], ' +
+      'script[type="application/json"][id*="product"]'
+    );
+    for (var j = 0; j < jsonScripts.length; j++) {
+      try {
+        var data = JSON.parse(jsonScripts[j].textContent);
+        // data-selected-variant contains the selected variant object
+        // which has option1, option2, option3 but NOT option names directly.
+        // However, the product JSON (if present) has an options array.
+        var options = data.options || [];
+        for (var k = 0; k < options.length; k++) {
+          var opt = options[k];
+          var optName = (typeof opt === 'string') ? opt : (opt.name || opt.label || '');
+          if (optName.toLowerCase() === 'color') {
+            return true;
+          }
+        }
+      } catch (e) {
+        // JSON parse failed, skip
+      }
+    }
+
+    // ─── Strategy 4: Check select elements ───────────────────────
+    var selects = modal.querySelectorAll('select[data-option], select[name*="option"]');
+    for (var s = 0; s < selects.length; s++) {
+      var selectEl = selects[s];
+      if (selectEl.closest('.qv-color-swatches') || selectEl.closest('#expo-section')) continue;
+
+      // Check name attribute: name="options[Color]"
+      var selectName = selectEl.getAttribute('name') || '';
+      if (/options\[color\]/i.test(selectName)) return true;
+
+      var selectOption = selectEl.getAttribute('data-option') || '';
+      if (selectOption.toLowerCase() === 'color') return true;
+
+      // Check preceding label
+      var prevLabel = selectEl.previousElementSibling;
+      if (prevLabel && prevLabel.tagName === 'LABEL') {
+        var labelText = (prevLabel.textContent || '').trim().toLowerCase();
+        if (labelText === 'color' || /^color\s*:/.test(labelText)) return true;
+      }
+    }
+
+    return false;
+  }
+
+  /* ── Render swatches into a container ──────────────────────────── */
+  function renderSwatches(container) {
+    // Don't render twice
+    if (container.querySelector('.qv-color-swatches')) return;
+
+    var wrapper = document.createElement('div');
+    wrapper.className = 'qv-color-swatches';
+
+    var label = document.createElement('div');
+    label.className = 'qv-color-swatches__label';
+    label.innerHTML = PROPERTY_NAME + ': <span class="qv-color-selected-label">' + DEFAULT_COLOR + '</span>';
+    wrapper.appendChild(label);
+
+    var list = document.createElement('div');
+    list.className = 'qv-color-swatches__list';
+
+    COLOR_SWATCHES.forEach(function(color) {
+      var swatch = document.createElement('div');
+      swatch.className = 'qv-color-swatch' + (color.label === DEFAULT_COLOR ? ' is-selected' : '');
+      swatch.style.backgroundImage = 'url(' + color.image + ')';
+      swatch.setAttribute('data-color', color.label);
+      swatch.setAttribute('role', 'button');
+      swatch.setAttribute('aria-label', color.label);
+      swatch.setAttribute('tabindex', '0');
+
+      var tooltip = document.createElement('div');
+      tooltip.className = 'qv-color-swatch__tooltip';
+      tooltip.textContent = color.label;
+      swatch.appendChild(tooltip);
+
+      swatch.addEventListener('click', function() {
+        // Update visual selection
+        list.querySelectorAll('.qv-color-swatch').forEach(function(s) {
+          s.classList.remove('is-selected');
+        });
+        swatch.classList.add('is-selected');
+
+        // Update label
+        var selectedLabel = wrapper.querySelector('.qv-color-selected-label');
+        if (selectedLabel) selectedLabel.textContent = color.label;
+
+        // Update hidden input in the cart form
+        updateFormProperty(container, color.label);
+      });
+
+      // Keyboard support
+      swatch.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          swatch.click();
+        }
+      });
+
+      list.appendChild(swatch);
+    });
+
+    wrapper.appendChild(list);
+    container.innerHTML = '';
+    container.appendChild(wrapper);
+
+    // Also inject the hidden input into the cart form
+    updateFormProperty(container, DEFAULT_COLOR);
+  }
+
+  /* ── Inject / update properties[Color] in the Quick View cart form ─ */
+  function updateFormProperty(expoContainer, colorValue) {
+    // Walk up to find the Quick View modal
+    var modal = expoContainer.closest('quick-view-modal') || expoContainer.closest('.quick-view');
+    if (!modal) return;
+
+    // Find ALL cart forms inside the modal
+    var forms = modal.querySelectorAll('form[action*="/cart/add"]');
+    forms.forEach(function(form) {
+      var input = form.querySelector('input[name="properties[' + PROPERTY_NAME + ']"]');
+      if (!input) {
+        input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'properties[' + PROPERTY_NAME + ']';
+        form.appendChild(input);
+      }
+      input.value = colorValue;
+    });
+  }
+
+  /* ── Find and inject swatches in all open Quick View modals ────── */
+  function injectSwatches() {
+    // Find Quick View modals that are loaded (not in loading state)
+    var modals = document.querySelectorAll('quick-view-modal:not(.drawer--loading)');
+    modals.forEach(function(modal) {
+      // *** KEY CHECK: Skip if this product already has a native Color variant ***
+      if (hasNativeColorVariant(modal)) {
+        // Mark as skipped so we don't re-check on every event
+        modal.setAttribute('data-qv-color-native', 'true');
+        return;
+      }
+
+      var expoSection = modal.querySelector('#expo-section');
+      if (expoSection) {
+        renderSwatches(expoSection);
+      }
+    });
+  }
+
+  /* ── Also intercept fetch-based Add to Cart for extra safety ───── */
+  var origFetch = window.fetch;
+  window.fetch = function() {
+    var url = typeof arguments[0] === 'string' ? arguments[0] : (arguments[0] && arguments[0].url);
+    var options = arguments[1] || {};
+
+    if (url && url.includes('/cart/add') && options.body instanceof FormData) {
+      // Only inject properties[Color] if custom swatches are active
+      // (i.e. NOT a product with native Color variant)
+      if (!options.body.has('properties[' + PROPERTY_NAME + ']')) {
+        var openModal = document.querySelector('quick-view-modal:not(.drawer--loading):not([data-qv-color-native]) .qv-color-swatch.is-selected');
+        if (openModal) {
+          options.body.set('properties[' + PROPERTY_NAME + ']', openModal.getAttribute('data-color'));
+        }
+      }
+    }
+    return origFetch.apply(this, arguments);
+  };
+
+  /* ── Listen for Hyper theme Quick View events ──────────────────── */
+  // quick-view:loaded fires only the first time (lazy-load complete)
+  document.addEventListener('quick-view:loaded', function() {
+    setTimeout(injectSwatches, 300);
+  });
+
+  // quick-view:open fires every time the modal opens
+  document.addEventListener('quick-view:open', function() {
+    setTimeout(injectSwatches, 500);
+  });
+
+  /* ── Fallback: MutationObserver for Quick View modals ──────────── */
+  // In case the theme events don't fire reliably
+  var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+        var target = mutation.target;
+        if (target.tagName === 'QUICK-VIEW-MODAL' && !target.classList.contains('drawer--loading')) {
+          setTimeout(function() {
+            // Skip if this product has a native Color variant
+            if (hasNativeColorVariant(target)) {
+              target.setAttribute('data-qv-color-native', 'true');
+              return;
+            }
+
+            var expoSection = target.querySelector('#expo-section');
+            if (expoSection && !expoSection.querySelector('.qv-color-swatches')) {
+              renderSwatches(expoSection);
+            }
+          }, 400);
+        }
+      }
+    });
+  });
+
+  // Observe all Quick View modals for class changes
+  function observeModals() {
+    document.querySelectorAll('quick-view-modal').forEach(function(modal) {
+      observer.observe(modal, { attributes: true, attributeFilter: ['class'] });
+    });
+  }
+
+  // Initial setup
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', observeModals);
+  } else {
+    observeModals();
+  }
+
+  // Also observe for dynamically added modals (collection page navigation)
+  var bodyObserver = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      mutation.addedNodes.forEach(function(node) {
+        if (node.tagName === 'QUICK-VIEW-MODAL') {
+          observer.observe(node, { attributes: true, attributeFilter: ['class'] });
+        }
+      });
+    });
+  });
+  bodyObserver.observe(document.body, { childList: true, subtree: true });
+
+})();
+</script>

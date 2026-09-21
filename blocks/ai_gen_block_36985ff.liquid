@@ -1,0 +1,562 @@
+{% doc %}
+  @prompt
+    Create a collapsible contact form section where clicking a button or heading toggles the form open and closed with a smooth animation. The form should include fields for name, email, and message, with a submit button. The toggle button should show an indicator (like an arrow or plus/minus icon) to show whether the form is expanded or collapsed., I want this form can capture the current product url link and send this along when user select Send so that our admin have information about which product is being mention, and also move this form below Add to Cart button, not the top
+    
+    Update the "Collapsible contact form" block to wrap its content in a centered container with a configurable max-width (default 800px) and automatic left/right margins so it doesn't stretch to the full screen width. Add a theme editor setting (range slider, 400–1200px) labeled "Container width" so the merchant can control how wide the form appears.
+    
+    Update the "Collapsible contact form" block so that on mobile screens (below 768px) it adds left and right padding (e.g., 16px) to its outer container, preventing it from spanning the full screen width. Keep the existing max-width and centering behavior for desktop unchanged.
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-collapsible-form-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    padding: 0 16px;
+  }
+
+  @media screen and (min-width: 768px) {
+    .ai-collapsible-form-{{ ai_gen_id }} {
+      padding: 0;
+    }
+  }
+
+  .ai-collapsible-form-container-{{ ai_gen_id }} {
+    max-width: {{ block.settings.container_width }}px;
+    margin: 0 auto;
+    background-color: {{ block.settings.background_color }};
+    border-radius: {{ block.settings.border_radius }}px;
+    overflow: hidden;
+    border: 1px solid {{ block.settings.border_color }};
+  }
+
+  .ai-collapsible-form-toggle-{{ ai_gen_id }} {
+    width: 100%;
+    padding: {{ block.settings.toggle_padding }}px;
+    background-color: {{ block.settings.toggle_background }};
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease;
+  }
+
+  .ai-collapsible-form-toggle-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.toggle_hover_background }};
+  }
+
+  .ai-collapsible-form-toggle-title-{{ ai_gen_id }} {
+    font-size: {{ block.settings.heading_size }}px;
+    font-weight: 600;
+    color: {{ block.settings.heading_color }};
+    margin: 0;
+    text-align: left;
+  }
+
+  .ai-collapsible-form-toggle-icon-{{ ai_gen_id }} {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+    color: {{ block.settings.icon_color }};
+  }
+
+  .ai-collapsible-form-toggle-{{ ai_gen_id }}[aria-expanded="true"] .ai-collapsible-form-toggle-icon-{{ ai_gen_id }} {
+    transform: rotate(180deg);
+  }
+
+  .ai-collapsible-form-content-{{ ai_gen_id }} {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+
+  .ai-collapsible-form-content-{{ ai_gen_id }}.active {
+    max-height: 1000px;
+  }
+
+  .ai-collapsible-form-inner-{{ ai_gen_id }} {
+    padding: {{ block.settings.form_padding }}px;
+  }
+
+  .ai-collapsible-form-field-{{ ai_gen_id }} {
+    margin-bottom: 16px;
+  }
+
+  .ai-collapsible-form-label-{{ ai_gen_id }} {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: {{ block.settings.label_color }};
+  }
+
+  .ai-collapsible-form-input-{{ ai_gen_id }},
+  .ai-collapsible-form-textarea-{{ ai_gen_id }} {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid {{ block.settings.input_border_color }};
+    border-radius: {{ block.settings.input_border_radius }}px;
+    font-size: 14px;
+    color: {{ block.settings.input_text_color }};
+    background-color: {{ block.settings.input_background }};
+    transition: border-color 0.3s ease;
+  }
+
+  .ai-collapsible-form-input-{{ ai_gen_id }}:focus,
+  .ai-collapsible-form-textarea-{{ ai_gen_id }}:focus {
+    outline: none;
+    border-color: {{ block.settings.input_focus_border }};
+  }
+
+  .ai-collapsible-form-textarea-{{ ai_gen_id }} {
+    min-height: 120px;
+    resize: vertical;
+  }
+
+  .ai-collapsible-form-submit-{{ ai_gen_id }} {
+    width: 100%;
+    padding: 14px 24px;
+    background-color: {{ block.settings.button_background }};
+    color: {{ block.settings.button_text_color }};
+    border: none;
+    border-radius: {{ block.settings.button_border_radius }}px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .ai-collapsible-form-submit-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_background }};
+  }
+
+  .ai-collapsible-form-success-{{ ai_gen_id }} {
+    padding: 12px;
+    background-color: #d4edda;
+    color: #155724;
+    border-radius: 4px;
+    margin-bottom: 16px;
+  }
+
+  .ai-collapsible-form-error-{{ ai_gen_id }} {
+    padding: 12px;
+    background-color: #f8d7da;
+    color: #721c24;
+    border-radius: 4px;
+    margin-bottom: 16px;
+  }
+{% endstyle %}
+
+<collapsible-contact-form-{{ ai_gen_id }}
+  class="ai-collapsible-form-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-collapsible-form-container-{{ ai_gen_id }}">
+    <button
+      class="ai-collapsible-form-toggle-{{ ai_gen_id }}"
+      aria-expanded="false"
+      aria-controls="ai-collapsible-form-content-{{ ai_gen_id }}"
+    >
+      <h3 class="ai-collapsible-form-toggle-title-{{ ai_gen_id }}">
+        {{ block.settings.heading }}
+      </h3>
+      <svg
+        class="ai-collapsible-form-toggle-icon-{{ ai_gen_id }}"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </button>
+
+    <div
+      id="ai-collapsible-form-content-{{ ai_gen_id }}"
+      class="ai-collapsible-form-content-{{ ai_gen_id }}"
+    >
+      <div class="ai-collapsible-form-inner-{{ ai_gen_id }}">
+        {%- form 'contact' -%}
+          <input
+            type="hidden"
+            name="contact[product_url]"
+            value="{{ product.url | prepend: request.origin }}"
+          >
+
+          {%- if form.posted_successfully? -%}
+            <div
+              class="ai-collapsible-form-success-{{ ai_gen_id }}"
+              id="ai-collapsible-form-success-{{ ai_gen_id }}"
+            >
+              {{ block.settings.success_message }}
+            </div>
+          {%- endif -%}
+
+          {%- if form.errors -%}
+            <div
+              class="ai-collapsible-form-error-{{ ai_gen_id }}"
+              id="ai-collapsible-form-error-{{ ai_gen_id }}"
+            >
+              {{ form.errors | default_errors }}
+            </div>
+          {%- endif -%}
+
+          <div class="ai-collapsible-form-field-{{ ai_gen_id }}">
+            <label
+              for="ai-contact-name-{{ ai_gen_id }}"
+              class="ai-collapsible-form-label-{{ ai_gen_id }}"
+            >
+              {{ block.settings.name_label }}
+            </label>
+            <input
+              type="text"
+              id="ai-contact-name-{{ ai_gen_id }}"
+              name="contact[name]"
+              class="ai-collapsible-form-input-{{ ai_gen_id }}"
+              placeholder="{{ block.settings.name_placeholder }}"
+              required
+            >
+          </div>
+
+          <div class="ai-collapsible-form-field-{{ ai_gen_id }}">
+            <label
+              for="ai-contact-email-{{ ai_gen_id }}"
+              class="ai-collapsible-form-label-{{ ai_gen_id }}"
+            >
+              {{ block.settings.email_label }}
+            </label>
+            <input
+              type="email"
+              id="ai-contact-email-{{ ai_gen_id }}"
+              name="contact[email]"
+              class="ai-collapsible-form-input-{{ ai_gen_id }}"
+              placeholder="{{ block.settings.email_placeholder }}"
+              autocomplete="email"
+              required
+              {% if form.errors %}
+                aria-invalid="true"
+                aria-describedby="ai-collapsible-form-error-{{ ai_gen_id }}"
+              {% endif %}
+            >
+          </div>
+
+          <div class="ai-collapsible-form-field-{{ ai_gen_id }}">
+            <label
+              for="ai-contact-message-{{ ai_gen_id }}"
+              class="ai-collapsible-form-label-{{ ai_gen_id }}"
+            >
+              {{ block.settings.message_label }}
+            </label>
+            <textarea
+              id="ai-contact-message-{{ ai_gen_id }}"
+              name="contact[body]"
+              class="ai-collapsible-form-textarea-{{ ai_gen_id }}"
+              placeholder="{{ block.settings.message_placeholder }}"
+              required
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="ai-collapsible-form-submit-{{ ai_gen_id }}"
+          >
+            {{ block.settings.button_text }}
+          </button>
+        {%- endform -%}
+      </div>
+    </div>
+  </div>
+</collapsible-contact-form-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class CollapsibleContactForm{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.toggleButton = this.querySelector('.ai-collapsible-form-toggle-{{ ai_gen_id }}');
+        this.content = this.querySelector('.ai-collapsible-form-content-{{ ai_gen_id }}');
+        
+        if (this.toggleButton && this.content) {
+          this.toggleButton.addEventListener('click', this.toggle.bind(this));
+          
+          const hasFormMessage = this.querySelector('.ai-collapsible-form-success-{{ ai_gen_id }}, .ai-collapsible-form-error-{{ ai_gen_id }}');
+          if (hasFormMessage) {
+            this.open();
+          }
+        }
+      }
+
+      toggle() {
+        const isExpanded = this.toggleButton.getAttribute('aria-expanded') === 'true';
+        
+        if (isExpanded) {
+          this.close();
+        } else {
+          this.open();
+        }
+      }
+
+      open() {
+        this.toggleButton.setAttribute('aria-expanded', 'true');
+        this.content.classList.add('active');
+      }
+
+      close() {
+        this.toggleButton.setAttribute('aria-expanded', 'false');
+        this.content.classList.remove('active');
+      }
+    }
+
+    customElements.define('collapsible-contact-form-{{ ai_gen_id }}', CollapsibleContactForm{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Collapsible contact form",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Container"
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "label": "Container width",
+      "min": 400,
+      "max": 1200,
+      "step": 50,
+      "unit": "px",
+      "default": 800
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border color",
+      "default": "#e5e5e5"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Toggle button"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Contact us about this product"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 14,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 18
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "toggle_background",
+      "label": "Background color",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "color",
+      "id": "toggle_hover_background",
+      "label": "Hover background color",
+      "default": "#e9e9e9"
+    },
+    {
+      "type": "range",
+      "id": "toggle_padding",
+      "label": "Padding",
+      "min": 12,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "header",
+      "content": "Form fields"
+    },
+    {
+      "type": "range",
+      "id": "form_padding",
+      "label": "Form padding",
+      "min": 16,
+      "max": 48,
+      "step": 4,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "text",
+      "id": "name_label",
+      "label": "Name label",
+      "default": "Name"
+    },
+    {
+      "type": "text",
+      "id": "name_placeholder",
+      "label": "Name placeholder",
+      "default": "Your name"
+    },
+    {
+      "type": "text",
+      "id": "email_label",
+      "label": "Email label",
+      "default": "Email"
+    },
+    {
+      "type": "text",
+      "id": "email_placeholder",
+      "label": "Email placeholder",
+      "default": "your@email.com"
+    },
+    {
+      "type": "text",
+      "id": "message_label",
+      "label": "Message label",
+      "default": "Message"
+    },
+    {
+      "type": "text",
+      "id": "message_placeholder",
+      "label": "Message placeholder",
+      "default": "Tell us about your inquiry..."
+    },
+    {
+      "type": "color",
+      "id": "label_color",
+      "label": "Label color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "input_background",
+      "label": "Input background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "input_text_color",
+      "label": "Input text color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "input_border_color",
+      "label": "Input border color",
+      "default": "#cccccc"
+    },
+    {
+      "type": "color",
+      "id": "input_focus_border",
+      "label": "Input focus border",
+      "default": "#113534"
+    },
+    {
+      "type": "range",
+      "id": "input_border_radius",
+      "label": "Input border radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "header",
+      "content": "Submit button"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Send"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Background color",
+      "default": "#113534"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background",
+      "label": "Hover background color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "header",
+      "content": "Messages"
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Success message",
+      "default": "Thank you! We'll get back to you soon."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collapsible contact form"
+    }
+  ]
+}
+{% endschema %}

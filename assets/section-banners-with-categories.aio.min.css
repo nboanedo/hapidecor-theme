@@ -1,0 +1,5 @@
+/*
+Generated time: November 27, 2025 07:54
+This file was created by the app developer. Feel free to contact the original developer with any questions. It was minified (compressed) by AVADA. AVADA do NOT own this script.
+*/
+.categories__bar{padding:2rem 1.6rem}.categories__bar-button{margin-top:.4rem}.categories__list:after{content:"";position:absolute;inset:0;pointer-events:none;border:1px solid rgba(var(--color-border),var(--color-border-alpha,1));border-radius:inherit}.categories__item{padding:.9rem .8rem}.categories__item:before{content:"";position:absolute;inset:0;pointer-events:none;border-inline-end:1px solid rgba(var(--color-border),var(--color-border-alpha,1));border-block-end:1px solid rgba(var(--color-border),var(--color-border-alpha,1))}.categories__item-image{width:6rem}@media (min-width:1024px){.categories__col{width:clamp(20%,28rem,30%)}}
