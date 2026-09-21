@@ -1,11 +1,11 @@
 [
   {
     "name": "theme_info",
-    "theme_name": "",
+    "theme_name": "Hyper",
     "theme_version": "1.2.0",
-    "theme_author": "",
-    "theme_documentation_url": "",
-    "theme_support_url": ""
+    "theme_author": "FoxEcom",
+    "theme_documentation_url": "https://docs.foxecom.com/hyper-theme",
+    "theme_support_url": "https://help.foxecom.com/"
   },
   {
     "name": "t:settings_schema.general.name",
