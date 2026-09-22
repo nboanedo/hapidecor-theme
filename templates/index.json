@@ -513,6 +513,8 @@
           "type": "image-slide",
           "settings": {
             "color_scheme": "",
+            "image": "shopify://shop_images/bed.png",
+            "image_mobile": "shopify://shop_images/bed.png",
             "desktop_content_position": "top-left",
             "desktop_content_alignment": "left",
             "mobile_content_alignment": "left",
@@ -536,6 +538,7 @@
           "type": "image-slide",
           "settings": {
             "color_scheme": "",
+            "image": "shopify://shop_images/bath.png",
             "desktop_content_position": "top-left",
             "desktop_content_alignment": "left",
             "mobile_content_alignment": "left",
@@ -559,6 +562,8 @@
           "type": "image-slide",
           "settings": {
             "color_scheme": "",
+            "image": "shopify://shop_images/highlight.png",
+            "image_mobile": "shopify://shop_images/highlight.png",
             "desktop_content_position": "top-left",
             "desktop_content_alignment": "left",
             "mobile_content_alignment": "left",
@@ -582,6 +587,8 @@
           "type": "image-slide",
           "settings": {
             "color_scheme": "scheme-1",
+            "image": "shopify://shop_images/office.png",
+            "image_mobile": "shopify://shop_images/office.png",
             "desktop_content_position": "top-left",
             "desktop_content_alignment": "left",
             "mobile_content_alignment": "left",
