@@ -654,6 +654,7 @@
         "column_BRAGdP": {
           "type": "column",
           "settings": {
+            "image": "shopify://shop_images/realArtist_2.png",
             "title": "Mateo Nguyen",
             "highlight_style": "none",
             "highlight_font_style": "italic",
@@ -671,6 +672,7 @@
         "column_bfjcBz": {
           "type": "column",
           "settings": {
+            "image": "shopify://shop_images/artist_5.png",
             "title": "Daniel Tran",
             "highlight_style": "none",
             "highlight_font_style": "italic",
@@ -688,6 +690,7 @@
         "column_CE96qa": {
           "type": "column",
           "settings": {
+            "image": "shopify://shop_images/artist_4.png",
             "title": "Andre Lam",
             "highlight_style": "none",
             "highlight_font_style": "italic",
@@ -705,6 +708,7 @@
         "column_dfxPnb": {
           "type": "column",
           "settings": {
+            "image": "shopify://shop_images/realArtist_1.png",
             "title": "Tom Ly",
             "highlight_style": "none",
             "highlight_font_style": "italic",
@@ -822,6 +826,7 @@
         "column_JLcMpr": {
           "type": "column",
           "settings": {
+            "image": "shopify://shop_images/woman-touching-tree-with-hand-brand.jpg",
             "title": "Continues with responsibility",
             "highlight_style": "none",
             "highlight_font_style": "italic",
@@ -839,6 +844,7 @@
         "column_CrKNDw": {
           "type": "column",
           "settings": {
+            "image": "shopify://shop_images/by-the-hands-of-an-artisan.jpg",
             "title": "By the hands of an artisan",
             "highlight_style": "none",
             "highlight_font_style": "italic",
