@@ -809,6 +809,7 @@
         "column_yMx7FL": {
           "type": "column",
           "settings": {
+            "image": "shopify://shop_images/beautiful-japanese-forest-scene.jpg",
             "title": "Begins in the forest",
             "highlight_style": "none",
             "highlight_font_style": "italic",
