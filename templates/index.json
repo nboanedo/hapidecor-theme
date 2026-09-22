@@ -1,1 +1,1094 @@
-{"sections":{"lookbook_banner_CpNLa3":{"type":"lookbook-banner","blocks":{"hotspot_qQ6fWx":{"type":"hotspot","settings":{"image":"shopify:\/\/shop_images\/ModernSculpturalStandingShelfWithOrganicCurves_5.png","heading":"<a href=\"\/products\/modern-sculptural-standing-shelf-with-organic-curves\" title=\"Modern Sculptural Standing Shelf With Organic Curves\">Sculptural Standing Shelf With Organic Curves<\/a>","description":"","top":17,"left":72,"top_mobile":100,"left_mobile":0}},"hotspot_igb7fP":{"type":"hotspot","settings":{"image":"shopify:\/\/shop_images\/ModernSlattedWoodTVStandWithCenterStorage_5.png","heading":"<a href=\"\/products\/modern-slatted-wood-tv-stand-with-center-storage\" title=\"Modern Slatted Wood TV Stand With Center Storage\">Slatted Wood TV Stand With Center Storage<\/a>","description":"","top":55,"left":35,"top_mobile":45,"left_mobile":30}},"hotspot_YgYhhe":{"type":"hotspot","settings":{"image":"shopify:\/\/shop_images\/LiveEdgeSolidWoodCoffeeTableWithSculpturalBase_4.png","heading":"<a href=\"\/products\/live-edge-solid-wood-coffee-table-with-sculptural-base\" title=\"Live Edge Solid Wood Coffee Table With Sculptural Base\">Live Edge Solid Wood Coffee Table With Sculptural Base<\/a>","description":"","top":70,"left":65,"top_mobile":50,"left_mobile":70}},"hotspot_LyXiJY":{"type":"hotspot","settings":{"image":"shopify:\/\/shop_images\/HandcraftedSolidWoodSofaModernCurvedArmFrameCouch_4.png","heading":"<a href=\"\/products\/handcrafted-solid-wood-sofa-modern-curved-arm-frame-couch\" title=\"Handcrafted Solid Wood Sofa, Modern Curved Arm Frame Couch\">Solid Wood Sofa, Modern Curved Arm Frame Couch<\/a>","description":"","top":64,"left":20,"top_mobile":62,"left_mobile":43}},"hotspot_r4DYfi":{"type":"hotspot","settings":{"image":"shopify:\/\/shop_images\/SculpturalSolidWoodBookcaseWithSpiralShelving_5.png","heading":"<a href=\"\/products\/sculptural-solid-wood-bookcase-with-spiral-shelving\" title=\"Sculptural Solid Wood Bookcase with Spiral Shelving\">Sculptural Solid Wood Bookcase with Spiral Shelving<\/a>","description":"","top":64,"left":10,"top_mobile":62,"left_mobile":43}}},"block_order":["hotspot_qQ6fWx","hotspot_igb7fP","hotspot_YgYhhe","hotspot_LyXiJY","hotspot_r4DYfi"],"disabled":true,"custom_css":["@media (max-width: 767px) {.lookbook-card .lookbook-icon {display: none !important; }}",".lookbook-mobile-link {display: none;}","@media (max-width: 767px) {.lookbook-card {position: relative; } .lookbook-mobile-link {display: block; position: absolute; inset: 0; z-index: 1; } .lookbook-card .lookbook-icon {z-index: 2; }}"],"name":"t:sections.banner-with-hotspots.name","settings":{"container":"full","color_scheme":"","section_header_alignment":"center","section_header_alignment_mobile":"inherit","subheading":"","heading":"","highlight_style":"none","highlight_font_style":"italic","highlight_style_color":"","highlight_text_color":"","heading_size":"h1","description":"","description_size":"text-base","button_label":"","button_link":"shopify:\/\/collections\/living-room","button_style":"btn--primary","button_icon":"none","image":"shopify:\/\/shop_images\/living_text_d161afd5-7a16-4e0e-8844-83b0a2e9a434.png","image_mobile":"shopify:\/\/shop_images\/living_mobile.png","icon_style":"plus","icon_color":"dark","card_color_scheme":"","show_section_divider":false,"divider_width":"fixed","padding_top":0,"padding_bottom":0}},"slideshow_GYPYdj":{"type":"slideshow","blocks":{"slide_Qck96q":{"type":"slide","settings":{"color_scheme":"","background":"shopify:\/\/shop_images\/homeBannerDesktop_v2.png","background_mobile":"shopify:\/\/shop_images\/homeBannerMobile_v1.png","image_overlay_opacity":0,"content_position":"middle-center","text_alignment":"center","subheading":"","title":"","highlight_style":"none","highlight_font_style":"italic","highlight_style_color":"","highlight_text_color":"","heading_size":"hd1","description":"","description_size":"text-base","button_label":"","button_link":"https:\/\/awefurni.com\/collections\/tables\/Coffee-Tables","button_style":"btn--primary","button_icon":"none","enable_preload_image":false}},"slide_VjBHHG":{"type":"slide","settings":{"color_scheme":"","background":"shopify:\/\/shop_images\/homeBannerDiscount_v2.png","background_mobile":"shopify:\/\/shop_images\/homeBannerDiscount_Mobile_v2.png","image_overlay_opacity":0,"content_position":"middle-center","text_alignment":"center","subheading":"","title":"","highlight_style":"none","highlight_font_style":"italic","highlight_style_color":"","highlight_text_color":"","heading_size":"hd1","description":"","description_size":"text-base","button_label":"","button_link":"shopify:\/\/collections\/living-room","button_style":"btn--primary","button_icon":"none","enable_preload_image":false}}},"block_order":["slide_Qck96q","slide_VjBHHG"],"name":"t:sections.slideshow.name","settings":{"container":"full","slide_height":"adapt","show_controls":true,"autoplay":true,"autoplay_delay":5,"show_text_below":false,"text_alignment_mobile":"center","accessibility_info":"Slideshow about our brand"}},"collection_list_rHw9V9":{"type":"collection-list","blocks":{"featured_collection_afxqgN":{"type":"featured_collection","settings":{"collection":"living-room","image":"shopify:\/\/shop_images\/AwefurniSolidWoodFurniture_456.png","title":""}},"featured_collection_YRcniX":{"type":"featured_collection","settings":{"collection":"dining-kitchen","image":"shopify:\/\/shop_images\/AwefurniSolidWoodFurniture-54810142769464.png","title":""}},"featured_collection_gNtgXm":{"type":"featured_collection","settings":{"collection":"bedroom","image":"shopify:\/\/shop_images\/HandcraftedSolidWoodHeadboardSculptedWavePanelBedHeadboard_6.png","title":""}},"featured_collection_iikPL6":{"type":"featured_collection","settings":{"collection":"bathroom","image":"shopify:\/\/shop_images\/OrganicSculpturalVanityForBathroomHandcraftedSolidWoodBasinStand_1.png","title":""}},"featured_collection_b6yCJd":{"type":"featured_collection","settings":{"collection":"home-highlights","image":"shopify:\/\/shop_images\/HandcraftedSolidWoodWallSculptureWithFlowingWaveRelief_1.png","title":""}},"featured_collection_x4QqfM":{"type":"featured_collection","settings":{"collection":"home-office","image":"shopify:\/\/shop_images\/HandcraftedSolidWoodDeskWithLiveEdgeTopAndMetalBase_1.png","title":""}},"featured_collection_FpVan3":{"type":"featured_collection","settings":{"collection":"tables","image":"shopify:\/\/shop_images\/MoriLiveEdgeSolidWoodCoffeeTableForLivingRoom_20.jpg","title":""}},"featured_collection_QxAygh":{"type":"featured_collection","settings":{"collection":"shelves","image":"shopify:\/\/shop_images\/SylvianBranchingOrganicFormSolidWoodSculpturalBookcase_4.jpg","title":""}},"featured_collection_pLKAW6":{"type":"featured_collection","settings":{"collection":"chairs","image":"shopify:\/\/shop_images\/HandcraftedSolidWoodLoungeChair_1.png","title":""}},"featured_collection_MDtKye":{"type":"featured_collection","settings":{"collection":"cabinets","image":"shopify:\/\/shop_images\/AwefurniSolidWoodFurniture_1134.png","title":""}}},"block_order":["featured_collection_afxqgN","featured_collection_YRcniX","featured_collection_gNtgXm","featured_collection_iikPL6","featured_collection_b6yCJd","featured_collection_x4QqfM","featured_collection_FpVan3","featured_collection_QxAygh","featured_collection_pLKAW6","featured_collection_MDtKye"],"name":"t:sections.collection-list.name","settings":{"container":"fixed","color_scheme":"","section_header_alignment":"center","section_header_alignment_mobile":"inherit","subheading":"","heading":"Popular Collections","highlight_style":"none","highlight_font_style":"italic","highlight_style_color":"","highlight_text_color":"","heading_size":"h2","description":"","text_size":"text-base","button_label":"","button_link":"","button_style":"btn--underline","button_icon":"none","card_color_scheme":"","card_style":"standard","card_heading_size":"text-base","card_image_ratio":"1\/1","card_image_width":"full","rounded_card_image":false,"card_show_border":false,"columns_desktop":5,"column_gap":"medium","row_gap":"inherit","grid_bordered":false,"columns_mobile":"2","swipe_on_mobile":false,"padding_top":50,"padding_bottom":50,"show_section_divider":false,"divider_width":"fixed"}},"featured_collection_MKiyah":{"type":"featured-collection","blocks":{"collection_hVfWYa":{"type":"collection","settings":{"collection":"new-arrival","title":"","show_banner":false,"color_scheme":"","card_link":"","image_overlay_opacity":0,"content_position":"top-left","content_alignment":"left","subheading":"","subheading_style":"","heading":"Collections","highlight_style":"none","highlight_font_style":"italic","highlight_style_color":"","highlight_text_color":"","heading_size":"h2","heading_size_mobile":"inherit","heading_size_custom":18,"description":"","text_size":"text-base","button_label":"Button label","button_style":"btn--primary","button_icon":"none"}}},"block_order":["collection_hVfWYa"],"name":"t:sections.featured-collection.presets__2.name","settings":{"container":"fixed","color_scheme":"scheme-1","section_header_alignment":"center","section_header_alignment_mobile":"inherit","subheading":"","heading":"<strong>Exciting New Arrivals<\/strong>","highlight_style":"none","highlight_font_style":"italic","highlight_style_color":"","highlight_text_color":"","heading_size":"h4","description":"<p>Just in! Discover our new arrivals, updated weekly with the latest artworks<\/p>","text_size":"text-base","button_label":"See More","button_link":"shopify:\/\/collections\/new-arrival","button_style":"btn--primary","button_icon":"none","limit":8,"columns":4,"column_gap":"medium","row_gap":"inherit","enable_slider":false,"content_overflow":true,"navigation_position":"bottom","pcard_image_ratio":"","columns_mobile":"1","swipe_on_mobile":true,"show_progress_bar":true,"padding_top":20,"padding_bottom":20,"show_section_divider":false,"divider_width":"fixed"}},"image_with_text_overlay_kW3MDg":{"type":"image-with-text-overlay","blocks":{"subheading_Vhdz3U":{"type":"subheading","disabled":true,"settings":{"subheading":""}},"heading_jrmydY":{"type":"heading","disabled":true,"settings":{"heading":"","highlight_style":"none","highlight_font_style":"italic","highlight_style_color":"","highlight_text_color":"","heading_size":"hd1"}},"text_4hdxBD":{"type":"text","disabled":true,"settings":{"text":"<p><\/p><p><\/p>","text_size":"text-base"}}},"block_order":["subheading_Vhdz3U","heading_jrmydY","text_4hdxBD"],"name":"t:sections.image-with-text-overlay.name","settings":{"container":"full","image":"shopify:\/\/shop_images\/kitchen_text.png","desktop_height":"adapt","overlay_opacity":0,"enable_parallax":false,"parallax_direction":"vertical","color_scheme":"","content_position":"middle-left","content_alignment":"left","image_mobile":"shopify:\/\/shop_images\/kitchen_mobile.png","mobile_height":"adapt","padding_top":50,"padding_bottom":0,"enable_preload_image":true}},"featured_collection_UmBwDx":{"type":"featured-collection","blocks":{"collection_KM4Y7U":{"type":"collection","settings":{"collection":"living-room","title":"","show_banner":false,"color_scheme":"","card_link":"","image_overlay_opacity":0,"content_position":"top-left","content_alignment":"left","subheading":"","subheading_style":"","heading":"Collections","highlight_style":"none","highlight_font_style":"italic","highlight_style_color":"","highlight_text_color":"","heading_size":"h2","heading_size_mobile":"inherit","heading_size_custom":18,"description":"","text_size":"text-base","button_label":"Button label","button_style":"btn--primary","button_icon":"none"}}},"block_order":["collection_KM4Y7U"],"name":"t:sections.featured-collection.presets__2.name","settings":{"container":"fixed","color_scheme":"","section_header_alignment":"left","section_header_alignment_mobile":"inherit","subheading":"","heading":"Best Selling Products","highlight_style":"none","highlight_font_style":"italic","highlight_style_color":"","highlight_text_color":"","heading_size":"h2","description":"","text_size":"text-base","button_label":"Learn More","button_link":"shopify:\/\/collections\/living-room","button_style":"btn--underline","button_icon":"none","limit":12,"columns":4,"column_gap":"medium","row_gap":"inherit","enable_slider":true,"content_overflow":true,"navigation_position":"bottom","pcard_image_ratio":"","columns_mobile":"1","swipe_on_mobile":true,"show_progress_bar":true,"padding_top":50,"padding_bottom":20,"show_section_divider":false,"divider_width":"fixed"}},"image_with_text_slider_Dw3334":{"type":"image-with-text-slider","blocks":{"image_slide_FYcmPf":{"type":"image-slide","settings":{"color_scheme":"","image":"shopify:\/\/shop_images\/bed.png","desktop_content_position":"top-left","desktop_content_alignment":"left","mobile_content_alignment":"left","subheading":"Where Comfort Meets Natural Wood","heading":"Bedroom","highlight_style":"none","highlight_font_style":"italic","highlight_style_color":"","highlight_text_color":"","heading_size":"h2","text":"<p>A bedroom should feel calm, grounded, and personal. Natural wood brings warmth and balance to the space where each day begins and ends.<\/p>","text_size":"text-base","button_label":"Explore Now","button_link":"shopify:\/\/collections\/bedroom","button_style":"btn--primary","button_icon":"none","enable_preload_image":false}},"image_slide_W9cyQm":{"type":"image-slide","settings":{"color_scheme":"","image":"shopify:\/\/shop_images\/bath.png","desktop_content_position":"top-left","desktop_content_alignment":"left","mobile_content_alignment":"left","subheading":"Natural Materials, Thoughtful Design","heading":"Bathroom","highlight_style":"none","highlight_font_style":"italic","highlight_style_color":"","highlight_text_color":"","heading_size":"h2","text":"<p>Real wood adds warmth without overwhelming the space. Careful design and proper finishing allow beauty and function to coexist.<\/p>","text_size":"text-base","button_label":"Explore Now","button_link":"shopify:\/\/collections\/bathroom","button_style":"btn--primary","button_icon":"none","enable_preload_image":false}},"image_slide_gD7pcx":{"type":"image-slide","settings":{"color_scheme":"","image":"shopify:\/\/shop_images\/highlight.png","desktop_content_position":"top-left","desktop_content_alignment":"left","mobile_content_alignment":"left","subheading":"Where Craft Becomes the Statement","heading":"Home Highlights","highlight_style":"none","highlight_font_style":"italic","highlight_style_color":"","highlight_text_color":"","heading_size":"h2","text":"<p>Some furniture does more than fill a room—it sets the tone. These statement pieces celebrate material, form, and presence.<\/p>","text_size":"text-base","button_label":"Explore Now","button_link":"shopify:\/\/collections\/home-highlights","button_style":"btn--primary","button_icon":"none","enable_preload_image":false}},"image_slide_B4R7VQ":{"type":"image-slide","settings":{"color_scheme":"scheme-1","image":"shopify:\/\/shop_images\/office.png","desktop_content_position":"top-left","desktop_content_alignment":"left","mobile_content_alignment":"left","subheading":"Designed for Focus and Flow","heading":"Home Office","highlight_style":"none","highlight_font_style":"italic","highlight_style_color":"","highlight_text_color":"","heading_size":"h2","text":"<p>Your workspace should support clarity, not distract from it. Natural wood creates a grounded environment that feels human and calm.<\/p>","text_size":"text-base","button_label":"Explore Now","button_link":"shopify:\/\/collections\/home-office","button_style":"btn--primary","button_icon":"none","enable_preload_image":false}}},"block_order":["image_slide_FYcmPf","image_slide_W9cyQm","image_slide_gD7pcx","image_slide_B4R7VQ"],"name":"t:sections.image-with-text-slider.presets.name","settings":{"container":"fixed","color_scheme":"","image_height":"adapt","image_width":80,"image_position":"right","show_controls":true,"autoplay":true,"autoplay_delay":5,"desktop_controls_position":"start","mobile_controls_position":"inherit","padding_top":50,"padding_bottom":20}},"177822446565004d92":{"type":"_blocks","settings":{}},"spacer_6jHQg4":{"type":"spacer","name":"t:sections.spacer.name","settings":{"show_section_divider":false,"divider_width":"fixed","padding_top":10,"padding_bottom":0,"padding_top_mobile":24,"padding_bottom_mobile":0}},"17690703046b8926c9":{"type":"apps","blocks":{"judge_me_reviews_cards_carousel_AcNRGj":{"type":"shopify:\/\/apps\/judge-me-reviews\/blocks\/cards_carousel\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8","settings":{"show_sample_reviews":true,"reviews_selection":"all","products":[],"filter_pinned":false,"filter_featured":false,"filter_custom_tags":"","star_rating":"all","show_review_media":true,"display_order":"media_first","no_image_fallback":"review_text_only","max_reviews":20,"review_length":"medium","text_size":"small","image_ratio":"1.33","reviews_shown":5,"show_reviewer_name":true,"show_product_name":true,"hide_arrows_mobile":false,"arrows_position":"sides","max_width":1600,"corner_styling":"soft","header_text_color":"#000000","text_color":"#000000","card_color":"#f9f9f9","stars_color":"","arrows_color":"#000000","transition_speed":5,"header_text":"Customers are saying","show_average_rating":true,"rating_display":"default"}}},"block_order":["judge_me_reviews_cards_carousel_AcNRGj"],"settings":{"include_margins":true,"padding_top":0,"padding_bottom":0}},"multicolumn_nmUnhT":{"type":"multicolumn","blocks":{"column_BRAGdP":{"type":"column","settings":{"image":"shopify:\/\/shop_images\/realArtist_2.png","title":"Mateo Nguyen","highlight_style":"none","highlight_font_style":"italic","highlight_style_color":"","highlight_text_color":"","heading_size":"h4","text":"<p>He got obsessed with curves, how a single cut could turn a flat board into something that looked alive. He spent years building for other studios before he had the confidence to trust his own hand. At Awefurni, he leads the sculptural work.<br\/><\/p>","text_size":"text-base","button_label":"","button_link":"","button_style":"btn--underline","button_icon":"none"}},"column_bfjcBz":{"type":"column","settings":{"image":"shopify:\/\/shop_images\/artist_5.png","title":"Daniel Tran","highlight_style":"none","highlight_font_style":"italic","highlight_style_color":"","highlight_text_color":"","heading_size":"h4","text":"<p>He studied architecture, spent a few years drawing buildings he found boring, then walked into a furniture workshop one afternoon and didn't leave. What he brought from architecture was precision , he thinks in joints, in how two surfaces meet, in the invisible structure that holds a piece together for decades.<br\/><\/p>","text_size":"text-base","button_label":"","button_link":"","button_style":"btn--underline","button_icon":"none"}},"column_CE96qa":{"type":"column","settings":{"image":"shopify:\/\/shop_images\/artist_4.png","title":"Andre Lam","highlight_style":"none","highlight_font_style":"italic","highlight_style_color":"","highlight_text_color":"","heading_size":"h4","text":"<p>Andre doesn't build furniture. He finishes it , and he'll be the first to tell you that's where a piece either comes to life or falls flat. At Awefurni, he selects the slabs, matches the grain across panels, and applies the finishes by hand. Natural Oak, Dark Walnut, Warm Walnut, every tone you see on the site went through Andre's hands.<br\/><\/p>","text_size":"text-base","button_label":"","button_link":"","button_style":"btn--underline","button_icon":"none"}},"column_dfxPnb":{"type":"column","settings":{"image":"shopify:\/\/shop_images\/realArtist_1.png","title":"Tom Ly","highlight_style":"none","highlight_font_style":"italic","highlight_style_color":"","highlight_text_color":"","heading_size":"h4","text":"<p>Tom makes the pieces that are hard to explain in words, the abstract sculptures, the carved wall panels, the shapes that look like they belong in a gallery but somehow feel right in a living room. <br\/>Every organic edge table, every sculpted base, every triptych wall piece carries his eye for proportion.<br\/><\/p>","text_size":"text-base","button_label":"","button_link":"","button_style":"btn--underline","button_icon":"none"}}},"block_order":["column_BRAGdP","column_bfjcBz","column_CE96qa","column_dfxPnb"],"name":"t:sections.multicolumn.name","settings":{"container":"fixed","color_scheme":"","section_header_alignment":"left","section_header_alignment_mobile":"inherit","subheading":"","heading":"Meet Our Wood Artists","highlight_style":"none","highlight_font_style":"italic","highlight_style_color":"","highlight_text_color":"","heading_size":"h1","description":"<p>Every piece at Awefurni begins the same way - a slab of raw wood and a pair of hands that know what's inside it.<\/p>","text_size":"text-base","button_label":"","button_link":"","button_style":"btn--underline","button_icon":"none","content_alignment":"left","show_col_count":false,"show_image":true,"columns_desktop":4,"column_gap":"large","row_gap":"inherit","columns_mobile":"1","swipe_on_mobile":true,"show_section_divider":false,"divider_width":"fixed","padding_top":30,"padding_bottom":40}},"featured_blog_tAdBnq":{"type":"featured-blog","name":"t:sections.featured-blog.name","settings":{"container":"fixed","color_scheme":"","section_header_alignment":"left","section_header_alignment_mobile":"inherit","subheading":"","heading":"The Woodcraft Journal","highlight_style":"none","highlight_font_style":"italic","highlight_style_color":"","highlight_text_color":"","heading_size":"h2","description":"","text_size":"text-base","button_label":"Learn More","button_link":"shopify:\/\/blogs\/journal","button_style":"btn--underline","button_icon":"caret-right","blog":"journal","post_limit":3,"columns_desktop":3,"column_gap":"medium","row_gap":"large","columns_mobile":"1","swipe_on_mobile":true,"card_title_size":"h4","show_tags":true,"show_excerpt":true,"show_date":true,"show_author":true,"show_button":false,"padding_top":20,"padding_bottom":20,"show_section_divider":false,"divider_width":"fixed"}},"multicolumn_Y3LaVa":{"type":"multicolumn","blocks":{"column_yMx7FL":{"type":"column","settings":{"image":"shopify:\/\/shop_images\/beautiful-japanese-forest-scene.jpg","title":"Begins in the forest","highlight_style":"none","highlight_font_style":"italic","highlight_style_color":"","highlight_text_color":"","heading_size":"h4","text":"<p>We source our wood with care and intention, choosing materials that are responsibly harvested and naturally aged. Every piece starts with respect for nature — not extraction, but balance.<\/p>","text_size":"text-base","button_label":"","button_link":"","button_style":"btn--underline","button_icon":"none"}},"column_JLcMpr":{"type":"column","settings":{"image":"shopify:\/\/shop_images\/woman-touching-tree-with-hand_b87661e7-1e13-4aa4-a0bd-e5592d11b94f.jpg","title":"Continues with responsibility","highlight_style":"none","highlight_font_style":"italic","highlight_style_color":"","highlight_text_color":"","heading_size":"h4","text":"<p>Sustainability isn’t a label for us; it’s a commitment. We minimize waste, reuse what we can, and design with longevity in mind — so each creation lasts for years.<\/p>","text_size":"text-base","button_label":"","button_link":"","button_style":"btn--underline","button_icon":"none"}},"column_CrKNDw":{"type":"column","settings":{"image":"shopify:\/\/shop_images\/group-young-teens-celebrating-world-youth-day-by-doing-activities-together_66f1131d-c134-4c76-8bf4-e4a6b1078604.jpg","title":"By the hands of an artisan","highlight_style":"none","highlight_font_style":"italic","highlight_style_color":"","highlight_text_color":"","heading_size":"h4","text":"<p>Skilled wood artists shape every piece. They listen to the grain, follow its character, and transform raw wood into furniture with soul. No two pieces ever the same.<br\/><br\/><\/p>","text_size":"text-base","button_label":"","button_link":"","button_style":"btn--underline","button_icon":"none"}}},"block_order":["column_yMx7FL","column_JLcMpr","column_CrKNDw"],"name":"t:sections.multicolumn.name","settings":{"container":"fixed","color_scheme":"","section_header_alignment":"left","section_header_alignment_mobile":"inherit","subheading":"<em>From the forest to your home, every piece tells a story.<\/em>","heading":"MORE ABOUT US","highlight_style":"none","highlight_font_style":"italic","highlight_style_color":"","highlight_text_color":"","heading_size":"h1","description":"","text_size":"text-base","button_label":"Learn more","button_link":"shopify:\/\/pages\/about","button_style":"btn--underline","button_icon":"none","content_alignment":"left","show_col_count":false,"show_image":true,"columns_desktop":3,"column_gap":"large","row_gap":"inherit","columns_mobile":"1","swipe_on_mobile":true,"show_section_divider":false,"divider_width":"fixed","padding_top":50,"padding_bottom":50}},"newsletter_wJQK3J":{"type":"newsletter","custom_css":[".newsletter__form-wrapper {max-width: 1140px; margin: 0 auto;}",".rich-text__heading {max-width: 50rem;}","@media (max-width: 1023.98px) {.rich-text__heading {max-width: 40rem; }}","@media (max-width: 767.98px) {.rich-text__heading {max-width: 32rem; }}"],"settings":{"container":"full","color_scheme":"scheme-2","layout":"horizontal","subheading":"","heading":"Sign up for news, product releases, & more.","highlight_style":"hand_drawn_circle","highlight_font_style":"normal","highlight_style_color":"#ffe093","highlight_text_color":"#ffe093","heading_size":"h2","description":"","text_size":"text-base","alignment":"left","alignment_mobile":"center","width_settings":"custom","form_width":565,"newsletter_term":"","newsletter_term_size":"text-base","button_style":"btn--primary","button_icon":"none","padding_top":60,"padding_bottom":60,"show_section_divider":false,"divider_width":"fixed"}},"multicolumn_icon_anHJBM":{"type":"multicolumn-icon","blocks":{"column_ThJXRc":{"type":"column","settings":{"icon":"truck","max_width":40,"max_width_mb":28,"title":"FREE SHIPPING","highlight_style":"none","highlight_font_style":"italic","highlight_style_color":"","highlight_text_color":"","heading_size":"h6","heading_font":"heading","text":"<p>Free Shipping On All Orders<\/p>","text_size":"text-base","button_label":"","button_link":"","button_style":"btn--underline","button_icon":"none"}},"column_9UbEya":{"type":"column","settings":{"icon":"arrow-up-left","max_width":40,"max_width_mb":28,"title":"RISK-FREE","highlight_style":"none","highlight_font_style":"italic","highlight_style_color":"","highlight_text_color":"","heading_size":"h6","heading_font":"heading","text":"<p>30-Day Return Policy<\/p>","text_size":"text-base","button_label":"","button_link":"","button_style":"btn--underline","button_icon":"none"}},"column_VDxAdX":{"type":"column","settings":{"icon":"heart","max_width":40,"max_width_mb":28,"title":"DEDICATED SUPPORT","highlight_style":"none","highlight_font_style":"italic","highlight_style_color":"","highlight_text_color":"","heading_size":"h6","heading_font":"heading","text":"<p>Every Step of Your Order<\/p>","text_size":"text-base","button_label":"","button_link":"","button_style":"btn--underline","button_icon":"none"}},"column_VW86WV":{"type":"column","settings":{"icon":"check","max_width":40,"max_width_mb":28,"title":"SECURE CHECKOUT","highlight_style":"none","highlight_font_style":"italic","highlight_style_color":"","highlight_text_color":"","heading_size":"h6","heading_font":"heading","text":"<p>Secure Payment and Privacy<\/p>","text_size":"text-base","button_label":"","button_link":"","button_style":"btn--underline","button_icon":"none"}}},"block_order":["column_ThJXRc","column_9UbEya","column_VDxAdX","column_VW86WV"],"name":"t:sections.multicolumn-with-icon.name","settings":{"container":"fixed","color_scheme":"scheme-1","header_layout":"vertical","section_header_alignment":"left","section_header_alignment_mobile":"inherit","subheading":"","heading":"","highlight_style":"none","highlight_font_style":"italic","highlight_style_color":"","highlight_text_color":"","heading_size":"h1","description":"","text_size":"text-base","button_label":"","button_link":"","button_style":"btn--underline","button_icon":"none","enable_sticky":false,"card_color_scheme":"","content_alignment":"left","image_position":"left","icon_color":"#113534","columns_desktop":4,"column_gap":"large","row_gap":"inherit","show_divider_col":true,"columns_mobile":"1","swipe_on_mobile":true,"show_section_divider":false,"divider_width":"fixed","padding_top":50,"padding_bottom":50}},"177822504441f495ee":{"type":"_blocks","settings":{}},"17782263911cbcdcdf":{"type":"_blocks","settings":{}},"1778227788e4f2ba4c":{"type":"_blocks","settings":{}}},"order":["lookbook_banner_CpNLa3","slideshow_GYPYdj","collection_list_rHw9V9","featured_collection_MKiyah","image_with_text_overlay_kW3MDg","featured_collection_UmBwDx","image_with_text_slider_Dw3334","177822446565004d92","spacer_6jHQg4","17690703046b8926c9","multicolumn_nmUnhT","featured_blog_tAdBnq","multicolumn_Y3LaVa","newsletter_wJQK3J","multicolumn_icon_anHJBM","177822504441f495ee","17782263911cbcdcdf","1778227788e4f2ba4c"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "lookbook_banner_CpNLa3": {
+      "type": "lookbook-banner",
+      "blocks": {
+        "hotspot_qQ6fWx": {
+          "type": "hotspot",
+          "settings": {
+            "image": "shopify://shop_images/ModernSculpturalStandingShelfWithOrganicCurves_5.png",
+            "heading": "<a href=\"/products/modern-sculptural-standing-shelf-with-organic-curves\" title=\"Modern Sculptural Standing Shelf With Organic Curves\">Sculptural Standing Shelf With Organic Curves</a>",
+            "description": "",
+            "top": 17,
+            "left": 72,
+            "top_mobile": 100,
+            "left_mobile": 0
+          }
+        },
+        "hotspot_igb7fP": {
+          "type": "hotspot",
+          "settings": {
+            "heading": "<a href=\"/products/modern-slatted-wood-tv-stand-with-center-storage\" title=\"Modern Slatted Wood TV Stand With Center Storage\">Slatted Wood TV Stand With Center Storage</a>",
+            "description": "",
+            "top": 55,
+            "left": 35,
+            "top_mobile": 45,
+            "left_mobile": 30
+          }
+        },
+        "hotspot_YgYhhe": {
+          "type": "hotspot",
+          "settings": {
+            "heading": "<a href=\"/products/live-edge-solid-wood-coffee-table-with-sculptural-base\" title=\"Live Edge Solid Wood Coffee Table With Sculptural Base\">Live Edge Solid Wood Coffee Table With Sculptural Base</a>",
+            "description": "",
+            "top": 70,
+            "left": 65,
+            "top_mobile": 50,
+            "left_mobile": 70
+          }
+        },
+        "hotspot_LyXiJY": {
+          "type": "hotspot",
+          "settings": {
+            "image": "shopify://shop_images/HandcraftedSolidWoodSofaModernCurvedArmFrameCouch_4.png",
+            "heading": "<a href=\"/products/handcrafted-solid-wood-sofa-modern-curved-arm-frame-couch\" title=\"Handcrafted Solid Wood Sofa, Modern Curved Arm Frame Couch\">Solid Wood Sofa, Modern Curved Arm Frame Couch</a>",
+            "description": "",
+            "top": 64,
+            "left": 20,
+            "top_mobile": 62,
+            "left_mobile": 43
+          }
+        },
+        "hotspot_r4DYfi": {
+          "type": "hotspot",
+          "settings": {
+            "image": "shopify://shop_images/SculpturalSolidWoodBookcaseWithSpiralShelving_5.png",
+            "heading": "<a href=\"/products/sculptural-solid-wood-bookcase-with-spiral-shelving\" title=\"Sculptural Solid Wood Bookcase with Spiral Shelving\">Sculptural Solid Wood Bookcase with Spiral Shelving</a>",
+            "description": "",
+            "top": 64,
+            "left": 10,
+            "top_mobile": 62,
+            "left_mobile": 43
+          }
+        }
+      },
+      "block_order": [
+        "hotspot_qQ6fWx",
+        "hotspot_igb7fP",
+        "hotspot_YgYhhe",
+        "hotspot_LyXiJY",
+        "hotspot_r4DYfi"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "@media (max-width: 767px) {.lookbook-card .lookbook-icon {display: none !important; }}",
+        ".lookbook-mobile-link {display: none;}",
+        "@media (max-width: 767px) {.lookbook-card {position: relative; } .lookbook-mobile-link {display: block; position: absolute; inset: 0; z-index: 1; } .lookbook-card .lookbook-icon {z-index: 2; }}"
+      ],
+      "name": "t:sections.banner-with-hotspots.name",
+      "settings": {
+        "container": "full",
+        "color_scheme": "",
+        "section_header_alignment": "center",
+        "section_header_alignment_mobile": "inherit",
+        "subheading": "",
+        "heading": "",
+        "highlight_style": "none",
+        "highlight_font_style": "italic",
+        "highlight_style_color": "",
+        "highlight_text_color": "",
+        "heading_size": "h1",
+        "description": "",
+        "description_size": "text-base",
+        "button_label": "",
+        "button_link": "shopify://collections/living-room",
+        "button_style": "btn--primary",
+        "button_icon": "none",
+        "icon_style": "plus",
+        "icon_color": "dark",
+        "card_color_scheme": "",
+        "show_section_divider": false,
+        "divider_width": "fixed",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "slideshow_GYPYdj": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_Qck96q": {
+          "type": "slide",
+          "settings": {
+            "color_scheme": "",
+            "image_overlay_opacity": 0,
+            "content_position": "middle-center",
+            "text_alignment": "center",
+            "subheading": "",
+            "title": "",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "hd1",
+            "description": "",
+            "description_size": "text-base",
+            "button_label": "",
+            "button_link": "/collections/tables",
+            "button_style": "btn--primary",
+            "button_icon": "none",
+            "enable_preload_image": false
+          }
+        },
+        "slide_VjBHHG": {
+          "type": "slide",
+          "settings": {
+            "color_scheme": "",
+            "image_overlay_opacity": 0,
+            "content_position": "middle-center",
+            "text_alignment": "center",
+            "subheading": "",
+            "title": "",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "hd1",
+            "description": "",
+            "description_size": "text-base",
+            "button_label": "",
+            "button_link": "shopify://collections/living-room",
+            "button_style": "btn--primary",
+            "button_icon": "none",
+            "enable_preload_image": false
+          }
+        }
+      },
+      "block_order": [
+        "slide_Qck96q",
+        "slide_VjBHHG"
+      ],
+      "name": "t:sections.slideshow.name",
+      "settings": {
+        "container": "full",
+        "slide_height": "adapt",
+        "show_controls": true,
+        "autoplay": true,
+        "autoplay_delay": 5,
+        "show_text_below": false,
+        "text_alignment_mobile": "center",
+        "accessibility_info": "Slideshow about our brand"
+      }
+    },
+    "collection_list_rHw9V9": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_afxqgN": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "living-room",
+            "image": "shopify://shop_images/AwefurniSolidWoodFurniture_456.png",
+            "title": ""
+          }
+        },
+        "featured_collection_YRcniX": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "dining-kitchen",
+            "image": "shopify://shop_images/AwefurniSolidWoodFurniture-54810142769464.png",
+            "title": ""
+          }
+        },
+        "featured_collection_gNtgXm": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "bedroom",
+            "image": "shopify://shop_images/HandcraftedSolidWoodHeadboardSculptedWavePanelBedHeadboard_6.png",
+            "title": ""
+          }
+        },
+        "featured_collection_iikPL6": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "bathroom",
+            "image": "shopify://shop_images/OrganicSculpturalVanityForBathroomHandcraftedSolidWoodBasinStand_1.png",
+            "title": ""
+          }
+        },
+        "featured_collection_b6yCJd": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "home-highlights",
+            "image": "shopify://shop_images/HandcraftedSolidWoodWallSculptureWithFlowingWaveRelief_1.png",
+            "title": ""
+          }
+        },
+        "featured_collection_x4QqfM": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "home-office",
+            "image": "shopify://shop_images/HandcraftedSolidWoodDeskWithLiveEdgeTopAndMetalBase_1.png",
+            "title": ""
+          }
+        },
+        "featured_collection_FpVan3": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "tables",
+            "image": "shopify://shop_images/MoriLiveEdgeSolidWoodCoffeeTableForLivingRoom_20.jpg",
+            "title": ""
+          }
+        },
+        "featured_collection_QxAygh": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "shelves",
+            "image": "shopify://shop_images/SylvianBranchingOrganicFormSolidWoodSculpturalBookcase_4.jpg",
+            "title": ""
+          }
+        },
+        "featured_collection_pLKAW6": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "chairs",
+            "image": "shopify://shop_images/HandcraftedSolidWoodLoungeChair_1.png",
+            "title": ""
+          }
+        },
+        "featured_collection_MDtKye": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "cabinets",
+            "image": "shopify://shop_images/AwefurniSolidWoodFurniture_1134.png",
+            "title": ""
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_afxqgN",
+        "featured_collection_YRcniX",
+        "featured_collection_gNtgXm",
+        "featured_collection_iikPL6",
+        "featured_collection_b6yCJd",
+        "featured_collection_x4QqfM",
+        "featured_collection_FpVan3",
+        "featured_collection_QxAygh",
+        "featured_collection_pLKAW6",
+        "featured_collection_MDtKye"
+      ],
+      "name": "t:sections.collection-list.name",
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "",
+        "section_header_alignment": "center",
+        "section_header_alignment_mobile": "inherit",
+        "subheading": "",
+        "heading": "Popular Collections",
+        "highlight_style": "none",
+        "highlight_font_style": "italic",
+        "highlight_style_color": "",
+        "highlight_text_color": "",
+        "heading_size": "h2",
+        "description": "",
+        "text_size": "text-base",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "btn--underline",
+        "button_icon": "none",
+        "card_color_scheme": "",
+        "card_style": "standard",
+        "card_heading_size": "text-base",
+        "card_image_ratio": "1/1",
+        "card_image_width": "full",
+        "rounded_card_image": false,
+        "card_show_border": false,
+        "columns_desktop": 5,
+        "column_gap": "medium",
+        "row_gap": "inherit",
+        "grid_bordered": false,
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "show_section_divider": false,
+        "divider_width": "fixed"
+      }
+    },
+    "featured_collection_MKiyah": {
+      "type": "featured-collection",
+      "blocks": {
+        "collection_hVfWYa": {
+          "type": "collection",
+          "settings": {
+            "collection": "new-arrival",
+            "title": "",
+            "show_banner": false,
+            "color_scheme": "",
+            "card_link": "",
+            "image_overlay_opacity": 0,
+            "content_position": "top-left",
+            "content_alignment": "left",
+            "subheading": "",
+            "subheading_style": "",
+            "heading": "Collections",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h2",
+            "heading_size_mobile": "inherit",
+            "heading_size_custom": 18,
+            "description": "",
+            "text_size": "text-base",
+            "button_label": "Button label",
+            "button_style": "btn--primary",
+            "button_icon": "none"
+          }
+        }
+      },
+      "block_order": [
+        "collection_hVfWYa"
+      ],
+      "name": "t:sections.featured-collection.presets__2.name",
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "scheme-1",
+        "section_header_alignment": "center",
+        "section_header_alignment_mobile": "inherit",
+        "subheading": "",
+        "heading": "<strong>Exciting New Arrivals</strong>",
+        "highlight_style": "none",
+        "highlight_font_style": "italic",
+        "highlight_style_color": "",
+        "highlight_text_color": "",
+        "heading_size": "h4",
+        "description": "<p>Just in! Discover our new arrivals, updated weekly with the latest artworks</p>",
+        "text_size": "text-base",
+        "button_label": "See More",
+        "button_link": "shopify://collections/new-arrival",
+        "button_style": "btn--primary",
+        "button_icon": "none",
+        "limit": 8,
+        "columns": 4,
+        "column_gap": "medium",
+        "row_gap": "inherit",
+        "enable_slider": false,
+        "content_overflow": true,
+        "navigation_position": "bottom",
+        "pcard_image_ratio": "",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "show_progress_bar": true,
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "show_section_divider": false,
+        "divider_width": "fixed"
+      }
+    },
+    "image_with_text_overlay_kW3MDg": {
+      "type": "image-with-text-overlay",
+      "blocks": {
+        "subheading_Vhdz3U": {
+          "type": "subheading",
+          "disabled": true,
+          "settings": {
+            "subheading": ""
+          }
+        },
+        "heading_jrmydY": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "heading": "",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "hd1"
+          }
+        },
+        "text_4hdxBD": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "<p></p><p></p>",
+            "text_size": "text-base"
+          }
+        }
+      },
+      "block_order": [
+        "subheading_Vhdz3U",
+        "heading_jrmydY",
+        "text_4hdxBD"
+      ],
+      "name": "t:sections.image-with-text-overlay.name",
+      "settings": {
+        "container": "full",
+        "desktop_height": "adapt",
+        "overlay_opacity": 0,
+        "enable_parallax": false,
+        "parallax_direction": "vertical",
+        "color_scheme": "",
+        "content_position": "middle-left",
+        "content_alignment": "left",
+        "mobile_height": "adapt",
+        "padding_top": 50,
+        "padding_bottom": 0,
+        "enable_preload_image": true
+      }
+    },
+    "featured_collection_UmBwDx": {
+      "type": "featured-collection",
+      "blocks": {
+        "collection_KM4Y7U": {
+          "type": "collection",
+          "settings": {
+            "collection": "living-room",
+            "title": "",
+            "show_banner": false,
+            "color_scheme": "",
+            "card_link": "",
+            "image_overlay_opacity": 0,
+            "content_position": "top-left",
+            "content_alignment": "left",
+            "subheading": "",
+            "subheading_style": "",
+            "heading": "Collections",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h2",
+            "heading_size_mobile": "inherit",
+            "heading_size_custom": 18,
+            "description": "",
+            "text_size": "text-base",
+            "button_label": "Button label",
+            "button_style": "btn--primary",
+            "button_icon": "none"
+          }
+        }
+      },
+      "block_order": [
+        "collection_KM4Y7U"
+      ],
+      "name": "t:sections.featured-collection.presets__2.name",
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "",
+        "section_header_alignment": "left",
+        "section_header_alignment_mobile": "inherit",
+        "subheading": "",
+        "heading": "Best Selling Products",
+        "highlight_style": "none",
+        "highlight_font_style": "italic",
+        "highlight_style_color": "",
+        "highlight_text_color": "",
+        "heading_size": "h2",
+        "description": "",
+        "text_size": "text-base",
+        "button_label": "Learn More",
+        "button_link": "shopify://collections/living-room",
+        "button_style": "btn--underline",
+        "button_icon": "none",
+        "limit": 12,
+        "columns": 4,
+        "column_gap": "medium",
+        "row_gap": "inherit",
+        "enable_slider": true,
+        "content_overflow": true,
+        "navigation_position": "bottom",
+        "pcard_image_ratio": "",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "show_progress_bar": true,
+        "padding_top": 50,
+        "padding_bottom": 20,
+        "show_section_divider": false,
+        "divider_width": "fixed"
+      }
+    },
+    "image_with_text_slider_Dw3334": {
+      "type": "image-with-text-slider",
+      "blocks": {
+        "image_slide_FYcmPf": {
+          "type": "image-slide",
+          "settings": {
+            "color_scheme": "",
+            "desktop_content_position": "top-left",
+            "desktop_content_alignment": "left",
+            "mobile_content_alignment": "left",
+            "subheading": "Where Comfort Meets Natural Wood",
+            "heading": "Bedroom",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h2",
+            "text": "<p>A bedroom should feel calm, grounded, and personal. Natural wood brings warmth and balance to the space where each day begins and ends.</p>",
+            "text_size": "text-base",
+            "button_label": "Explore Now",
+            "button_link": "shopify://collections/bedroom",
+            "button_style": "btn--primary",
+            "button_icon": "none",
+            "enable_preload_image": false
+          }
+        },
+        "image_slide_W9cyQm": {
+          "type": "image-slide",
+          "settings": {
+            "color_scheme": "",
+            "desktop_content_position": "top-left",
+            "desktop_content_alignment": "left",
+            "mobile_content_alignment": "left",
+            "subheading": "Natural Materials, Thoughtful Design",
+            "heading": "Bathroom",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h2",
+            "text": "<p>Real wood adds warmth without overwhelming the space. Careful design and proper finishing allow beauty and function to coexist.</p>",
+            "text_size": "text-base",
+            "button_label": "Explore Now",
+            "button_link": "shopify://collections/bathroom",
+            "button_style": "btn--primary",
+            "button_icon": "none",
+            "enable_preload_image": false
+          }
+        },
+        "image_slide_gD7pcx": {
+          "type": "image-slide",
+          "settings": {
+            "color_scheme": "",
+            "desktop_content_position": "top-left",
+            "desktop_content_alignment": "left",
+            "mobile_content_alignment": "left",
+            "subheading": "Where Craft Becomes the Statement",
+            "heading": "Home Highlights",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h2",
+            "text": "<p>Some furniture does more than fill a room—it sets the tone. These statement pieces celebrate material, form, and presence.</p>",
+            "text_size": "text-base",
+            "button_label": "Explore Now",
+            "button_link": "shopify://collections/home-highlights",
+            "button_style": "btn--primary",
+            "button_icon": "none",
+            "enable_preload_image": false
+          }
+        },
+        "image_slide_B4R7VQ": {
+          "type": "image-slide",
+          "settings": {
+            "color_scheme": "scheme-1",
+            "desktop_content_position": "top-left",
+            "desktop_content_alignment": "left",
+            "mobile_content_alignment": "left",
+            "subheading": "Designed for Focus and Flow",
+            "heading": "Home Office",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h2",
+            "text": "<p>Your workspace should support clarity, not distract from it. Natural wood creates a grounded environment that feels human and calm.</p>",
+            "text_size": "text-base",
+            "button_label": "Explore Now",
+            "button_link": "shopify://collections/home-office",
+            "button_style": "btn--primary",
+            "button_icon": "none",
+            "enable_preload_image": false
+          }
+        }
+      },
+      "block_order": [
+        "image_slide_FYcmPf",
+        "image_slide_W9cyQm",
+        "image_slide_gD7pcx",
+        "image_slide_B4R7VQ"
+      ],
+      "name": "t:sections.image-with-text-slider.presets.name",
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "",
+        "image_height": "adapt",
+        "image_width": 80,
+        "image_position": "right",
+        "show_controls": true,
+        "autoplay": true,
+        "autoplay_delay": 5,
+        "desktop_controls_position": "start",
+        "mobile_controls_position": "inherit",
+        "padding_top": 50,
+        "padding_bottom": 20
+      }
+    },
+    "177822446565004d92": {
+      "type": "_blocks",
+      "settings": {}
+    },
+    "spacer_6jHQg4": {
+      "type": "spacer",
+      "name": "t:sections.spacer.name",
+      "settings": {
+        "show_section_divider": false,
+        "divider_width": "fixed",
+        "padding_top": 10,
+        "padding_bottom": 0,
+        "padding_top_mobile": 24,
+        "padding_bottom_mobile": 0
+      }
+    },
+    "17690703046b8926c9": {
+      "type": "apps",
+      "settings": {
+        "include_margins": true,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "multicolumn_nmUnhT": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_BRAGdP": {
+          "type": "column",
+          "settings": {
+            "title": "Mateo Nguyen",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h4",
+            "text": "<p>He got obsessed with curves, how a single cut could turn a flat board into something that looked alive. He spent years building for other studios before he had the confidence to trust his own hand. At Awefurni, he leads the sculptural work.<br/></p>",
+            "text_size": "text-base",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "btn--underline",
+            "button_icon": "none"
+          }
+        },
+        "column_bfjcBz": {
+          "type": "column",
+          "settings": {
+            "title": "Daniel Tran",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h4",
+            "text": "<p>He studied architecture, spent a few years drawing buildings he found boring, then walked into a furniture workshop one afternoon and didn't leave. What he brought from architecture was precision , he thinks in joints, in how two surfaces meet, in the invisible structure that holds a piece together for decades.<br/></p>",
+            "text_size": "text-base",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "btn--underline",
+            "button_icon": "none"
+          }
+        },
+        "column_CE96qa": {
+          "type": "column",
+          "settings": {
+            "title": "Andre Lam",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h4",
+            "text": "<p>Andre doesn't build furniture. He finishes it , and he'll be the first to tell you that's where a piece either comes to life or falls flat. At Awefurni, he selects the slabs, matches the grain across panels, and applies the finishes by hand. Natural Oak, Dark Walnut, Warm Walnut, every tone you see on the site went through Andre's hands.<br/></p>",
+            "text_size": "text-base",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "btn--underline",
+            "button_icon": "none"
+          }
+        },
+        "column_dfxPnb": {
+          "type": "column",
+          "settings": {
+            "title": "Tom Ly",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h4",
+            "text": "<p>Tom makes the pieces that are hard to explain in words, the abstract sculptures, the carved wall panels, the shapes that look like they belong in a gallery but somehow feel right in a living room. <br/>Every organic edge table, every sculpted base, every triptych wall piece carries his eye for proportion.<br/></p>",
+            "text_size": "text-base",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "btn--underline",
+            "button_icon": "none"
+          }
+        }
+      },
+      "block_order": [
+        "column_BRAGdP",
+        "column_bfjcBz",
+        "column_CE96qa",
+        "column_dfxPnb"
+      ],
+      "name": "t:sections.multicolumn.name",
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "",
+        "section_header_alignment": "left",
+        "section_header_alignment_mobile": "inherit",
+        "subheading": "",
+        "heading": "Meet Our Wood Artists",
+        "highlight_style": "none",
+        "highlight_font_style": "italic",
+        "highlight_style_color": "",
+        "highlight_text_color": "",
+        "heading_size": "h1",
+        "description": "<p>Every piece at Awefurni begins the same way - a slab of raw wood and a pair of hands that know what's inside it.</p>",
+        "text_size": "text-base",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "btn--underline",
+        "button_icon": "none",
+        "content_alignment": "left",
+        "show_col_count": false,
+        "show_image": true,
+        "columns_desktop": 4,
+        "column_gap": "large",
+        "row_gap": "inherit",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "show_section_divider": false,
+        "divider_width": "fixed",
+        "padding_top": 30,
+        "padding_bottom": 40
+      }
+    },
+    "featured_blog_tAdBnq": {
+      "type": "featured-blog",
+      "name": "t:sections.featured-blog.name",
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "",
+        "section_header_alignment": "left",
+        "section_header_alignment_mobile": "inherit",
+        "subheading": "",
+        "heading": "The Woodcraft Journal",
+        "highlight_style": "none",
+        "highlight_font_style": "italic",
+        "highlight_style_color": "",
+        "highlight_text_color": "",
+        "heading_size": "h2",
+        "description": "",
+        "text_size": "text-base",
+        "button_label": "Learn More",
+        "button_link": "shopify://blogs/journal",
+        "button_style": "btn--underline",
+        "button_icon": "caret-right",
+        "blog": "journal",
+        "post_limit": 3,
+        "columns_desktop": 3,
+        "column_gap": "medium",
+        "row_gap": "large",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "card_title_size": "h4",
+        "show_tags": true,
+        "show_excerpt": true,
+        "show_date": true,
+        "show_author": true,
+        "show_button": false,
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "show_section_divider": false,
+        "divider_width": "fixed"
+      }
+    },
+    "multicolumn_Y3LaVa": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_yMx7FL": {
+          "type": "column",
+          "settings": {
+            "title": "Begins in the forest",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h4",
+            "text": "<p>We source our wood with care and intention, choosing materials that are responsibly harvested and naturally aged. Every piece starts with respect for nature — not extraction, but balance.</p>",
+            "text_size": "text-base",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "btn--underline",
+            "button_icon": "none"
+          }
+        },
+        "column_JLcMpr": {
+          "type": "column",
+          "settings": {
+            "title": "Continues with responsibility",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h4",
+            "text": "<p>Sustainability isn’t a label for us; it’s a commitment. We minimize waste, reuse what we can, and design with longevity in mind — so each creation lasts for years.</p>",
+            "text_size": "text-base",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "btn--underline",
+            "button_icon": "none"
+          }
+        },
+        "column_CrKNDw": {
+          "type": "column",
+          "settings": {
+            "title": "By the hands of an artisan",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h4",
+            "text": "<p>Skilled wood artists shape every piece. They listen to the grain, follow its character, and transform raw wood into furniture with soul. No two pieces ever the same.<br/><br/></p>",
+            "text_size": "text-base",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "btn--underline",
+            "button_icon": "none"
+          }
+        }
+      },
+      "block_order": [
+        "column_yMx7FL",
+        "column_JLcMpr",
+        "column_CrKNDw"
+      ],
+      "name": "t:sections.multicolumn.name",
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "",
+        "section_header_alignment": "left",
+        "section_header_alignment_mobile": "inherit",
+        "subheading": "<em>From the forest to your home, every piece tells a story.</em>",
+        "heading": "MORE ABOUT US",
+        "highlight_style": "none",
+        "highlight_font_style": "italic",
+        "highlight_style_color": "",
+        "highlight_text_color": "",
+        "heading_size": "h1",
+        "description": "",
+        "text_size": "text-base",
+        "button_label": "Learn more",
+        "button_link": "shopify://pages/about",
+        "button_style": "btn--underline",
+        "button_icon": "none",
+        "content_alignment": "left",
+        "show_col_count": false,
+        "show_image": true,
+        "columns_desktop": 3,
+        "column_gap": "large",
+        "row_gap": "inherit",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "show_section_divider": false,
+        "divider_width": "fixed",
+        "padding_top": 50,
+        "padding_bottom": 50
+      }
+    },
+    "newsletter_wJQK3J": {
+      "type": "newsletter",
+      "custom_css": [
+        ".newsletter__form-wrapper {max-width: 1140px; margin: 0 auto;}",
+        ".rich-text__heading {max-width: 50rem;}",
+        "@media (max-width: 1023.98px) {.rich-text__heading {max-width: 40rem; }}",
+        "@media (max-width: 767.98px) {.rich-text__heading {max-width: 32rem; }}"
+      ],
+      "settings": {
+        "container": "full",
+        "color_scheme": "scheme-2",
+        "layout": "horizontal",
+        "subheading": "",
+        "heading": "Sign up for news, product releases, & more.",
+        "highlight_style": "hand_drawn_circle",
+        "highlight_font_style": "normal",
+        "highlight_style_color": "#ffe093",
+        "highlight_text_color": "#ffe093",
+        "heading_size": "h2",
+        "description": "",
+        "text_size": "text-base",
+        "alignment": "left",
+        "alignment_mobile": "center",
+        "width_settings": "custom",
+        "form_width": 565,
+        "newsletter_term": "",
+        "newsletter_term_size": "text-base",
+        "button_style": "btn--primary",
+        "button_icon": "none",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "show_section_divider": false,
+        "divider_width": "fixed"
+      }
+    },
+    "multicolumn_icon_anHJBM": {
+      "type": "multicolumn-icon",
+      "blocks": {
+        "column_ThJXRc": {
+          "type": "column",
+          "settings": {
+            "icon": "truck",
+            "max_width": 40,
+            "max_width_mb": 28,
+            "title": "FREE SHIPPING",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h6",
+            "heading_font": "heading",
+            "text": "<p>Free Shipping On All Orders</p>",
+            "text_size": "text-base",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "btn--underline",
+            "button_icon": "none"
+          }
+        },
+        "column_9UbEya": {
+          "type": "column",
+          "settings": {
+            "icon": "arrow-up-left",
+            "max_width": 40,
+            "max_width_mb": 28,
+            "title": "RISK-FREE",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h6",
+            "heading_font": "heading",
+            "text": "<p>30-Day Return Policy</p>",
+            "text_size": "text-base",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "btn--underline",
+            "button_icon": "none"
+          }
+        },
+        "column_VDxAdX": {
+          "type": "column",
+          "settings": {
+            "icon": "heart",
+            "max_width": 40,
+            "max_width_mb": 28,
+            "title": "DEDICATED SUPPORT",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h6",
+            "heading_font": "heading",
+            "text": "<p>Every Step of Your Order</p>",
+            "text_size": "text-base",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "btn--underline",
+            "button_icon": "none"
+          }
+        },
+        "column_VW86WV": {
+          "type": "column",
+          "settings": {
+            "icon": "check",
+            "max_width": 40,
+            "max_width_mb": 28,
+            "title": "SECURE CHECKOUT",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h6",
+            "heading_font": "heading",
+            "text": "<p>Secure Payment and Privacy</p>",
+            "text_size": "text-base",
+            "button_label": "",
+            "button_link": "",
+            "button_style": "btn--underline",
+            "button_icon": "none"
+          }
+        }
+      },
+      "block_order": [
+        "column_ThJXRc",
+        "column_9UbEya",
+        "column_VDxAdX",
+        "column_VW86WV"
+      ],
+      "name": "t:sections.multicolumn-with-icon.name",
+      "settings": {
+        "container": "fixed",
+        "color_scheme": "scheme-1",
+        "header_layout": "vertical",
+        "section_header_alignment": "left",
+        "section_header_alignment_mobile": "inherit",
+        "subheading": "",
+        "heading": "",
+        "highlight_style": "none",
+        "highlight_font_style": "italic",
+        "highlight_style_color": "",
+        "highlight_text_color": "",
+        "heading_size": "h1",
+        "description": "",
+        "text_size": "text-base",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "btn--underline",
+        "button_icon": "none",
+        "enable_sticky": false,
+        "card_color_scheme": "",
+        "content_alignment": "left",
+        "image_position": "left",
+        "icon_color": "#113534",
+        "columns_desktop": 4,
+        "column_gap": "large",
+        "row_gap": "inherit",
+        "show_divider_col": true,
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "show_section_divider": false,
+        "divider_width": "fixed",
+        "padding_top": 50,
+        "padding_bottom": 50
+      }
+    },
+    "177822504441f495ee": {
+      "type": "_blocks",
+      "settings": {}
+    },
+    "17782263911cbcdcdf": {
+      "type": "_blocks",
+      "settings": {}
+    },
+    "1778227788e4f2ba4c": {
+      "type": "_blocks",
+      "settings": {}
+    }
+  },
+  "order": [
+    "lookbook_banner_CpNLa3",
+    "slideshow_GYPYdj",
+    "collection_list_rHw9V9",
+    "featured_collection_MKiyah",
+    "image_with_text_overlay_kW3MDg",
+    "featured_collection_UmBwDx",
+    "image_with_text_slider_Dw3334",
+    "177822446565004d92",
+    "spacer_6jHQg4",
+    "17690703046b8926c9",
+    "multicolumn_nmUnhT",
+    "featured_blog_tAdBnq",
+    "multicolumn_Y3LaVa",
+    "newsletter_wJQK3J",
+    "multicolumn_icon_anHJBM",
+    "177822504441f495ee",
+    "17782263911cbcdcdf",
+    "1778227788e4f2ba4c"
+  ]
+}
