@@ -62,9 +62,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       {%- endif -%}
     </title>
 
-    {% if page_description %}
-      <meta name="description" content="{{ page_description | escape }}">
-    {% endif %}
+    {%- liquid
+      assign adm_meta_description = page_description
+      if request.page_type == 'blog' and current_tags != blank
+        assign adm_topic = current_tags | join: ', '
+        capture adm_meta_description
+          echo adm_topic
+          echo ' articles from the Awefurni Journal. Explore furniture ideas and practical guidance for planning your home.'
+        endcapture
+      elsif adm_meta_description == blank
+        case request.path
+          when '/collections/all'
+            assign adm_meta_description = 'Explore Awefurni solid wood furniture for your home. Browse coffee tables, TV stands, cabinets and more, with custom size and finish enquiries available.'
+          when '/policies/privacy-policy'
+            assign adm_meta_description = 'Read the Awefurni privacy policy to understand how personal information is collected, used and shared when you visit or purchase from our store.'
+          when '/policies/refund-policy'
+            assign adm_meta_description = 'Read the Awefurni return and refund policy for information on eligibility, requests and the process to follow if there is an issue with your order.'
+          when '/policies/shipping-policy'
+            assign adm_meta_description = 'Read the Awefurni shipping policy for delivery information. Contact our team to confirm the estimated timeframe and arrangements for your selected furniture.'
+          when '/policies/terms-of-service'
+            assign adm_meta_description = 'Read the Awefurni terms of service for the conditions that apply when you use our website and purchase products from our online furniture store.'
+          when '/cart'
+            assign adm_meta_description = 'Review the furniture and selected options in your Awefurni shopping cart before checkout. Contact our team if you need help with a custom order.'
+        endcase
+      endif
+    -%}
+    {%- if adm_meta_description != blank -%}
+      <meta name="description" content="{{ adm_meta_description | strip | escape }}">
+    {%- endif -%}
 
     {%- liquid
       render 'meta-tags'
