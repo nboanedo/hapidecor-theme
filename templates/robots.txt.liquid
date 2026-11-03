@@ -1,0 +1,12 @@
+{% for group in robots.default_groups %}
+{{- group.user_agent }}
+{%- for rule in group.rules %}
+{{ rule }}
+{%- endfor %}
+{%- if group.user_agent.value == '*' %}
+Allow: /cdn/shop/t/*/assets/cart.js
+{%- endif %}
+{%- if group.sitemap != blank %}
+{{ group.sitemap }}
+{%- endif %}
+{% endfor %}
