@@ -181,8 +181,8 @@
   "offers": {
     "@type": "AggregateOffer",
     "priceCurrency": "{{ cart.currency.iso_code }}",
-    "lowPrice": "{{ product.price_min | money_without_currency | strip_html }}",
-    "highPrice": "{{ product.price_max | money_without_currency | strip_html }}",
+    "lowPrice": {{ product.price_min | divided_by: 100.0 | json }},
+    "highPrice": {{ product.price_max | divided_by: 100.0 | json }},
     "offerCount": "{{ product.variants.size }}",
     "availability": "https://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}",
     "url": "{{ shop.url }}{{ product.url }}"
