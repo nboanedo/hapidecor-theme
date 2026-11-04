@@ -108,6 +108,43 @@
   </div>
 
 
+  {%- liquid
+    assign adm_related_collection = nil
+    for adm_collection in product.collections
+      if adm_collection.products_count > 1
+        if adm_related_collection == nil or adm_collection.products_count < adm_related_collection.products_count
+          assign adm_related_collection = adm_collection
+        endif
+      endif
+    endfor
+  -%}
+  {%- if adm_related_collection != nil -%}
+    {%- liquid
+      assign adm_related_pool = adm_related_collection.products
+      assign adm_related_size = adm_related_pool.size
+      assign adm_related_start = 0
+      for adm_item in adm_related_pool limit: 50
+        if adm_item.id == product.id
+          assign adm_related_start = forloop.index0
+          break
+        endif
+      endfor
+    -%}
+    <nav aria-label="Compare related furniture" class="page-width" style="padding-block:2rem;border-top:1px solid rgba(0,0,0,.12)">
+      <h2 class="h4">Compare similar furniture</h2>
+      <p>Explore more designs in <a href="{{ adm_related_collection.url }}">{{ adm_related_collection.title | escape }}</a>, then compare dimensions, finishes and storage for your space.</p>
+      <ul style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr));gap:.75rem 2rem;padding-left:1.25rem">
+        {%- for adm_step in (1..4) -%}
+          {%- assign adm_related_index = adm_related_start | plus: adm_step | modulo: adm_related_size -%}
+          {%- assign adm_related_item = adm_related_pool[adm_related_index] -%}
+          {%- if adm_related_item != blank and adm_related_item.id != product.id and adm_step < adm_related_size -%}
+            <li><a href="{{ adm_related_item.url }}">{{ adm_related_item.title | escape }}</a></li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </nav>
+  {%- endif -%}
+
   <product-recently-viewed data-product-id="{{ product.id }}" class="hidden"></product-recently-viewed>
   {%- if enable_image_zoom -%}
     <script src="{{ 'photoswipe.js' | asset_url }}" defer="defer"></script>
