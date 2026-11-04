@@ -77,15 +77,10 @@
         {%- when 'title' -%}
           <div class="{{ block_classes }}" {{ block.shopify_attributes }}>
             {%- if update_browser_history == false -%}
-              <h2 class="product__title {{ block.settings.heading_size }}">{{ product.title | escape }}</h2>
+              <h2 class="product__title {{ block.settings.heading_size }}"><a href="{{ product.url }}" style="color:inherit;text-decoration:none">{{ product.title | escape }}</a></h2>
             {%- else -%}
               <h1 class="product__title {{ block.settings.heading_size }}">{{ product.title | escape }}</h1>
             {%- endif -%}
-            <a href="{{ product.url }}" class="product__title">
-              <h2 class="h1">
-                {{ product.title | escape }}
-              </h2>
-            </a>
           </div>
         {%- when 'price' -%}
           <div class="{{ block_classes }}" {{ block.shopify_attributes }}>
