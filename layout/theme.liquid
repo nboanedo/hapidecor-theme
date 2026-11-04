@@ -51,8 +51,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     {%- liquid
       assign adm_page_title = page_title
-      if request.page_type == 'article' and article.metafields.global.title_tag != blank
-        assign adm_page_title = article.metafields.global.title_tag
+      if request.page_type == 'article'
+        case article.handle
+          when 'how-to-stop-solid-wood-furniture-from-cracking-a-seasonal-humidity-guide'
+            assign adm_page_title = 'Stop Solid Wood Furniture Cracking: Humidity Guide'
+          when 'why-does-the-hand-seek-the-grain-the-somatic-contrast-of-teak-and-walnut'
+            assign adm_page_title = 'Teak vs Walnut: Texture and Wood Grain'
+        endcase
       endif
     -%}
     <title>
