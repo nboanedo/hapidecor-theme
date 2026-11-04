@@ -6,8 +6,12 @@
   endif
 
   assign quick_view_type = settings.quick_view_type
+  assign adm_render_quick_view_content = false
+  if section.index == nil or request.design_mode
+    assign adm_render_quick_view_content = true
+  endif
 -%}
-{%- if product != blank -%}
+{%- if product != blank and adm_render_quick_view_content -%}
   {%- liquid
     assign media_layout = 'stacked'
     assign mobile_thumbnails = 'hide'
