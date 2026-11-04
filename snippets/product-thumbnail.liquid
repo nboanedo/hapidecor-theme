@@ -22,6 +22,7 @@
   %}
 {% endcomment %}
 {%- liquid
+  assign adm_media_alt = media.alt | default: product.title
   assign desktop_columns = 1
   if desktop_layout == 'columns' and media_count > 1
     assign desktop_columns = 2
@@ -65,6 +66,7 @@
               | image_url: width: 1946
               | image_tag:
                 is: 'image-lazy',
+              alt: adm_media_alt,
                 loading: loading,
                 fetchpriority: fetchpriority,
                 sizes: sizes,
@@ -120,6 +122,7 @@
             | image_url: width: 1946
             | image_tag:
               is: 'image-lazy',
+              alt: adm_media_alt,
               loading: loading,
               fetchpriority: fetchpriority,
               sizes: sizes,
