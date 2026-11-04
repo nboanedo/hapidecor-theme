@@ -64,7 +64,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     {%- liquid
       assign adm_meta_description = page_description
-      if request.page_type == 'blog' and current_tags != blank
+      if request.page_type == 'product' and product.metafields.global.description_tag == blank
+        capture adm_meta_description
+          echo product.title | strip | truncate: 90
+          echo '. Compare sizes and finishes, or ask Awefurni about custom options.'
+        endcapture
+      elsif request.page_type == 'blog' and current_tags != blank
         assign adm_topic = current_tags | join: ', '
         capture adm_meta_description
           echo adm_topic
