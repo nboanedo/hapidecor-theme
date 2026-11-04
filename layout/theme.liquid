@@ -49,8 +49,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
     {%- endunless -%}
 
+    {%- liquid
+      assign adm_page_title = page_title
+      if request.page_type == 'article' and article.metafields.global.title_tag != blank
+        assign adm_page_title = article.metafields.global.title_tag
+      endif
+    -%}
     <title>
-      {{- page_title -}}
+      {{- adm_page_title | escape -}}
       {%- if current_tags -%}
         {%- assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags -}}
       {%- endif -%}
@@ -58,7 +64,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       {%- if template == 'password' -%}
         {{- shop.name -}}
       {%- else -%}
-        {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+        {%- unless adm_page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
       {%- endif -%}
     </title>
 
