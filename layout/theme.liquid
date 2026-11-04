@@ -194,12 +194,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         {%- include 'icart-variables', ICART_FULL_PAGE_LAYOUT: ICART_FULL_PAGE_LAYOUT %}
       </main>
 
-      <nav class="page-width" aria-label="Shop solid wood furniture" style="padding-top:2rem;padding-bottom:2rem;border-top:1px solid rgba(0,0,0,.12)">
-        <p style="margin:0 0 .75rem;font-weight:600">Find furniture for your room</p>
-        <ul style="list-style:none;display:flex;flex-wrap:wrap;gap:.75rem 2rem;padding:0;margin:0">
-          <li><a href="{{ routes.collections_url }}/solid-wood-coffee-tables" style="text-decoration:underline;text-underline-offset:.2em">Solid wood coffee tables</a></li>
-          <li><a href="{{ routes.collections_url }}/solid-wood-tv-stands" style="text-decoration:underline;text-underline-offset:.2em">Solid wood TV stands &amp; media consoles</a></li>
-        </ul>
+      <nav class="page-width" aria-label="Find furniture and planning guides" style="padding-block:2rem;border-top:1px solid rgba(0,0,0,.12)">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,14rem),1fr));gap:1.5rem 2rem">
+          <div><p style="margin:0 0 .75rem;font-weight:600">Shop by room</p><ul style="list-style:none;display:grid;gap:.5rem;padding:0;margin:0">
+            <li><a href="{{ routes.collections_url }}/living-room">Living room furniture</a></li>
+            <li><a href="{{ routes.collections_url }}/dining-kitchen">Dining and kitchen furniture</a></li>
+            <li><a href="{{ routes.collections_url }}/bedroom">Bedroom furniture</a></li>
+            <li><a href="{{ routes.collections_url }}/bathroom">Bathroom furniture</a></li>
+            <li><a href="{{ routes.collections_url }}/home-office">Home office furniture</a></li>
+          </ul></div>
+          <div><p style="margin:0 0 .75rem;font-weight:600">Shop by type</p><ul style="list-style:none;display:grid;gap:.5rem;padding:0;margin:0">
+            <li><a href="{{ routes.collections_url }}/solid-wood-coffee-tables">Solid wood coffee tables</a></li>
+            <li><a href="{{ routes.collections_url }}/solid-wood-tv-stands">Solid wood TV stands and media consoles</a></li>
+            <li><a href="{{ routes.collections_url }}/tables">All tables</a></li>
+            <li><a href="{{ routes.collections_url }}/cabinets">Cabinets and storage</a></li>
+            <li><a href="{{ routes.collections_url }}/chairs">Chairs</a></li>
+            <li><a href="{{ routes.collections_url }}/shelves">Shelves</a></li>
+            <li><a href="{{ routes.collections_url }}/new-arrival">New arrivals</a></li>
+            <li><a href="{{ routes.collections_url }}/home-highlights">Home highlights</a></li>
+          </ul></div>
+          <div><p style="margin:0 0 .75rem;font-weight:600">Planning and care</p><ul style="list-style:none;display:grid;gap:.5rem;padding:0;margin:0">
+            <li><a href="{{ routes.root_url }}blogs/journal">Awefurni Journal</a></li>
+            <li><a href="{{ routes.root_url }}blogs/journal/tagged/how-to">Furniture how-to guides</a></li>
+            <li><a href="{{ routes.root_url }}blogs/journal/tagged/trends">Furniture trends and design stories</a></li>
+            <li><a href="{{ routes.root_url }}pages/about">About Awefurni and custom orders</a></li>
+            <li><a href="{{ routes.root_url }}pages/contact">Contact Awefurni</a></li>
+            <li><a href="{{ routes.root_url }}policies/shipping-policy">Shipping information</a></li>
+          </ul></div>
+        </div>
       </nav>
 
       {% sections 'footer-group' %}
