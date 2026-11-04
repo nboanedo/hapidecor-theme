@@ -134,7 +134,7 @@
                     if background_default == blank and block.settings.button_link contains '/collections/'
                       assign adm_collection_handle = block.settings.button_link | split: '/collections/' | last | split: '?' | first
                       assign adm_banner_collection = collections[adm_collection_handle]
-                      assign background_default = adm_banner_collection.image | default: adm_banner_collection.products.first.featured_image
+                      assign background_default = adm_banner_collection.products.first.featured_image | default: adm_banner_collection.image
                     endif
                   -%}
                   <div class="slideshow__slide-bg absolute inset-full">
