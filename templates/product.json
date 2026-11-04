@@ -393,7 +393,8 @@
         "divider_width": "fixed",
         "padding_top": 30,
         "padding_bottom": 40
-      }
+      },
+      "disabled": true
     },
     "collapsible_tabs_WqezF8": {
       "type": "collapsible-tabs",

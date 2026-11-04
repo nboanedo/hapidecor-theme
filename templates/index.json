@@ -173,7 +173,7 @@
         "show_controls": true,
         "autoplay": false,
         "autoplay_delay": 5,
-        "show_text_below": false,
+        "show_text_below": true,
         "text_alignment_mobile": "center",
         "accessibility_info": "Explore custom solid wood coffee tables and TV stands"
       }
@@ -769,7 +769,8 @@
         "divider_width": "fixed",
         "padding_top": 30,
         "padding_bottom": 40
-      }
+      },
+      "disabled": true
     },
     "featured_blog_tAdBnq": {
       "type": "featured-blog",
@@ -817,14 +818,14 @@
         "column_yMx7FL": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/beautiful-japanese-forest-scene.jpg",
-            "title": "Begins in the forest",
+            "image": "",
+            "title": "Form with character",
             "highlight_style": "none",
             "highlight_font_style": "italic",
             "highlight_style_color": "",
             "highlight_text_color": "",
             "heading_size": "h4",
-            "text": "<p>We source our wood with care and intention, choosing materials that are responsibly harvested and naturally aged. Every piece starts with respect for nature — not extraction, but balance.</p>",
+            "text": "<p>Explore sculptural curves, fluted fronts and live-edge shapes. Choose a visual direction that works with the proportions and furniture already in your room.</p>",
             "text_size": "text-base",
             "button_label": "",
             "button_link": "",
@@ -835,14 +836,14 @@
         "column_JLcMpr": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/woman-touching-tree-with-hand-brand.jpg",
-            "title": "Continues with responsibility",
+            "image": "",
+            "title": "Function in the details",
             "highlight_style": "none",
             "highlight_font_style": "italic",
             "highlight_style_color": "",
             "highlight_text_color": "",
             "heading_size": "h4",
-            "text": "<p>Sustainability isn’t a label for us; it’s a commitment. We minimize waste, reuse what we can, and design with longevity in mind — so each creation lasts for years.</p>",
+            "text": "<p>Consider what a piece needs to do: hold everyday items, accommodate media equipment or leave room to move. Compare dimensions and discuss practical requirements before ordering.</p>",
             "text_size": "text-base",
             "button_label": "",
             "button_link": "",
@@ -853,14 +854,14 @@
         "column_CrKNDw": {
           "type": "column",
           "settings": {
-            "image": "shopify://shop_images/by-the-hands-of-an-artisan.jpg",
-            "title": "By the hands of an artisan",
+            "image": "",
+            "title": "A more personal fit",
             "highlight_style": "none",
             "highlight_font_style": "italic",
             "highlight_style_color": "",
             "highlight_text_color": "",
             "heading_size": "h4",
-            "text": "<p>Skilled wood artists shape every piece. They listen to the grain, follow its character, and transform raw wood into furniture with soul. No two pieces ever the same.<br/><br/></p>",
+            "text": "<p>Ask about custom dimensions, layout and finishes for your selected design. We review feasibility and the quotation so you can decide on a specification for your space.</p>",
             "text_size": "text-base",
             "button_label": "",
             "button_link": "",
@@ -881,7 +882,7 @@
         "section_header_alignment": "left",
         "section_header_alignment_mobile": "inherit",
         "subheading": "<em>From the forest to your home, every piece tells a story.</em>",
-        "heading": "MORE ABOUT US",
+        "heading": "Designed around your room",
         "highlight_style": "none",
         "highlight_font_style": "italic",
         "highlight_style_color": "",
