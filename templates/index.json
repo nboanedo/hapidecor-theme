@@ -171,7 +171,7 @@
       "name": "t:sections.slideshow.name",
       "settings": {
         "container": "full",
-        "slide_height": "adapt",
+        "slide_height": "medium",
         "show_controls": true,
         "autoplay": false,
         "autoplay_delay": 5,
