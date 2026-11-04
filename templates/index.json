@@ -135,7 +135,8 @@
             "button_link": "/collections/solid-wood-coffee-tables",
             "button_style": "btn--primary",
             "button_icon": "none",
-            "enable_preload_image": false
+            "enable_preload_image": false,
+            "background": "shopify://shop_images/ZolaLoopSolidWoodCoffeeTableForLivingRoom_8.jpg"
           }
         },
         "slide_VjBHHG": {
@@ -158,7 +159,8 @@
             "button_link": "/collections/solid-wood-tv-stands",
             "button_style": "btn--primary",
             "button_icon": "none",
-            "enable_preload_image": false
+            "enable_preload_image": false,
+            "background": "shopify://shop_images/HandcraftedSolidWoodTVStand_4-DoorSculptedFront_2.png"
           }
         }
       },
