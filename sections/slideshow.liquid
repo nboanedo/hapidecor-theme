@@ -92,7 +92,6 @@
             style="position:relative;{% if slide_height == 'adapt' %}--aspect-ratio: {{ aspect_ratio }};--aspect-ratio-mobile: {{ aspect_ratio_mobile }};{% endif %}"
             data-content-position="{{ block.settings.content_position }}"
           >
-            {% if block.settings.button_link != blank %}<a href="{{ block.settings.button_link }}" style="position:absolute;top:0;left:0;right:0;bottom:0;z-index:9999;display:block;" aria-label="Banner link"></a>{% endif %}
             <div class="slideshow__bg bg-image overflow-hidden{% if section.settings.container != 'full' %} blocks-radius{% endif %}">
               {%- case block.type -%}
                 {%- when 'video' -%}
@@ -122,6 +121,11 @@
                   {%- liquid
                     assign background_default = block.settings.background
                     assign background_mobile = block.settings.background_mobile
+                    if background_default == blank and block.settings.button_link contains '/collections/'
+                      assign adm_collection_handle = block.settings.button_link | split: '/collections/' | last | split: '?' | first
+                      assign adm_banner_collection = collections[adm_collection_handle]
+                      assign background_default = adm_banner_collection.image | default: adm_banner_collection.products.first.featured_image
+                    endif
                   -%}
                   <div class="slideshow__slide-bg absolute inset-full">
                     {%- if background_default == blank -%}
