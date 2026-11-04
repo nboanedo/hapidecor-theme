@@ -49,19 +49,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
     {%- endunless -%}
 
-    {%- liquid
-      assign adm_page_title = page_title
-      if request.page_type == 'article'
-        case article.handle
-          when 'how-to-stop-solid-wood-furniture-from-cracking-a-seasonal-humidity-guide'
-            assign adm_page_title = 'Stop Solid Wood Furniture Cracking: Humidity Guide'
-          when 'why-does-the-hand-seek-the-grain-the-somatic-contrast-of-teak-and-walnut'
-            assign adm_page_title = 'Teak vs Walnut: Texture and Wood Grain'
-        endcase
-      endif
-    -%}
     <title>
-      {{- adm_page_title | escape -}}
+      {{- page_title -}}
       {%- if current_tags -%}
         {%- assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags -}}
       {%- endif -%}
@@ -69,7 +58,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       {%- if template == 'password' -%}
         {{- shop.name -}}
       {%- else -%}
-        {%- unless adm_page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+        {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
       {%- endif -%}
     </title>
 
