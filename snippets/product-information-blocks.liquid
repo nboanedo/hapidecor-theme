@@ -76,7 +76,11 @@
           </div>
         {%- when 'title' -%}
           <div class="{{ block_classes }}" {{ block.shopify_attributes }}>
-            <h1 class="product__title {{ block.settings.heading_size }}">{{ product.title | escape }}</h1>
+            {%- if update_browser_history == false -%}
+              <h2 class="product__title {{ block.settings.heading_size }}">{{ product.title | escape }}</h2>
+            {%- else -%}
+              <h1 class="product__title {{ block.settings.heading_size }}">{{ product.title | escape }}</h1>
+            {%- endif -%}
             <a href="{{ product.url }}" class="product__title">
               <h2 class="h1">
                 {{ product.title | escape }}
