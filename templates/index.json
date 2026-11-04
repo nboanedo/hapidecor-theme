@@ -433,7 +433,8 @@
         "padding_top": 50,
         "padding_bottom": 0,
         "enable_preload_image": true
-      }
+      },
+      "disabled": true
     },
     "featured_collection_UmBwDx": {
       "type": "featured-collection",
@@ -477,7 +478,7 @@
         "section_header_alignment": "left",
         "section_header_alignment_mobile": "inherit",
         "subheading": "",
-        "heading": "Best Selling Products",
+        "heading": "Selected living room furniture",
         "highlight_style": "none",
         "highlight_font_style": "italic",
         "highlight_style_color": "",
@@ -485,7 +486,7 @@
         "heading_size": "h2",
         "description": "",
         "text_size": "text-base",
-        "button_label": "Learn More",
+        "button_label": "Shop living room furniture",
         "button_link": "shopify://collections/living-room",
         "button_style": "btn--underline",
         "button_icon": "none",
