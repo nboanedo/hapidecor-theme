@@ -60,7 +60,7 @@
             "title_font": "body",
             "title_size": "h5",
             "icon_1": "stool",
-            "heading_1": "Assembly Required",
+            "heading_1": "Assembly Details",
             "icon_2": "none",
             "heading_2": "",
             "icon_3": "check",
@@ -109,7 +109,7 @@
             "title_font": "body",
             "title_size": "text-base",
             "icon_1": "arrow-up-left",
-            "heading_1": "30-Day Return",
+            "heading_1": "Return Policy",
             "icon_2": "none",
             "heading_2": "",
             "icon_3": "star-four",
@@ -123,7 +123,7 @@
             "title_font": "body",
             "title_size": "text-base",
             "icon_1": "check",
-            "heading_1": "Protected Delivery",
+            "heading_1": "Delivery Support",
             "icon_2": "none",
             "heading_2": "",
             "icon_3": "star-four",
@@ -175,7 +175,7 @@
             "heading": "Assembly & Care",
             "heading_size": "h5",
             "icon": "none",
-            "content": "<p>Most of our furniture is shipped disassembled to protect the wood during transit.</p><p><strong>Built for Everyone:</strong> We pride ourselves on a \"no-experience-needed\" assembly system. It’s simple, fast, and <strong>literally anyone can do it.</strong></p><p><strong>Exceptions:</strong> To guarantee the best quality, certain products are shipped fully assembled, including chairs and small accent pieces.</p><p><strong>Dual-Guide System:</strong> You’ll receive a written manual or/and a video tutorial via email as soon as you purchase.</p><p><strong>Support:</strong> We are committed to your satisfaction. If you require any assistance during setup, please contact our support team: <strong>support@awefurni.com</strong></p>",
+            "content": "<p>Assembly and mounting requirements depend on the design and selected configuration. Before ordering, confirm the product dimensions, weight, included instructions and whether professional installation is recommended for your space.</p><p>Ask our team for care guidance suited to the material and finish of your item. See our <a href=\"/pages/faqs\">furniture FAQs</a> or <a href=\"/pages/contact\">contact Awefurni</a> for item-specific questions.</p>",
             "page": "",
             "default_open": false,
             "show_below_product_media": true
@@ -187,7 +187,7 @@
             "heading": "Shipping & Return",
             "heading_size": "h5",
             "icon": "none",
-            "content": "<p><strong>Shipping Cost</strong></p><p>All products are manufactured by our partners in Vietnam.<br/>We offer <strong>free standard shipping</strong> on all orders shipped within the <strong>United States </strong>(No minimum purchase is required).<br/>For products that offer an assembly choice, if you'd prefer your items to arrive <strong>fully assembled</strong>, you can select that option for an <strong>additional fee</strong>.</p><p><strong>30 Day Return Policy</strong></p><p>You have 30 days from your purchase date to initiate a return. To qualify, items must be unworn, unaltered, and in their original condition with all tags intact.<br/></p><p><em>Please note:</em> Returns are accepted for items that arrived damaged during transit or contain manufacturing defects.</p>",
+            "content": "<p>We offer free standard shipping to eligible U.S. addresses. Review our <a href=\"/policies/shipping-policy\">shipping policy</a> for coverage, production and delivery estimates, and contact us about your chosen configuration and location before ordering.</p><p>Returns are subject to eligibility, conditions and timeframes in our <a href=\"/policies/refund-policy\">return and refund policy</a>. Please review it before purchase and contact our team if you need clarification about your item.</p>",
             "page": "",
             "default_open": false,
             "show_below_product_media": true
@@ -524,7 +524,8 @@
         "padding_bottom": 0,
         "show_section_divider": false,
         "divider_width": "fixed"
-      }
+      },
+      "disabled": true
     },
     "collapsible_tabs_Fc3N9c": {
       "type": "collapsible-tabs",
@@ -640,7 +641,8 @@
         "padding_bottom": 60,
         "show_section_divider": false,
         "divider_width": "fixed"
-      }
+      },
+      "disabled": true
     },
     "related_products_gkb4CN": {
       "type": "related-products",
@@ -774,14 +776,14 @@
             "icon": "arrow-up-left",
             "max_width": 40,
             "max_width_mb": 28,
-            "title": "RISK-FREE",
+            "title": "RETURN GUIDANCE",
             "highlight_style": "none",
             "highlight_font_style": "italic",
             "highlight_style_color": "",
             "highlight_text_color": "",
             "heading_size": "h6",
             "heading_font": "heading",
-            "text": "<p>30-Day Return Policy</p>",
+            "text": "<p>Review eligibility and conditions in our <a href=\"/policies/refund-policy\">return policy</a>.</p>",
             "text_size": "text-base",
             "button_label": "",
             "button_link": "",
