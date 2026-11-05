@@ -36,7 +36,7 @@
   ============================================================================
 {% endcomment %}
 
-<style>
+{% stylesheet %}
   /* ── Quick View Color Swatches ─────────────────────────────────── */
   .qv-color-swatches { margin-bottom: 16px; }
 
@@ -100,9 +100,9 @@
   .qv-color-swatch:hover .qv-color-swatch__tooltip {
     opacity: 1;
   }
-</style>
+{% endstylesheet %}
 
-<script>
+{% javascript %}
 (function() {
   'use strict';
 
@@ -450,4 +450,4 @@
   bodyObserver.observe(document.body, { childList: true, subtree: true });
 
 })();
-</script>
+{% endjavascript %}
