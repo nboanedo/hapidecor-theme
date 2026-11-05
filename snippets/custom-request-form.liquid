@@ -391,52 +391,47 @@
 {% javascript %}
 (function () {
   'use strict';
-
-  var toggle  = document.getElementById('custom-request-toggle');
-  var panel   = document.getElementById('custom-request-panel');
-  var textarea = document.getElementById('CustomRequestMessage');
-
-  if (!toggle || !panel) return;
-
-  /*
-   * Textarea padding fix.
-   * Pillar's base stylesheet sets padding-left:0 on textarea elements.
-   * Inline styles have higher specificity than any stylesheet rule (including
-   * !important in author stylesheets), so this is the only reliable override.
-   */
-  if (textarea) {
-    textarea.style.paddingTop    = '1rem';
+  function prepareTextarea(wrapper) {
+    var textarea = wrapper.querySelector('textarea');
+    if (!textarea) return;
+    textarea.style.paddingTop = '1rem';
     textarea.style.paddingBottom = '1rem';
-    textarea.style.paddingLeft   = '1.2rem';
-    textarea.style.paddingRight  = '1.2rem';
-    textarea.style.textIndent    = '0';
-    textarea.style.textAlign     = 'left';
+    textarea.style.paddingLeft = '1.2rem';
+    textarea.style.paddingRight = '1.2rem';
+    textarea.style.textIndent = '0';
+    textarea.style.textAlign = 'left';
   }
-
-  /* Toggle accordion */
-  toggle.addEventListener('click', function () {
-    var expanded = this.getAttribute('aria-expanded') === 'true';
-    if (expanded) {
-      this.setAttribute('aria-expanded', 'false');
-      panel.setAttribute('hidden', '');
-    } else {
-      this.setAttribute('aria-expanded', 'true');
-      panel.removeAttribute('hidden');
-      // Re-apply textarea fix after panel becomes visible (some browsers reset)
-      if (textarea) {
-        textarea.style.paddingLeft = '1.2rem';
-        textarea.style.textIndent  = '0';
-      }
+  document.addEventListener('click', function (event) {
+    var toggle = event.target.closest('.custom-request-toggle');
+    if (!toggle) return;
+    var wrapper = toggle.closest('.custom-request-wrapper');
+    var panel = wrapper && wrapper.querySelector('.custom-request-panel');
+    if (!panel) return;
+    var expanded = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+    panel.hidden = expanded;
+    if (!expanded) {
+      prepareTextarea(wrapper);
       panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
   });
-
-  /* Keep panel open after successful submit so customer sees confirmation */
-  var successMsg = panel.querySelector('.custom-request-success');
-  if (successMsg) {
-    toggle.setAttribute('aria-expanded', 'true');
-    panel.removeAttribute('hidden');
-    successMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  function showConfirmations() {
+    document.querySelectorAll('.custom-request-wrapper').forEach(function (wrapper) {
+      var panel = wrapper.querySelector('.custom-request-panel');
+      var toggle = wrapper.querySelector('.custom-request-toggle');
+      var success = panel && panel.querySelector('.custom-request-success');
+      if (success && toggle) {
+        prepareTextarea(wrapper);
+        toggle.setAttribute('aria-expanded', 'true');
+        panel.hidden = false;
+        success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', showConfirmations, { once: true });
+  } else {
+    showConfirmations();
   }
 })();
 {% endjavascript %}
