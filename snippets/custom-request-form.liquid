@@ -126,7 +126,7 @@
 
 
 {%- comment -%} ===================== STYLES ===================== {%- endcomment -%}
-<style>
+{% stylesheet %}
   /*
    * Layout strategy:
    * - .custom-request-wrapper holds the card border + border-radius + overflow:hidden
@@ -384,11 +384,11 @@
     margin-bottom: 1.6rem;
     line-height: 1.5;
   }
-</style>
+{% endstylesheet %}
 
 
 {%- comment -%} ===================== SCRIPT ===================== {%- endcomment -%}
-<script>
+{% javascript %}
 (function () {
   'use strict';
 
@@ -439,4 +439,4 @@
     successMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 })();
-</script>
+{% endjavascript %}
