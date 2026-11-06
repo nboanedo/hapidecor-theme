@@ -235,6 +235,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <main id="MainContent" class="main-content content-for-layout focus-none" role="main" tabindex="-1">
         {% capture ICART_FULL_PAGE_LAYOUT %}{{ content_for_layout }}{% endcapture -%}
         {%- include 'icart-variables', ICART_FULL_PAGE_LAYOUT: ICART_FULL_PAGE_LAYOUT %}
+      {% if request.page_type == 'collection' %}
+        {% if collection.handle == 'tables' %}
+          <section class="page-width" aria-labelledby="adm-table-guide" style="padding-block:2rem"><h2 id="adm-table-guide" class="h3">Choose a table for its place in your room</h2><p>A console works along a wall or behind seating; a side table brings a surface beside a chair or sofa. Compare the dimensions and drawer or shelf access with the space you have.</p><ul><li><a href="/products/handcrafted-solid-wood-console-table-with-live-edge-top-and-storage-drawers">Live-edge console table with storage drawers</a></li><li><a href="/products/rustic-round-side-table-with-lower-storage-shelf-and-sturdy-legs">Round side table with a lower storage shelf</a></li></ul></section>
+        {% elsif collection.handle == 'cabinets' or collection.handle == 'all-products' %}
+          <section class="page-width" aria-labelledby="adm-storage-guide" style="padding-block:2rem"><h2 id="adm-storage-guide" class="h3">Choose storage around the room</h2><p>Compare the purpose of each piece before choosing its dimensions and finish. Check door and drawer clearance, what you need to store, and the space around the furniture.</p><ul><li><a href="/products/handcrafted-solid-wood-shoe-cabinet-with-tilted-drawers-and-storage">Tiltara Tilted Drawer Solid Wood Shoe Cabinet</a></li><li><a href="/products/sculptural-modern-cabinet-with-flowing-wave-design-and-sleek-legs">Fluenta Wave Front Solid Wood Cabinet</a></li><li><a href="/products/sculpted-wooden-drawer-chest-with-curved-silhouette-and-smooth-finish">Delvano Sculpted Solid Wood Drawer Chest</a></li><li><a href="/products/curved-solid-wood-drawer-chest-with-sculpted-silhouette">Silhoura Curved Solid Wood Drawer Chest</a></li><li><a href="/products/modern-curved-wood-sideboard-with-slatted-center-door-open-shelves">Curvidon Curved Solid Wood Sideboard</a></li></ul><p>Send your measurements and intended use through our <a href="/pages/contact">custom order enquiry</a> before deciding on a configuration.</p></section>
+        {% endif %}
+      {% endif %}
       </main>
 
       <nav class="page-width" aria-label="Find furniture and planning guides" style="padding-block:2rem;border-top:1px solid rgba(0,0,0,.12)">
@@ -259,6 +266,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <div><p style="margin:0 0 .75rem;font-weight:600">Planning and care</p><ul style="list-style:none;display:grid;gap:.5rem;padding:0;margin:0">
             <li><a href="{{ routes.root_url }}blogs/journal">Awefurni Journal</a></li>
             <li><a href="{{ routes.root_url }}blogs/journal/tagged/how-to">Furniture how-to guides</a></li>
+              <li><a href="/blogs/journal/tagged/tips">Furniture planning tips</a></li>
             <li><a href="{{ routes.root_url }}blogs/journal/tagged/trends">Furniture trends and design stories</a></li>
             <li><a href="{{ routes.root_url }}pages/about">About Awefurni and custom orders</a></li>
             <li><a href="{{ routes.root_url }}pages/contact">Contact Awefurni</a></li>
