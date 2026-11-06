@@ -119,11 +119,12 @@
     endfor
   -%}
   {%- if adm_related_collection != nil -%}
+    {%- paginate adm_related_collection.products by 250 -%}
     {%- liquid
       assign adm_related_pool = adm_related_collection.products
       assign adm_related_size = adm_related_pool.size
       assign adm_related_start = 0
-      for adm_item in adm_related_pool limit: 50
+      for adm_item in adm_related_pool
         if adm_item.id == product.id
           assign adm_related_start = forloop.index0
           break
@@ -143,6 +144,7 @@
         {%- endfor -%}
       </ul>
     </nav>
+    {%- endpaginate -%}
   {%- endif -%}
 
   <product-recently-viewed data-product-id="{{ product.id }}" class="hidden"></product-recently-viewed>
