@@ -12,6 +12,7 @@
 {% endcomment %}
 
 {%- if paginate.parts.size > 0 -%}
+  {%- assign adm_redundant_first_url = request.path | append: '?page=1' -%}
   <nav
     class="pagination{% unless type == 'number' %} text-center{% endunless %}"
     role="navigation"
@@ -34,7 +35,7 @@
         {%- if paginate.previous -%}
           <li>
             <a
-              href="{{ paginate.previous.url }}{{ anchor }}"
+              href="{% if paginate.previous.url == adm_redundant_first_url %}{{ request.path }}{% else %}{{ paginate.previous.url }}{% endif %}{{ anchor }}"
               class="pagination__item pagination__item--previous pagination__item-arrow motion-reduce"
             >
               {% render 'icon-caret-left', size: 'extra-small' %}
@@ -47,7 +48,7 @@
           <li>
             {%- if part.is_link -%}
               <a
-                href="{{ part.url }}{{ anchor }}"
+                href="{% if part.url == adm_redundant_first_url %}{{ request.path }}{% else %}{{ part.url }}{% endif %}{{ anchor }}"
                 class="pagination__item"
                 aria-label="{{ 'general.pagination.page' | t: number: part.title }}"
               >
