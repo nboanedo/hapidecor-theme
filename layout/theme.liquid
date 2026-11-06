@@ -49,8 +49,51 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
     {%- endunless -%}
 
+    {%- liquid
+      assign adm_page_title = page_title
+      if request.page_type == 'product'
+        case product.handle
+          when 'ondara-fluid-base-solid-wood-coffee-table-for-living-room'
+            assign adm_page_title = 'Ondara Fluid Base Solid Wood Coffee Table'
+          when 'kelvington-fluid-base-solid-wood-coffee-table-for-living-room'
+            assign adm_page_title = 'Kelvington Fluid Base Solid Wood Coffee Table'
+          when 'elara-fluid-base-solid-wood-coffee-table-for-living-room'
+            assign adm_page_title = 'Elara Fluid Base Solid Wood Coffee Table'
+          when 'sorello-live-edge-solid-wood-tv-stand-for-living-room'
+            assign adm_page_title = 'Sorello Live Edge Solid Wood TV Stand'
+          when 'edgevale-live-edge-solid-wood-tv-stand-for-living-room'
+            assign adm_page_title = 'Edgevale Live Edge Solid Wood TV Stand'
+          when 'solen-curved-solid-wood-tv-console-with-drawers-for-living-room'
+            assign adm_page_title = 'Solen Curved Solid Wood TV Console with Drawers'
+          when 'floreno-curved-solid-wood-tv-console-for-living-room'
+            assign adm_page_title = 'Floreno Curved Solid Wood TV Console'
+          when 'vireon-slab-live-edge-solid-wood-coffee-table-for-living-room'
+            assign adm_page_title = 'Vireon Slab Live Edge Solid Wood Coffee Table'
+          when 'ondule-slab-live-edge-solid-wood-coffee-table-for-living-room'
+            assign adm_page_title = 'Ondule Slab Live Edge Solid Wood Coffee Table'
+          when 'kasper-swirl-solid-wood-coffee-table-for-living-room'
+            assign adm_page_title = 'Kasper Swirl Solid Wood Coffee Table'
+          when 'sugi-spiral-solid-wood-coffee-table-for-living-room'
+            assign adm_page_title = 'Sugi Spiral Solid Wood Coffee Table'
+          when 'bodhi-organic-solid-wood-corner-shelf-for-furniture-decor-and-living-room'
+            assign adm_page_title = 'Bodhi Organic Solid Wood Corner Shelf'
+          when 'dallin-organic-solid-wood-corner-shelf-for-furniture-decor-and-living-room'
+            assign adm_page_title = 'Dallin Organic Solid Wood Corner Shelf'
+          when 'delios-curved-solid-wood-corner-shelf-for-furniture-decor-and-living-room'
+            assign adm_page_title = 'Delios Curved Solid Wood Corner Shelf'
+          when 'inigo-soft-solid-wood-corner-shelf-for-furniture-decor-and-living-room'
+            assign adm_page_title = 'Inigo Soft Solid Wood Corner Shelf'
+          when 'isidore-organic-solid-wood-corner-shelf-for-furniture-decor-and-living-room'
+            assign adm_page_title = 'Isidore Organic Solid Wood Corner Shelf'
+          when 'pax-floating-solid-wood-corner-shelf-for-furniture-decor-and-living-room'
+            assign adm_page_title = 'Pax Floating Solid Wood Corner Shelf'
+          when 'zane-raw-edge-solid-wood-corner-floating-shelf-for-furniture-decor-and-living-room'
+            assign adm_page_title = 'Zane Raw Edge Solid Wood Corner Floating Shelf'
+        endcase
+      endif
+    -%}
     <title>
-      {{- page_title -}}
+      {{- adm_page_title | escape -}}
       {%- if current_tags -%}
         {%- assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags -}}
       {%- endif -%}
@@ -58,7 +101,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       {%- if template == 'password' -%}
         {{- shop.name -}}
       {%- else -%}
-        {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+        {%- unless adm_page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
       {%- endif -%}
     </title>
 
