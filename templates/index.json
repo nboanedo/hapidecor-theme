@@ -119,6 +119,8 @@
           "type": "slide",
           "settings": {
             "color_scheme": "",
+            "background": "shopify://shop_images/homeBannerDiscount_v2.png",
+            "background_mobile": "shopify://shop_images/homeBannerDiscount_Mobile_v2.png",
             "image_overlay_opacity": 0,
             "content_position": "middle-center",
             "text_alignment": "center",
@@ -135,14 +137,14 @@
             "button_link": "/collections/solid-wood-coffee-tables",
             "button_style": "btn--primary",
             "button_icon": "none",
-            "enable_preload_image": false,
-            "background": "shopify://shop_images/ZolaLoopSolidWoodCoffeeTableForLivingRoom_8.jpg"
+            "enable_preload_image": false
           }
         },
         "slide_VjBHHG": {
           "type": "slide",
           "settings": {
             "color_scheme": "",
+            "background": "shopify://shop_images/HandcraftedSolidWoodTVStand_4-DoorSculptedFront_2.png",
             "image_overlay_opacity": 0,
             "content_position": "middle-center",
             "text_alignment": "center",
@@ -159,8 +161,7 @@
             "button_link": "/collections/solid-wood-tv-stands",
             "button_style": "btn--primary",
             "button_icon": "none",
-            "enable_preload_image": false,
-            "background": "shopify://shop_images/HandcraftedSolidWoodTVStand_4-DoorSculptedFront_2.png"
+            "enable_preload_image": false
           }
         }
       },
@@ -421,6 +422,7 @@
         "heading_jrmydY",
         "text_4hdxBD"
       ],
+      "disabled": true,
       "name": "t:sections.image-with-text-overlay.name",
       "settings": {
         "container": "full",
@@ -435,8 +437,7 @@
         "padding_top": 50,
         "padding_bottom": 0,
         "enable_preload_image": true
-      },
-      "disabled": true
+      }
     },
     "featured_collection_UmBwDx": {
       "type": "featured-collection",
@@ -740,6 +741,7 @@
         "column_CE96qa",
         "column_dfxPnb"
       ],
+      "disabled": true,
       "name": "t:sections.multicolumn.name",
       "settings": {
         "container": "fixed",
@@ -771,8 +773,7 @@
         "divider_width": "fixed",
         "padding_top": 30,
         "padding_bottom": 40
-      },
-      "disabled": true
+      }
     },
     "featured_blog_tAdBnq": {
       "type": "featured-blog",
@@ -820,7 +821,6 @@
         "column_yMx7FL": {
           "type": "column",
           "settings": {
-            "image": "",
             "title": "Form with character",
             "highlight_style": "none",
             "highlight_font_style": "italic",
@@ -838,7 +838,6 @@
         "column_JLcMpr": {
           "type": "column",
           "settings": {
-            "image": "",
             "title": "Function in the details",
             "highlight_style": "none",
             "highlight_font_style": "italic",
@@ -856,7 +855,6 @@
         "column_CrKNDw": {
           "type": "column",
           "settings": {
-            "image": "",
             "title": "A more personal fit",
             "highlight_style": "none",
             "highlight_font_style": "italic",
