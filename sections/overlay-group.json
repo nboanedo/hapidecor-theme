@@ -215,8 +215,8 @@
         "image": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/HandcraftedSolidWoodTVStand_4-DoorSculptedFront_2.png",
-            "image_mobile": "shopify://shop_images/HandcraftedSolidWoodTVStand_4-DoorSculptedFront_2.png",
+            "image": "shopify://shop_images/popupDesktop.png",
+            "image_mobile": "shopify://shop_images/popupMobile.png",
             "image_position": "top"
           }
         }
