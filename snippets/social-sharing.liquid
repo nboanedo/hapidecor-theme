@@ -19,10 +19,23 @@
       <span class="btn btn--icon btn--icon-circle">{% render 'icon-twitter', size: 'large' %}</span>
     </a>
   {%- endif -%}
-  {%- if settings.share_pinterest -%}
+  {%- liquid
+    assign pinterest_image = share_image
+    if pinterest_image == blank and request.page_type == 'article'
+      assign pinterest_image = article.image
+    endif
+    assign pinterest_title = share_title | default: page_title
+  -%}
+  {%- if settings.share_pinterest and pinterest_image != blank -%}
+    {%- assign pinterest_media = pinterest_image | image_url: width: 1024 -%}
+    {%- assign pinterest_media_prefix = pinterest_media | slice: 0, 2 -%}
+    {%- if pinterest_media_prefix == '//' -%}
+      {%- assign pinterest_media = pinterest_media | prepend: 'https:' -%}
+    {%- endif -%}
+    {%- assign pinterest_url = shop.url | append: url -%}
     <a
       target="_blank"
-      href="//pinterest.com/pin/create/button/?url={{ shop.url | append: url }}&amp;media={{ share_image | image_url: width: 1024, height: 1024 }}&amp;description={{ share_title | url_param_escape }}"
+      href="//pinterest.com/pin/create/button/?url={{ pinterest_url | url_param_escape }}&amp;media={{ pinterest_media | url_param_escape }}&amp;description={{ pinterest_title | url_param_escape }}"
       data-tooltip
     >
       <span class="tooltip pointer-events-none">{{ 'general.share.share_on_pinterest' | t }}</span>
