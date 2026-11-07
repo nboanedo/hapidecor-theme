@@ -382,6 +382,14 @@
           </div>
 
         {%- when 'buy_buttons' -%}
+          {%- if request.page_type == 'product' and shop.shipping_policy.url != blank -%}
+            <div class="product__block text-sm product-order-guidance">
+              <p class="m-0"><strong>U.S. delivery estimate:</strong> 20–45 business days from order for the contiguous United States. See <a class="reversed-link" href="{{ shop.shipping_policy.url }}">shipping coverage and timing</a>{% if shop.refund_policy.url != blank %} and <a class="reversed-link" href="{{ shop.refund_policy.url }}">return eligibility</a>{% endif %}.</p>
+              {%- if product.handle == 'corvane-sculpted-front-solid-wood-tv-stand-for-living-room' -%}
+                <p>Before ordering Corvane, check the selected width against your TV and available wall space, confirm your assembly option, and use Send Custom Request to ask about a finish reference or a different size.</p>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
           <div class="{{ block_classes }}" {{ block.shopify_attributes }}>
             {%- render 'buy-buttons',
               block: block,
