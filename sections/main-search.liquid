@@ -51,6 +51,23 @@
       {%- render 'predictive-search', context: 'page' -%}
     </div>
     {%- if search.performed -%}
+      {%- liquid
+        assign normalized_terms = search.terms | strip | downcase | replace: '-', ' '
+        assign coffee_tables = collections['solid-wood-coffee-tables']
+        assign tv_stands = collections['solid-wood-tv-stands']
+        assign suggested_collection = nil
+        case normalized_terms
+          when 'coffee table', 'coffee tables', 'solid wood coffee table', 'solid wood coffee tables'
+            assign suggested_collection = coffee_tables
+          when 'tv stand', 'tv stands', 'solid wood tv stand', 'solid wood tv stands', 'tv console', 'tv cabinet', 'media console', 'modern tv console'
+            assign suggested_collection = tv_stands
+        endcase
+      -%}
+      {%- if suggested_collection != blank and suggested_collection.products_count > 0 -%}
+        <p class="m-0 text-center search-collection-suggestion">
+          Shop by category: <a href="{{ suggested_collection.url }}" class="reversed-link">{{ suggested_collection.title | escape }}</a>
+        </p>
+      {%- endif -%}
       {%- unless section.settings.enable_filtering or section.settings.enable_sorting -%}
         {%- if search.results_count > 0 -%}
           <p role="status" class="m-0 text-center">
