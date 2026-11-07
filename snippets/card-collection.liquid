@@ -59,7 +59,7 @@
     elsif image_width == 'large'
       assign image_sizes = '(max-width:767px) 70px, 110px'
     else
-      assign image_sizes = '450px'
+      assign image_sizes = 'auto, 450px'
     endif
   endif
 
@@ -86,7 +86,7 @@
       <motion-element data-motion="zoom-out-sm" class="block" style="--aspect-ratio: {{ image_ratio }};">
         {%- if featured_image != blank -%}
           {%- liquid
-            assign image_widths = '60, 70, 80, 120, 140, 160, 240, 320, 450, 535, 710, 800, 900,' | append: featured_image.width
+            assign image_widths = '60, 70, 80, 120, 140, 160, 240, 320, 400, 450, 535, 640, 710, 800, 900,' | append: featured_image.width
             assign alt_image = featured_image.alt | default: collection_title_default | escape
           -%}
           {{
