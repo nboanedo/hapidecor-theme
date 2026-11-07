@@ -137,7 +137,7 @@
             "button_link": "/collections/solid-wood-coffee-tables",
             "button_style": "btn--primary",
             "button_icon": "none",
-            "enable_preload_image": false
+            "enable_preload_image": true
           }
         },
         "slide_VjBHHG": {
