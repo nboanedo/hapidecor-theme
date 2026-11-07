@@ -152,10 +152,13 @@
                       {%- capture sizes -%}
                         {%- if section.settings.container == 'full' -%}100vw{%- else -%}min({{ settings.page_width }}, 100vw){%- endif -%}
                       {%- endcapture -%}
-                      <motion-element
+                      {%- assign image_wrapper = 'motion-element' -%}
+                      {%- if request.page_type == 'index' and forloop.first and enable_preload_image -%}
+                        {%- assign image_wrapper = 'div' -%}
+                      {%- endif -%}
+                      <{{ image_wrapper }}
                         class="w-full h-full block{% if background_default == blank %} md:hidden{% endif %}"
-                        data-motion="zoom-out"
-                        hold
+                        {% if image_wrapper == 'motion-element' %}data-motion="zoom-out" hold{% endif %}
                       >
                         <picture class="media media--height media-wrapper block w-full h-full relative overflow-hidden">
                           {%- if background_default != blank and background_mobile != blank -%}
@@ -188,7 +191,7 @@
                               is: 'image-lazy'
                           -}}
                         </picture>
-                      </motion-element>
+                      </{{ image_wrapper }}>
                     {%- endif -%}
                   </div>
               {%- endcase -%}
